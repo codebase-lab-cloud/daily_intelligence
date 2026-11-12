@@ -1,0 +1,1977 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Daily Intelligence Briefing — Finance, AI &amp; Markets</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          colors: {
+            brand: { 50: '#eef2ff', 100: '#e0e7ff', 500: '#4f46e5', 600: '#4338ca', 700: '#3730a3' }
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    html, body { font-family: 'Inter', system-ui, sans-serif; -webkit-tap-highlight-color: transparent; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-fade-up { animation: fadeUp 0.22s ease-out; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 min-h-screen pb-24 md:pb-10 transition-colors duration-200">
+
+  <!-- Top Header -->
+  <header class="sticky top-0 z-30 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+      <div class="flex items-center gap-2.5 min-w-0">
+        <div class="w-9 h-9 rounded-xl bg-slate-900 dark:bg-indigo-600 text-white flex items-center justify-center font-bold text-sm shrink-0 shadow-sm">
+          DI
+        </div>
+        <div class="min-w-0">
+          <div class="text-sm font-bold tracking-tight truncate">Daily Intelligence</div>
+          <div class="text-[11px] text-slate-500 dark:text-slate-400 truncate">Thu, 12 Nov 2026 &bull; India Edition</div>
+        </div>
+      </div>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-1" id="desktop-nav">
+        <button data-tab="home" class="nav-btn px-3 py-1.5 rounded-lg text-sm font-medium transition-colors">Home</button>
+        <button data-tab="markets" class="nav-btn px-3 py-1.5 rounded-lg text-sm font-medium transition-colors">Markets</button>
+        <button data-tab="ai_jobs" class="nav-btn px-3 py-1.5 rounded-lg text-sm font-medium transition-colors">AI &amp; Jobs</button>
+        <button data-tab="investments" class="nav-btn px-3 py-1.5 rounded-lg text-sm font-medium transition-colors">Investments</button>
+        <button data-tab="real_estate" class="nav-btn px-3 py-1.5 rounded-lg text-sm font-medium transition-colors">Real Estate</button>
+        <button data-tab="saved" class="nav-btn px-3 py-1.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-1.5">
+          Saved <span id="saved-count-desktop" class="text-[11px] px-1.5 py-0.5 rounded-full bg-slate-200 dark:bg-slate-700 font-semibold">0</span>
+        </button>
+      </nav>
+
+      <!-- Actions -->
+      <div class="flex items-center gap-2 shrink-0">
+        <button id="open-gemini-btn" aria-label="Ask Gemini about app content" class="h-9 px-3 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white flex items-center gap-1.5 text-xs font-semibold shadow-sm transition">
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/></svg>
+          <span>Ask Gemini</span>
+        </button>
+        <button id="open-search-btn" aria-label="Search topics" class="h-9 px-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-1.5 text-xs font-medium transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/></svg>
+          <span class="hidden sm:inline">Search</span>
+        </button>
+        <button id="theme-toggle-btn" aria-label="Toggle dark mode" class="w-9 h-9 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center justify-center transition">
+          <svg id="sun-icon" class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m8.66-10h-1M4.34 12h-1m15.07 6.07l-.7-.7M6.34 6.34l-.7-.7m12.73 0l-.7.7M6.34 17.66l-.7.7M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
+          <svg id="moon-icon" class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main id="app-main" class="max-w-6xl mx-auto px-4 pt-5 space-y-6"></main>
+
+  <!-- Mobile Bottom Navigation -->
+  <nav class="md:hidden fixed bottom-0 inset-x-0 z-30 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 px-1 py-1.5 flex justify-around items-center" id="mobile-nav">
+    <button data-tab="home" class="mob-nav-btn flex flex-col items-center gap-0.5 px-2 py-1 rounded-lg text-[10px] font-medium">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0h6"/></svg>
+      Home
+    </button>
+    <button data-tab="markets" class="mob-nav-btn flex flex-col items-center gap-0.5 px-2 py-1 rounded-lg text-[10px] font-medium">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+      Markets
+    </button>
+    <button data-tab="ai_jobs" class="mob-nav-btn flex flex-col items-center gap-0.5 px-2 py-1 rounded-lg text-[10px] font-medium">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+      AI &amp; Jobs
+    </button>
+    <button data-tab="investments" class="mob-nav-btn flex flex-col items-center gap-0.5 px-2 py-1 rounded-lg text-[10px] font-medium">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+      Learn
+    </button>
+    <button data-tab="real_estate" class="mob-nav-btn flex flex-col items-center gap-0.5 px-2 py-1 rounded-lg text-[10px] font-medium">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+      Homes
+    </button>
+    <button data-tab="saved" class="mob-nav-btn relative flex flex-col items-center gap-0.5 px-2 py-1 rounded-lg text-[10px] font-medium">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>
+      Saved
+      <span id="saved-count-mobile" class="hidden absolute top-0.5 right-1 w-4 h-4 rounded-full bg-indigo-600 text-white text-[9px] font-bold flex items-center justify-center">0</span>
+    </button>
+  </nav>
+
+  <!-- Detailed Article Modal -->
+  <div id="article-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-end md:items-center justify-center p-0 md:p-4">
+    <div class="bg-white dark:bg-slate-900 w-full md:max-w-3xl max-h-[92vh] rounded-t-2xl md:rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 flex flex-col overflow-hidden animate-fade-up">
+      <div class="px-5 py-3.5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-3 shrink-0">
+        <div id="modal-category-badge" class="text-xs font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400"></div>
+        <div class="flex items-center gap-2">
+          <button id="modal-gemini-btn" class="h-8 px-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold flex items-center gap-1 transition">
+            <svg class="w-3 h-3" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/></svg>
+            <span>Ask Gemini</span>
+          </button>
+          <button id="modal-bookmark-btn" class="h-8 px-3 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-medium flex items-center gap-1.5 hover:bg-slate-100 dark:hover:bg-slate-800 transition"></button>
+          <button id="close-modal-btn" aria-label="Close article" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center font-bold">&times;</button>
+        </div>
+      </div>
+      <div id="modal-body" class="p-5 md:p-6 overflow-y-auto space-y-5"></div>
+    </div>
+  </div>
+
+  <!-- Search Modal -->
+  <div id="search-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-start justify-center pt-12 md:pt-20 px-4">
+    <div class="bg-white dark:bg-slate-900 w-full max-w-xl rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden animate-fade-up">
+      <div class="p-3.5 border-b border-slate-200 dark:border-slate-800 flex items-center gap-2.5">
+        <svg class="w-5 h-5 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/></svg>
+        <input id="search-input" type="text" placeholder="Search Sensex, Gold ETF, SIP, Anthropic, Hinjewadi, Nagpur..." class="w-full bg-transparent text-sm focus:outline-none text-slate-900 dark:text-slate-100" />
+        <button id="close-search-btn" class="text-xs px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-500 font-medium">Esc</button>
+      </div>
+      <div id="search-results" class="max-h-96 overflow-y-auto divide-y divide-slate-100 dark:divide-slate-800 p-2"></div>
+    </div>
+  </div>
+
+  <!-- Ask Gemini Modal -->
+  <div id="gemini-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-end md:items-center justify-center p-0 md:p-4">
+    <div class="bg-white dark:bg-slate-900 w-full md:max-w-xl max-h-[88vh] rounded-t-2xl md:rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 flex flex-col overflow-hidden animate-fade-up">
+      <div class="px-5 py-3.5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2 shrink-0 bg-indigo-50/60 dark:bg-indigo-950/30">
+        <div class="flex items-center gap-2 min-w-0">
+          <span class="w-7 h-7 rounded-lg bg-indigo-600 text-white flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/></svg>
+          </span>
+          <div class="min-w-0">
+            <div class="text-sm font-bold text-slate-900 dark:text-white">Ask Gemini</div>
+            <div id="gemini-context-label" class="text-[11px] text-indigo-700 dark:text-indigo-300 truncate">Daily Intelligence Briefing</div>
+          </div>
+        </div>
+        <button id="close-gemini-btn" aria-label="Close Ask Gemini" class="w-8 h-8 rounded-lg bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center justify-center font-bold border border-slate-200 dark:border-slate-700">&times;</button>
+      </div>
+
+      <div id="gemini-chat-messages" class="p-4 overflow-y-auto space-y-3 flex-1 min-h-[220px] max-h-[48vh]"></div>
+
+      <div class="px-4 py-2 border-t border-slate-100 dark:border-slate-800 flex flex-wrap gap-1.5 bg-slate-50/70 dark:bg-slate-900" id="gemini-quick-prompts"></div>
+
+      <form id="gemini-form" class="p-3 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2 bg-white dark:bg-slate-900 shrink-0">
+        <input id="gemini-input" type="text" placeholder="Ask a simple question about this topic..." class="flex-1 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs focus:outline-none focus:border-indigo-500" />
+        <button type="submit" class="px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold transition shrink-0">Ask</button>
+        <button type="button" id="gemini-copy-btn" title="Copy question + context for Gemini Chat" class="px-2.5 py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition shrink-0">Copy</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-20 md:bottom-6 right-4 z-50 hidden bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 text-xs font-medium px-4 py-2.5 rounded-xl shadow-lg"></div>
+
+<script>
+// ==================== 1. VERIFIED DATA STORE (NOV 12, 2026) ====================
+const ARTICLES = {
+  "indian-market-today": {
+    id: "indian-market-today",
+    category: "Indian Stock Market",
+    badge: "Closing Data • 12 Nov 2026",
+    title: "Sensex & Nifty Edge Higher on Foreign Investor Buying & Cheaper Oil",
+    summary: "Nifty 50 closed at 25,299.35 (+0.18%) and Sensex ended +88 pts higher after a volatile session, extending November's strong rally.",
+    simpleExplain: "Think of Sensex and Nifty like a report card for India's biggest companies. Today, after some morning ups and downs, the report card finished slightly in the green. That means the combined value of top Indian companies grew a little bit more today, building on yesterday's big jump.",
+    stats: [
+      { label: "Nifty 50 (12 Nov Close)", value: "25,299.35 (+0.18%)" },
+      { label: "Sensex (12 Nov Close)", value: "~81,967 (+88 pts)" },
+      { label: "Prev Close (11 Nov)", value: "Sensex 81,879.40 (+0.95%)" },
+      { label: "FII Inflows (Nov 2026)", value: "₹65,735 Crore" }
+    ],
+    whyMatters: "When big foreign investors (FIIs) bring ₹65,735 crore into India in just two weeks, it boosts confidence and helps mutual funds and retirement savings grow. Also, crude oil dropping to ~$91.75 a barrel is great news because India imports most of its oil—cheaper oil lowers inflation pressure.",
+    realWorldExample: "If you had ₹10,000 invested in a Nifty 50 index fund yesterday, today's +0.18% rise added about ₹18 to your investment, on top of yesterday's ₹84 gain.",
+    opportunities: "Banking, financial services (Bajaj Finance, HDFC Life), and real estate stocks led gains today as lower oil prices ease inflation worries.",
+    risks: "The Indian Rupee slipped slightly to ₹93.73 per US dollar, and IT/Pharma stocks dipped mildly. Short-term volatility around weekly Sensex expiry is normal.",
+    sources: [
+      { name: "Business Standard — Closing Bell 12 Nov 2026", url: "https://www.business-standard.com/markets/news/stock-market-live-november-12-gift-nifty-nse-bse-sensex-today-nifty50-crude-oil-prices-q2-results-today-126111200066_1.html", date: "12 Nov 2026" },
+      { name: "The Hindu — FII Inflows & Crude Oil", url: "https://www.thehindu.com/business/markets/stock-markets-climb-in-early-trade-led-by-foreign-fund-inflows-lower-crude-oil-prices/article71692361.ece", date: "12 Nov 2026" },
+      { name: "Kotak Neo — Intraday Gainers & Losers", url: "https://www.kotakneo.com/news/market-news/stock-market-update-12-november-2026-sensex-nifty/", date: "12 Nov 2026" }
+    ],
+    related: ["global-markets-today", "gold-silver-today", "concept-sip"],
+    chartConfig: {
+      type: "line",
+      title: "Nifty 50 Recent Closing Trajectory (Nov 2026)",
+      labels: ["09 Nov Close", "11 Nov Close", "12 Nov Intraday (10:40)", "12 Nov Close"],
+      data: [25044.65, 25255.05, 25354.35, 25299.35],
+      color: "#059669"
+    }
+  },
+  "global-markets-today": {
+    id: "global-markets-today",
+    category: "Global Markets",
+    badge: "Latest Close • 11–12 Nov 2026",
+    title: "US & European Stocks Rally; Asian Markets Mixed as Tech Rotates",
+    summary: "Wall Street climbed (S&P 500 +1.31%, Nasdaq +1.60%) and Europe's DAX rose 1.20%, while Hong Kong's Hang Seng slipped 1.05%.",
+    simpleExplain: "Global stock markets are like interconnected weather systems. When the US stock market (the world's biggest) has a sunny day, investors around the world feel more confident buying stocks—including in India.",
+    stats: [
+      { label: "S&P 500 (US)", value: "7,628.31 (+1.31%)" },
+      { label: "FTSE 100 (UK)", value: "10,835.47 (+0.78%)" },
+      { label: "DAX (Germany)", value: "26,662.77 (+1.20%)" },
+      { label: "Nikkei 225 (Japan)", value: "61,248.59 (+1.31%)" }
+    ],
+    whyMatters: "Strong US and European markets reduce global fear (the US VIX fear index fell 10% to 17.49). That encourages global funds to keep investing in growing economies like India.",
+    realWorldExample: "Just like a good harvest in one major region calms food prices everywhere, a calm US market stops foreign investors from panicking and pulling money out of Indian banks and IT companies.",
+    opportunities: "Taiwan (+3.62%) and South Korea (+2.60%) surged on AI chip optimism, showing strong global tech demand.",
+    risks: "Hong Kong's Hang Seng fell ~1.05% on property and rate worries, and stronger US inflation data pushed the US Dollar higher—putting mild pressure on gold and the Rupee.",
+    sources: [
+      { name: "CappNotes — Global Closing Look 11 Nov 2026", url: "https://cappnotes.substack.com/p/closing-look-wednesday-november-11", date: "12 Nov 2026" },
+      { name: "Groww — Global Indices Tracker", url: "https://groww.in/indices/global-indices", date: "12 Nov 2026" },
+      { name: "HDFC Sky — Global Cues", url: "https://hdfcsky.com/news/global-markets-today-november-12-2026-india-may-rise-at-open-as-ai-concerns-trigger-rotation-towards-traditional-bets-crude-oil-slips", date: "12 Nov 2026" }
+    ],
+    related: ["indian-market-today", "ai-anthropic-ipo", "concept-etf"]
+  },
+  "ai-anthropic-ipo": {
+    id: "ai-anthropic-ipo",
+    category: "AI & Technology",
+    badge: "News • 11–12 Nov 2026",
+    title: "Anthropic Opens Mega IPO Window Seeking ~$90.4B Fundraise",
+    summary: "AI lab Anthropic (maker of Claude) opened its retail IPO at $70–$78/share, testing public investor appetite for a 'pure-play' AI stock.",
+    simpleExplain: "Until now, if ordinary people wanted to invest in top AI labs like OpenAI or Anthropic, they couldn't—they were private companies. Anthropic is now becoming a public company on the US Nasdaq stock exchange (ticker: ANT), meaning regular investors can buy shares.",
+    stats: [
+      { label: "Price Band", value: "$70 – $78 / share" },
+      { label: "Total Fundraise Target", value: "Up to $90.4 Billion" },
+      { label: "Target Valuation", value: "~$1.4 Trillion" },
+      { label: "Planned Exchange", value: "Nasdaq (Ticker: ANT)" }
+    ],
+    whyMatters: "This is one of the biggest IPOs in history. How Anthropic's stock performs will tell us whether global investors believe AI companies can turn massive spending into steady, real profits.",
+    realWorldExample: "Think of it like a popular private restaurant chain finally listing on the stock market—everyone gets to see its actual profit numbers and decide if the hype matches the food.",
+    opportunities: "Strong oversubscription shows huge global confidence in enterprise AI software and coding assistants.",
+    risks: "Analysts warn that AI companies spend tens of billions on computing chips. If profits take longer than expected, share prices can swing sharply.",
+    sources: [
+      { name: "CBC News — Anthropic IPO Test", url: "https://www.cbc.ca/news/business/anthropic-ipo-9.7418028", date: "12 Nov 2026" },
+      { name: "AI Weekly — Daily Edition", url: "https://aiweekly.co/ai-news-today/edition/2026-11-11", date: "11 Nov 2026" }
+    ],
+    related: ["ai-paris-call", "it-jobs-india", "concept-ipo"]
+  },
+  "ai-paris-call": {
+    id: "ai-paris-call",
+    category: "AI & Technology",
+    badge: "Policy • 10–12 Nov 2026",
+    title: "OpenAI, Anthropic & Microsoft Sign 'Paris Call' for AI Fail-Safe Shutdowns",
+    summary: "Ten AI labs pledged to build emergency shutdown switches for powerful frontier AI models, though the US government and Google stayed away.",
+    simpleExplain: "Imagine building a self-driving car—everyone agrees it needs an emergency brake. Major AI companies just signed an agreement in Paris promising to build 'kill switches' into their most powerful future AI systems in case something goes wrong.",
+    stats: [
+      { label: "Key Signatories", value: "OpenAI, Anthropic, Microsoft, Mistral" },
+      { label: "Did Not Sign", value: "US Govt & Google" },
+      { label: "Countries Backing", value: "8 Countries (led by France)" },
+      { label: "Core Pledge", value: "Fail-safe shutdowns" }
+    ],
+    whyMatters: "As AI agents start handling real money, banking, and hospital systems, having safety rules prevents catastrophic bugs or misuse.",
+    realWorldExample: "Just like elevators have automatic emergency brakes if a cable snaps, AI companies are agreeing on standard safety brakes for autonomous software.",
+    opportunities: "Creates new jobs in AI safety testing, auditing, and compliance—especially in Europe and India's GCCs.",
+    risks: "Without the US government or Google signing on, global AI safety rules remain fragmented.",
+    sources: [
+      { name: "Dealroom — Paris Call Report", url: "https://dealroom.co/news/172067-openai-anthropic-sign-macron-s-paris-call-but-us-and-google-stay-away/", date: "12 Nov 2026" },
+      { name: "MLQ.ai — Frontier AI Pledge", url: "https://mlq.ai/news/openai-anthropic-and-microsoft-sign-macrons-paris-call-pledging-fail-safe-shutdowns-for-frontier-ai-with-eight-countries/", date: "10 Nov 2026" }
+    ],
+    related: ["ai-publisher-optout", "it-jobs-europe", "ai-anthropic-ipo"]
+  },
+  "ai-publisher-optout": {
+    id: "ai-publisher-optout",
+    category: "AI & Technology",
+    badge: "Industry Standard • Nov 2026",
+    title: "Big 4 AI Labs Make It Easier for Websites to Opt Out of AI Training",
+    summary: "Anthropic, OpenAI, Google, and Microsoft agreed on a simpler way for news publishers and websites to block their content from being scraped to train AI.",
+    simpleExplain: "For years, writers and news websites complained that AI tools read their articles for free to learn how to write. Now, the four biggest AI companies agreed to give website owners an easy 'Do Not Train' switch.",
+    stats: [
+      { label: "Participating Labs", value: "OpenAI, Google, Microsoft, Anthropic" },
+      { label: "Key Change", value: "Simpler crawler opt-out controls" },
+      { label: "Impact Group", value: "Publishers, bloggers, creators" },
+      { label: "Effective Window", value: "Announced Nov 2026" }
+    ],
+    whyMatters: "Protects original journalism and creative work, while pushing AI companies to pay licensing fees for high-quality news and data.",
+    realWorldExample: "If you run a small recipe blog or local news site, you can now block AI bots from copying your recipes without blocking Google Search.",
+    opportunities: "Media companies and data owners can earn licensing revenue from AI firms.",
+    risks: "If too many quality sites opt out, AI answers could rely on fewer verified sources unless licensing deals expand.",
+    sources: [
+      { name: "Nieman Lab — AI & Journalism", url: "https://www.niemanlab.org/2026/11/anthropic-openai-google-and-microsoft-will-make-it-easier-for-publishers-to-opt-out-of-being-scraped/", date: "2 Nov 2026" },
+      { name: "Thurrott — Opt-Out Agreement", url: "https://www.thurrott.com/a-i/343407/anthropic-google-microsoft-and-openai-agree-to-let-sites-opt-out-of-ai-training", date: "30 Oct 2026" }
+    ],
+    related: ["ai-adobe-coworker", "ai-paris-call"]
+  },
+  "ai-adobe-coworker": {
+    id: "ai-adobe-coworker",
+    category: "AI & Technology",
+    badge: "Enterprise AI • Nov 2026",
+    title: "Adobe Connects 'Agentic CX Coworker' Across Anthropic, Google, Microsoft & OpenAI",
+    summary: "Adobe integrated its enterprise marketing and customer-experience AI agents directly into the four major AI platforms.",
+    simpleExplain: "Instead of employees switching between 5 different apps to design an ad or reply to customers, Adobe's new AI 'coworker' works right inside ChatGPT, Claude, Gemini, and Microsoft Copilot.",
+    stats: [
+      { label: "Integrated Platforms", value: "Anthropic, Google, Microsoft, OpenAI" },
+      { label: "Target Users", value: "Marketing & CX teams" },
+      { label: "Trend", value: "Agentic AI (software that takes action)" },
+      { label: "Announcement", value: "4–10 Nov 2026" }
+    ],
+    whyMatters: "Shows that AI is moving from 'chatbots that answer questions' to 'digital coworkers' that actually complete multi-step office tasks.",
+    realWorldExample: "A small business marketer can ask an AI assistant to resize product photos, write an email campaign, and schedule it—all in one conversation.",
+    opportunities: "Huge productivity boost for digital marketers, designers, and customer support leads who learn to manage AI agents.",
+    risks: "Routine entry-level copywriting, basic image resizing, and repetitive support ticket tasks are shrinking.",
+    sources: [
+      { name: "Adobe Newsroom — Agentic CX", url: "https://news.adobe.com/news/2026/11/adobe-integrates-agentic-cx-enterprise-coworker-into-ai-platforms", date: "4 Nov 2026" },
+      { name: "Adobe Newsroom — Creativity Era", url: "https://news.adobe.com/news/2026/11/adobe-powers-new-era-of-creativity", date: "10 Nov 2026" }
+    ],
+    related: ["it-jobs-india", "it-jobs-usa"]
+  },
+  "it-jobs-india": {
+    id: "it-jobs-india",
+    category: "IT Jobs — India (Priority)",
+    badge: "Employment Report • Q2 FY27 / Nov 2026",
+    title: "India IT & GCCs: AI Roles Surge to 30.3% of Demand While Routine Jobs Trim",
+    summary: "India's 1,800+ Global Capability Centres (1.9M workers) are hiring aggressively for AI, data & cybersecurity, even as 5,000–30,000 routine roles were cut.",
+    simpleExplain: "India's IT job market is splitting into two tracks. Companies are cutting repetitive coding, manual testing, and basic support jobs because AI tools do them faster. At the same time, they are desperate to hire people who can build AI systems, manage data, and protect cybersecurity.",
+    stats: [
+      { label: "GCCs in India", value: "1,800+ (1.9M staff)" },
+      { label: "AI/Data/Cyber Hiring Share", value: "30.3% (+4.5 pp QoQ)" },
+      { label: "AI & Data Talent Gap", value: "38% – 42% shortage" },
+      { label: "Est. GCC Job Cuts (2026)", value: "5,000 – 30,000 (est.)" }
+    ],
+    whyMatters: "If you work in Indian IT, your job is not necessarily disappearing—it is changing. Simply writing basic code or running manual test scripts is no longer safe; supervising AI tools and solving business problems is where salaries are growing.",
+    realWorldExample: "Instead of hiring 10 junior testers to manually click through an app, a Pune or Bengaluru GCC now hires 3 engineers who use AI automation scripts and focus on security and edge cases.",
+    opportunities: "Pune (+2% QoQ) led Tier-1 metro growth, while Tier-2 cities grew 13% (Coimbatore jumped 30%). Huge demand for AI/ML, Data Engineering, Cloud Architecture, and Cybersecurity.",
+    risks: "Fact Check: Industry estimates of 5,000–30,000 GCC cuts reflect both AI automation AND global parent companies cutting costs due to slower US/EU budgets—not AI alone.",
+    sources: [
+      { name: "TechGig / Quess Corp Q2 FY27 Report", url: "https://techgig.com/news/jobs-layoffs/india-gccs-boost-ai-data-cybersecurity-hiring-amid-talent-gap/135589126", date: "6 Nov 2026" },
+      { name: "Quantalent AI — GCC Hiring Trends 2026", url: "https://www.quantalent.ai/resources/gcc-hiring-trends-india-2026", date: "2026" },
+      { name: "LiveMint — GCC Layoffs & New Playbook", url: "https://www.livemint.com/companies/news/gcc-layoffs-up-to-30-000-jobs-may-go-but-ai-is-creating-a-new-hiring-playbook-explained-11790660197593.html", date: "29 Sep 2026" }
+    ],
+    related: ["it-jobs-usa", "it-jobs-europe", "ai-adobe-coworker"]
+  },
+  "it-jobs-usa": {
+    id: "it-jobs-usa",
+    category: "IT Jobs — USA",
+    badge: "Market Data • Nov 2026",
+    title: "US Tech: 125,000+ Layoffs in 2026 as Firms Shift Budgets to AI Compute",
+    summary: "US engineering hiring (~113,000 in 12 months) is half its 2022 peak, with front-end/mobile roles down sharply while security & platform roles grow.",
+    simpleExplain: "Big US tech companies like Meta, Amazon, and Intel are spending billions on AI data centres and chips. To pay for that without hurting profits, they have trimmed staff and slowed down hiring for traditional app and website builders.",
+    stats: [
+      { label: "Global Tech Layoffs (2026)", value: "125,000+ jobs" },
+      { label: "US Eng Hires (12M to Apr 26)", value: "113,000 (vs 239k peak)" },
+      { label: "Security & Platform Roles", value: "+34% / +30% growth" },
+      { label: "Front-end & Mobile Openings", value: "-51% / -39% decline" }
+    ],
+    whyMatters: "What happens in US tech usually reaches Indian IT services 6–12 months later. Fewer US front-end/mobile roles means Indian developers should broaden into full-stack, cloud, security, and AI integration.",
+    realWorldExample: "A US startup that used to hire separate iOS, Android, and Web developers now hires one 'product engineer' using AI coding assistants to ship all three.",
+    opportunities: "Forward-deployed engineers (+361%, often customer-facing AI implementers), cybersecurity (+34%), and cloud platform engineers (+30%) are in high demand.",
+    risks: "Fact Check: Many 2026 US layoffs are driven by post-pandemic over-hiring correction and capital reallocation to AI hardware—companies often cite 'AI efficiency' even when cost-cutting is the primary reason.",
+    sources: [
+      { name: "CellCog — Lenny's Tech Job Market Report", url: "https://cellcog.ai/blog/tech-job-market-late-2026/", date: "11 Nov 2026" },
+      { name: "Crunchbase — 2026 Tech Layoffs Tracker", url: "https://news.crunchbase.com/startups/tech-layoffs/", date: "4 Nov 2026" },
+      { name: "HR Dive — H1 2026 Tech Layoffs", url: "https://www.hrdive.com/news/tech-layoffs-surge-83percent-h1-2026-challenger-ai-disruption/824320/", date: "2 Jul 2026" }
+    ],
+    related: ["it-jobs-india", "it-jobs-europe"]
+  },
+  "it-jobs-europe": {
+    id: "it-jobs-europe",
+    category: "IT Jobs — Europe",
+    badge: "Regional Trend • 2026",
+    title: "Europe IT Hiring: Cautious Growth Focused on AI Compliance & Cloud",
+    summary: "European employers are avoiding mass hiring sprees, focusing instead on upskilling staff and hiring for AI governance, data privacy, and cybersecurity.",
+    simpleExplain: "Unlike the US, Europe has strict labour laws and strict AI privacy rules. So European companies rarely do sudden mass layoffs—instead, they freeze general hiring and carefully hire specialists who can make sure AI tools follow European safety laws.",
+    stats: [
+      { label: "Hiring Tone", value: "Selective & cautious" },
+      { label: "Top Priorities", value: "AI Governance, Cloud, Security" },
+      { label: "Key Strategy", value: "Upskilling existing staff" },
+      { label: "Data Sources", value: "Eurostat / LinkedIn 2026" }
+    ],
+    whyMatters: "For Indian IT firms serving European banks and automakers, projects are shifting toward EU AI compliance, cloud migration, and secure data pipelines.",
+    realWorldExample: "A German bank won't just deploy a chatbot; it needs engineers who can prove customer data stays inside Europe and answers are auditable.",
+    opportunities: "Data privacy engineering, AI auditing, and SAP/cloud modernization roles remain steady.",
+    risks: "Slower European economic growth means fewer entry-level openings and longer interview cycles.",
+    sources: [
+      { name: "Taleva — European Hiring Trends 2026", url: "https://taleva.io/data/reports/hiring-trends-europe-2026", date: "18 Feb 2026" },
+      { name: "MLQ.ai — Paris AI Governance", url: "https://mlq.ai/news/openai-anthropic-and-microsoft-sign-macrons-paris-call-pledging-fail-safe-shutdowns-for-frontier-ai-with-eight-countries/", date: "10 Nov 2026" }
+    ],
+    related: ["it-jobs-india", "ai-paris-call"]
+  },
+  "gold-silver-today": {
+    id: "gold-silver-today",
+    category: "Gold & Silver • Nagpur & India",
+    badge: "Nagpur & India • 12 Nov 2026",
+    title: "Nagpur Gold (24K) at ₹1,39,800/10g & Silver at ₹2,00,000/kg (₹200/g)",
+    summary: "In Nagpur today (12 Nov 2026), 24K gold is ₹13,980/g (₹1,39,800/10g, -1.54%), 22K is ₹12,815/g (₹1,28,150/10g), 18K is ₹10,485/g, and 999 silver is ₹200/g (₹2,00,000/kg).",
+    simpleExplain: "Gold prices in Nagpur and across India took a small breather today after a big run-up. When the US Dollar gets stronger, gold usually dips slightly. Note that silver retail quotes in Nagpur vary by dealer: ₹2,00,000/kg on Groww/BankBazaar, ₹1,74,225/kg bullion-linked on ABP Live, and ₹2,20,900/kg on Kotak Neo.",
+    stats: [
+      { label: "Nagpur 24K Gold (10g)", value: "₹1,39,800 (-1.54%)" },
+      { label: "Nagpur 22K / 18K (10g)", value: "₹1,28,150 / ₹1,04,850" },
+      { label: "Nagpur 999 Silver (Groww/BB)", value: "₹2,00,000/kg (₹200/g)" },
+      { label: "Nagpur Silver (Bullion / Kotak)", value: "₹1.74L – ₹2.21L / kg" }
+    ],
+    whyMatters: "Gold acts like insurance for your family's wealth when stock markets get bumpy. A 1.5% dip after a big rally makes gold slightly cheaper for wedding shoppers and systematic ETF investors.",
+    realWorldExample: "If you planned to buy 10 grams of 22K gold jewellery this week, today's rate (₹1,28,150) is ₹4,400 cheaper than three days ago on 9 Nov (₹1,32,550).",
+    opportunities: "Buying Gold/Silver ETFs in small monthly amounts avoids making charges (8–15%) and storage worry.",
+    risks: "Silver swings much more sharply than gold because half of its demand comes from factories (solar panels, EVs, electronics).",
+    sources: [
+      { name: "Groww — Nagpur Gold Rate", url: "https://groww.in/gold-rates/gold-rate-today-in-nagpur", date: "12 Nov 2026" },
+      { name: "Groww — Nagpur Silver Rate", url: "https://groww.in/silver-rates/silver-rates-in-nagpur", date: "12 Nov 2026" },
+      { name: "BankBazaar — Nagpur Silver", url: "https://www.bankbazaar.com/silver-rate-nagpur.html", date: "12 Nov 2026" },
+      { name: "LiveMint — 12 Nov Gold & Silver Bullion", url: "https://www.livemint.com/money/gold-24k-22k-18k-999-fine-silver-prices-today-12-november-check-retail-rates-delhi-mumbai-bangalore-coimbatore-chennai-11794462245516.html", date: "12 Nov 2026" },
+      { name: "Sunday Guardian — Retail Rates", url: "https://sundayguardianlive.com/business/gold-rate-today-november-12-gold-becomes-slightly-cheaper-in-india-as-24k-rate-drops-to-rs-14197-per-gram-silver-at-rs-199900-per-kg-check-city-wise-prices-320917/", date: "12 Nov 2026" }
+    ],
+    related: ["etf-comparison", "concept-gold-etf", "concept-gold-vs-silver"],
+    chartConfig: {
+      type: "line",
+      title: "24K Gold Price / 10g in Maharashtra (Nov 2026)",
+      labels: ["09 Nov", "10 Nov", "11 Nov", "12 Nov"],
+      data: [144600, 142690, 141980, 139800],
+      color: "#d97706"
+    }
+  },
+  "etf-comparison": {
+    id: "etf-comparison",
+    category: "Gold & Silver ETFs",
+    badge: "Fund Comparison • 2026",
+    title: "Comparing India's Top Gold & Silver ETFs by Expense Ratio",
+    summary: "HDFC Gold ETF (0.59% BER), SBI Gold ETF (0.65%), and Nippon Gold BeES (0.69% BER) lead gold; Nippon Silver ETF FoF (~₹4,354 Cr) leads silver.",
+    simpleExplain: "Instead of buying physical gold coins and paying GST + locker fees, a Gold or Silver ETF lets you buy pure 99.5%–99.9% metal digitally on the stock exchange for as little as ₹100.",
+    stats: [
+      { label: "HDFC Gold ETF (Base ER)", value: "0.59%" },
+      { label: "SBI Gold ETF (ER)", value: "0.65%" },
+      { label: "Nippon Gold BeES (BER)", value: "0.69%" },
+      { label: "Nippon Silver FoF (Direct)", value: "0.22% (AUM ₹4,354 Cr)" }
+    ],
+    whyMatters: "Expense ratio is the tiny yearly fee the fund charges. Lower fees mean more of your money stays invested and compounds over 5–10 years.",
+    realWorldExample: "On ₹1,00,000 invested, a 0.59% fee costs ₹590 per year—far cheaper than bank locker rent (₹2,000–₹5,000/yr) or jewellery making charges (₹10,000+).",
+    opportunities: "High-volume ETFs like Nippon Gold BeES and ICICI/Nippon Silver ETFs are easy to buy and sell anytime during market hours.",
+    risks: "Note: Gold/Silver ETFs require a Demat account. If you don't have one, use a Gold/Silver ETF Fund of Funds (FoF) via SIP.",
+    sources: [
+      { name: "GoldenPi — Gold ETF Expense Ratio 2026", url: "https://goldenpi.com/blog/bond-news/gold-etf-expense-ratio-sbi-vs-nippon-vs-hdfc/", date: "2 Sep 2026" },
+      { name: "Invsify — Nippon Silver ETF FoF", url: "https://invsify.com/tools/fund-check/nippon-india-silver-etf-fof", date: "2026" },
+      { name: "ET Money — Silver ETF FoF", url: "https://www.etmoney.com/mutual-funds/nippon-india-silver-etf-fof/42450", date: "31 Oct 2026" }
+    ],
+    related: ["gold-silver-today", "concept-etf", "concept-gold-etf"]
+  },
+  "ipo-tracker-nov": {
+    id: "ipo-tracker-nov",
+    category: "IPO Updates",
+    badge: "NSE/BSE • Nov 2026",
+    title: "Recent Mainboard IPOs: BLS Polymers Jumps +65%; Haldiram & PhonePe in Pipeline",
+    summary: "Recently listed mainboard IPOs delivered +0.6% to +65.3% listing gains. Mahanadi Coalfields, PhonePe, and Haldiram Snacks are key upcoming names.",
+    simpleExplain: "When a private company sells shares to the public for the first time, it's called an IPO. Some IPOs jump on day one (like BLS Polymers at +65%), while others barely move or even list at a loss—so never apply blindly just because of hype.",
+    stats: [
+      { label: "BLS Polymers (02 Nov)", value: "₹150 → ₹248 (+65.3%)" },
+      { label: "Bombay Coated (04 Nov)", value: "₹82 → ₹91 (+11.0%)" },
+      { label: "SFC Environmental (02 Nov)", value: "₹330 → ₹355.1 (+7.6%)" },
+      { label: "EAAA India Alt (01 Nov)", value: "₹1,665 → ₹1,675.5 (+0.6%)" }
+    ],
+    whyMatters: "Understanding subscription numbers (e.g., 238x for BLS Polymers vs 5.17x for EAAA) helps you see where big institutions are putting money—but high subscription also means lower chance of allotment.",
+    realWorldExample: "If you got 1 lot (~₹15,000) of BLS Polymers at ₹150 and sold on listing day at ₹248, you made ~₹9,800 profit. But another recent SME IPO (HGS India) listed 20% below its ₹66 issue price—showing losses are real too.",
+    opportunities: "Upcoming pipeline includes Mahanadi Coalfields (shareholder quota announced 12 Nov), PhonePe (DRHP filed), and Haldiram Snacks (preparing ₹10,000 Cr IPO for late 2027).",
+    risks: "Never borrow money to apply for an IPO, and always check if the company is actually profitable and reasonably priced compared to listed peers.",
+    sources: [
+      { name: "Groww — Mainboard IPO Status Nov 2026", url: "https://groww.in/ipo/mainboard", date: "Nov 2026" },
+      { name: "Groww — IPO Dashboard 2026", url: "https://groww.in/ipo", date: "Nov 2026" },
+      { name: "Kotak Neo — Haldiram & Mahanadi News", url: "https://www.kotakneo.com/news/market-news/stock-market-update-12-november-2026-sensex-nifty/", date: "12 Nov 2026" }
+    ],
+    related: ["concept-ipo", "concept-pe", "indian-market-today"]
+  }
+};
+
+// ==================== 2. "THINGS YOU SHOULD KNOW" (ALL 17 TOPICS) ====================
+const EDU_TOPICS = [
+  {
+    id: "concept-mf", icon: "🧺", title: "What is a Mutual Fund?",
+    oneLiner: "A shared basket where experts pool money from thousands of people to buy stocks or bonds.",
+    example: "Imagine 10 friends each put in ₹1,000 (total ₹10,000) to buy a variety of 20 fruits together—everyone owns a slice of all 20 fruits without needing ₹10,000 alone.",
+    detail: "A mutual fund collects money from lakhs of ordinary investors and hires a professional fund manager to invest it across dozens of companies. Your money grows (or dips) based on how those companies perform.",
+    risk: "Equity mutual funds go up and down in the short term (1–3 years) but historically reward patient investors over 5–10+ years.",
+    source: { name: "SEBI / AMFI Investor Education", url: "https://www.amfiindia.com/investor-corner/knowledge-center/what-are-mutual-funds-new.html" }
+  },
+  {
+    id: "concept-etf", icon: "🏷️", title: "What is an ETF?",
+    oneLiner: "A mutual fund that you can buy and sell live on the stock market like a normal share.",
+    example: "If a regular mutual fund is like ordering groceries for next-day delivery at closing price, an ETF (Exchange Traded Fund) is like walking into a supermarket and buying at the live price right now.",
+    detail: "ETFs usually track an index (like Nifty 50) or a commodity (like Gold or Silver). Because they don't need a team picking stocks every day, their yearly fees are very low.",
+    risk: "You need a Demat account to buy ETFs, and you should pick ETFs with high daily trading volume so it's easy to sell.",
+    source: { name: "NSE India — ETF Market Data", url: "https://www.nseindia.com/market-data/exchange-traded-funds-etf" }
+  },
+  {
+    id: "concept-gold-etf", icon: "🪙", title: "What is a Gold ETF?",
+    oneLiner: "Digital 99.5% pure gold you buy on NSE/BSE without paying making charges or locker rent.",
+    example: "Instead of paying ₹1.40 Lakh + 12% making charges for a gold biscuit and worrying about theft, you buy Gold ETF units worth ₹1,000 or ₹10,000 in your Demat account.",
+    detail: "Each unit of a Gold ETF is backed by physical 24K gold stored in secure vaults by the fund house. Its price moves almost identically to Indian gold prices.",
+    risk: "Gold prices can dip when the US Dollar rises or interest rates stay high; best used as 5–15% safety insurance in a portfolio.",
+    source: { name: "GoldenPi — Gold ETF Guide 2026", url: "https://goldenpi.com/blog/bond-news/gold-etf-expense-ratio-sbi-vs-nippon-vs-hdfc/" }
+  },
+  {
+    id: "concept-silver-etf", icon: "🥈", title: "What is a Silver ETF?",
+    oneLiner: "Digital silver investment backed by 99.9% pure silver bullion, ideal for small budgets.",
+    example: "Buying 1 kg of physical silver (₹1.83–₹2.00 Lakh) is bulky and tarnishes. A Silver ETF lets you buy ₹500 worth of silver digitally with zero storage hassle.",
+    detail: "Silver ETFs track domestic silver prices. Unlike gold, silver is heavily used in solar panels, EVs, and electronics, so its price moves with both jewellery demand and factory growth.",
+    risk: "Silver is much more volatile than gold—it can jump 30% in a good year and fall 20% in a slow industrial year.",
+    source: { name: "Dhanarthi — Silver ETFs India 2026", url: "https://dhanarthi.com/blog/best-silver-etf-india" }
+  },
+  {
+    id: "concept-gold-vs-silver", icon: "⚖️", title: "Gold vs Silver: Where Do They Differ?",
+    oneLiner: "Gold is steady wealth insurance bought by central banks; Silver is half-precious metal, half-industrial fuel.",
+    example: "Gold is like a reliable fixed-deposit-style shield during crises; Silver is like a faster sports car that accelerates on green energy demand (solar/EVs) but bumps harder on rough roads.",
+    detail: "Gold prices are driven by inflation, Rupee value, and central bank buying. Silver prices depend ~50%+ on industrial manufacturing (solar cells, semiconductors). Gold usually has lower price swings than silver.",
+    risk: "Don't put emergency money into silver expecting steady returns—keep silver as a smaller satellite slice.",
+    source: { name: "LiveMint — Silver vs Gold Drivers", url: "https://www.livemint.com/silver-prices" }
+  },
+  {
+    id: "concept-ipo", icon: "🔔", title: "What is an IPO?",
+    oneLiner: "The very first time a private company sells its shares to ordinary public investors.",
+    example: "Think of a popular local bakery that needs money to open 500 branches across India—it invites the public to become part-owners by buying shares at a fixed price band.",
+    detail: "IPO stands for Initial Public Offering. The company files a detailed rulebook (DRHP) with SEBI, announces a price range, and lets retail investors apply via UPI.",
+    risk: "Many hyped IPOs fall below their issue price on day one (e.g., HGS India listed -20% in Nov 2026). Never invest solely for quick listing gains.",
+    source: { name: "Zerodha — IPO Guide 2026", url: "https://zerodha.com/ipo/" }
+  },
+  {
+    id: "concept-how-ipo", icon: "📝", title: "How Does an IPO Work?",
+    oneLiner: "Company sets a price band → You apply via UPI → Shares are allotted by lottery if oversubscribed → Lists on NSE/BSE.",
+    example: "If 1 lakh people apply for only 10,000 retail lots (10x oversubscribed), SEBI's computerized lottery picks 1 in 10 applicants; the rest get their UPI money unblocked.",
+    detail: "1) Company files papers with SEBI. 2) 3-day bidding window opens. 3) Big institutions, HNIs, and retail investors bid. 4) Allotment happens in 1–2 days, and shares start trading on Day 6.",
+    risk: "Watch out for 'Offer for Sale' (OFS) IPOs where 100% of the money goes to exiting founders/investors rather than growing the business.",
+    source: { name: "Groww — IPO Process & Status", url: "https://groww.in/ipo" }
+  },
+  {
+    id: "concept-sip", icon: "📅", title: "What is an SIP?",
+    oneLiner: "Investing a fixed small amount (like ₹1,000 or ₹5,000) automatically every month into a mutual fund.",
+    example: "Just like your phone bill auto-pays every month, an SIP (Systematic Investment Plan) auto-invests ₹2,000 on the 5th of every month—buying more units when markets are cheap and fewer when expensive.",
+    detail: "SIP removes the stress of guessing 'is today the right day to invest?' Over 5–10 years, this habit of rupee-cost averaging builds serious wealth.",
+    risk: "Stopping your SIP during a market crash is the #1 mistake—market dips are actually when your SIP buys units on sale!",
+    source: { name: "AMFI — SIP Explained", url: "https://www.amfiindia.com/investor-corner/knowledge-center/what-are-mutual-funds-new.html" }
+  },
+  {
+    id: "concept-index", icon: "📊", title: "What is an Index Fund?",
+    oneLiner: "A low-cost mutual fund that simply copies the Nifty 50 or Sensex automatically.",
+    example: "Instead of paying a chef to guess which 50 dishes will taste best, an Index Fund just serves India's official top 50 companies in the exact same proportion.",
+    detail: "Because there's no star fund manager trying to beat the market, Index Funds charge ultra-low fees (often 0.10%–0.25%) and never suffer from human stock-picking errors.",
+    risk: "It will fall when the overall market falls, so it's best for goals 5+ years away.",
+    source: { name: "NSE India — Nifty 50 Index", url: "https://www.nseindia.com/index-tracker/NIFTY%2050" }
+  },
+  {
+    id: "concept-pe", icon: "🧮", title: "What is a P/E Ratio?",
+    oneLiner: "How many rupees you are paying today for every ₹1 of annual profit a company makes.",
+    example: "If a chai stall earns ₹1 lakh profit a year and someone sells the stall for ₹20 lakh, the P/E ratio is 20 (you pay 20 years of current profit).",
+    detail: "P/E stands for Price-to-Earnings. A high P/E (say 60) means investors expect huge future growth—or the stock is expensive. A low P/E (say 12) can mean a bargain—or a struggling business.",
+    risk: "Always compare a company's P/E against other companies in the SAME industry (e.g., IT vs IT, Bank vs Bank).",
+    source: { name: "NSE India — Market Valuation", url: "https://www.nseindia.com/" }
+  },
+  {
+    id: "concept-inflation", icon: "🎈", title: "What is Inflation?",
+    oneLiner: "The steady rise in everyday prices that makes ₹100 buy less next year than it buys today.",
+    example: "If a plate of poha or a movie ticket that cost ₹100 five years ago now costs ₹140, that's inflation quietly eating your cash's buying power.",
+    detail: "If your bank savings account pays 3% interest while inflation is 5%, your money is actually losing 2% of real purchasing power every year. That's why investing is essential.",
+    risk: "Keeping all your long-term savings in cash or low-interest savings accounts guarantees slow purchasing-power loss.",
+    source: { name: "RBI — Inflation & Monetary Policy", url: "https://www.rbi.org.in/" }
+  },
+  {
+    id: "concept-rbi", icon: "🏦", title: "What Happens When RBI Changes Interest Rates?",
+    oneLiner: "RBI's Repo Rate sets the cost of borrowing across India—affecting your home loan EMI and FD returns.",
+    example: "When RBI cuts rates, banks lower home loan EMIs (saving you thousands) and FD rates drop. When RBI raises rates to fight inflation, EMIs rise and FDs pay more.",
+    detail: "The Reserve Bank of India (RBI) lends money to commercial banks at the 'Repo Rate'. Lower rates encourage people and businesses to borrow and spend, boosting stocks and real estate.",
+    risk: "Floating-rate home loan borrowers feel rate hikes through longer loan tenures or higher monthly EMIs.",
+    source: { name: "RBI — Official Portal", url: "https://www.rbi.org.in/" }
+  },
+  {
+    id: "concept-div", icon: "🥚", title: "What is Diversification?",
+    oneLiner: "Never putting all your eggs in one basket—spreading money across stocks, gold, FDs, and real estate.",
+    example: "If you run an umbrella shop AND an ice-cream cart, rainy days hurt ice-cream sales while umbrella sales boom—keeping your total income steady.",
+    detail: "Different assets perform well at different times. When stock markets drop, Gold or Fixed Deposits often hold steady, protecting your peace of mind.",
+    risk: "Over-diversifying (buying 15 different mutual funds that all own the same top 50 stocks) creates clutter without extra safety.",
+    source: { name: "SEBI Investor Education", url: "https://investor.sebi.gov.in/" }
+  },
+  {
+    id: "concept-compounding", icon: "🌱", title: "What is Compounding?",
+    oneLiner: "Earning returns on your original money PLUS returns on your past returns—snowballing over time.",
+    example: "₹10,000/month invested for 20 years at an illustrative 12% p.a. puts in ₹24 Lakh of your money—but compounding could grow it near ~₹99 Lakh (illustrative math, not guaranteed).",
+    detail: "Compounding starts slow in years 1–5 and explodes in years 12–20. Starting 5 years earlier often matters more than investing double the amount later.",
+    risk: "Compounding works against you on credit card debt (36–42% interest)—always pay credit cards in full!",
+    source: { name: "SEBI Investor Education", url: "https://investor.sebi.gov.in/" }
+  },
+  {
+    id: "concept-crash", icon: "📉", title: "How Do Stock Market Crashes Happen?",
+    oneLiner: "Sharp 10%–30% drops triggered by fear, high prices, wars, or sudden global shocks.",
+    example: "If everyone tries to exit a crowded movie hall at the exact same second, prices drop fast because there are more sellers than buyers—even if the companies themselves are fine.",
+    detail: "Crashes feel scary, but historically every major Indian market crash (2008, 2020) eventually recovered as corporate earnings grew.",
+    risk: "You only lock in a loss if you panic-sell at the bottom or if you invested money you needed next month.",
+    source: { name: "NSE India — Historical Indices", url: "https://www.nseindia.com/" }
+  },
+  {
+    id: "concept-risk", icon: "🛡️", title: "How Should Beginners Think About Risk?",
+    oneLiner: "Match your investment to your timeline: safe FDs/liquid funds for 1–2 years, equity funds for 5+ years.",
+    example: "You wouldn't wear flip-flops to climb a mountain or ski boots to the beach. Similarly, don't put next year's house down payment into volatile stocks.",
+    detail: "True risk isn't daily ups and downs—it's permanently losing money (scams, bad loans) or running out of cash during an emergency.",
+    risk: "Avoid 'guaranteed 2% per month' schemes, unregulated crypto/forex tips, and futures & options (F&O) trading.",
+    source: { name: "SEBI — Investor Charter", url: "https://investor.sebi.gov.in/" }
+  },
+  {
+    id: "concept-emergency", icon: "🚑", title: "How Much Emergency Savings Should One Maintain?",
+    oneLiner: "Keep 6 months of essential living expenses in a safe, instant-access bank account or liquid fund.",
+    example: "If your rent, groceries, bills, and EMIs total ₹45,000/month, aim for ₹2.70 Lakh sitting safely aside before investing aggressively.",
+    detail: "An emergency fund ensures that a sudden layoff, medical bill, or family crisis never forces you to break your SIPs or take high-interest personal loans.",
+    risk: "Don't lock emergency money in real estate, PPF, or volatile stocks where you can't withdraw it within 24 hours.",
+    source: { name: "SEBI / Financial Planning Basics", url: "https://investor.sebi.gov.in/" }
+  }
+];
+
+// ==================== 3. REAL ESTATE DATA (PUNE, BANGALORE, NAGPUR) ====================
+const REAL_ESTATE = {
+  Pune: [
+    {
+      id: "re-hinjewadi", name: "Hinjewadi", avg: 8550, range: "₹7,150 – ₹10,300", yoy: "-0.6% (1Y) | +23.9% (3Y)",
+      dataType: "Listing Avg (99acres)", tier: "Mid-range", trend: "Stable / Cooling", supply: "High Supply", connectivity: "Metro Line 3 Open",
+      infra: "Hinjewadi–Shivajinagar Metro Line 3 now operational; Rajiv Gandhi Infotech Park Phases 1–3.",
+      pros: "Walk-to-work for IT professionals; strong rental demand (2BHK ₹22k–₹28k/mo).",
+      risks: "High new apartment supply kept 1-year price growth flat (-0.6%); peak-hour traffic at Phase 1/2 junctions.",
+      source: { name: "99acres Hinjewadi 2026", url: "https://www.99acres.com/property-rates-and-price-trends-in-hinjewadi-pune-prffid" }
+    },
+    {
+      id: "re-wakad", name: "Wakad", avg: 9750, range: "₹8,000 – ₹11,500 (new)", yoy: "Stable–Upward",
+      dataType: "Market Estimate (BrokerNetwork)", tier: "Mid-range", trend: "Steady", supply: "Moderate–High", connectivity: "Good (Mumbai-Pune Hwy)",
+      infra: "Adjacent to Hinjewadi IT Park, Phoenix Mall of the Millennium, Pune-Mumbai Expressway access.",
+      pros: "20–25% cheaper than neighbouring Baner; established schools & hospitals; 2BHK rent ₹22k–₹32k/mo.",
+      risks: "Water-supply dependency on tankers in some pockets; resale flats (₹6.5k–₹9.5k) vary widely by society age.",
+      source: { name: "BrokerNetwork Wakad 2026", url: "https://brokernetwork.in/wakad-pune-property-rates-locality-guide-pros-cons-2026/" }
+    },
+    {
+      id: "re-baner", name: "Baner", avg: 12350, range: "₹9,750 – ₹16,150", yoy: "+11.3% (1Y) | +26.7% (3Y)",
+      dataType: "Listing Avg (99acres)", tier: "Premium", trend: "Prices Rising", supply: "Moderate", connectivity: "Good (Metro Line 3 nearby)",
+      infra: "Baner–Balewadi High Street, Balewadi Stadium, quick access to Mumbai-Bangalore Highway & Metro.",
+      pros: "Strong social infrastructure, cafes, and steady 11.3% annual appreciation.",
+      risks: "High ticket sizes (3BHK often ₹1.4 Cr–₹2.5 Cr+); lower rental yield (~3%) due to high purchase price.",
+      source: { name: "99acres Baner 2026", url: "https://www.99acres.com/property-rates-and-price-trends-in-baner-pune-prffid" }
+    },
+    {
+      id: "re-kharadi", name: "Kharadi", avg: 11511, range: "₹8,000 – ₹12,700", yoy: "Rising",
+      dataType: "Listing Avg (Housing.com)", tier: "Mid-to-Premium", trend: "Prices Rising", supply: "Moderate", connectivity: "Good (Airport & EON IT Park)",
+      infra: "11+ million sq ft of organised office space (EON IT Park, WTC); close to Pune Airport & Viman Nagar.",
+      pros: "Strongest 2BHK rentals in East Pune (₹35k–₹45k/mo for modern flats) driven by GCC & IT jobs.",
+      risks: "Traffic congestion on Nagar Road; premium launches pushing ₹12,700+/sq ft.",
+      source: { name: "Housing.com Pune 2026", url: "https://housing.com/price-trends/property-rates-for-buy-in-pune_maharashtra-P2r4v3l939lxd541t" }
+    },
+    {
+      id: "re-hadapsar", name: "Hadapsar", avg: 12400, range: "₹8,100 – ₹15,000", yoy: "+16.4% (1Y) | +42.5% (3Y)",
+      dataType: "Listing Avg (99acres)", tier: "Mid-to-Premium", trend: "Prices Rising Fast", supply: "Moderate", connectivity: "Good (Magarpatta / SP Infocity)",
+      infra: "Magarpatta City, Amanora Park Town, SP Infocity, Solapur Highway.",
+      pros: "Integrated townships with schools and offices inside; strong 16.4% 1-year growth.",
+      risks: "Older outskirts vs gated townships have huge quality gaps; check MahaRERA & water supply.",
+      source: { name: "99acres Hadapsar 2026", url: "https://www.99acres.com/property-rates-and-price-trends-in-hadapsar-pune-prffid" }
+    }
+  ],
+  Bangalore: [
+    {
+      id: "re-whitefield", name: "Whitefield", avg: 10850, range: "₹10,850 (ANAROCK) – ₹13,000 (Listing)", yoy: "+8% to +13% (1Y)",
+      dataType: "ANAROCK Research / Listing", tier: "Mid-to-Premium", trend: "Prices Rising", supply: "Moderate", connectivity: "Purple Line Metro Active",
+      infra: "Operational Purple Line Metro, ITPL, major tech parks & malls.",
+      pros: "Healthy 3.8%–4.5% rental yield; active metro solved worst commute bottlenecks.",
+      risks: "Notice gap between ANAROCK benchmark (₹10,850) and top brand-builder asking rates (₹14,000+).",
+      source: { name: "MyPropertyPoint / ANAROCK", url: "https://mypropertypoint.com/property-rates/whitefield" }
+    },
+    {
+      id: "re-sarjapur", name: "Sarjapur Road", avg: 12300, range: "₹9,000 – ₹14,300", yoy: "+2.5% (1Y) | +53.8% (3Y)",
+      dataType: "Listing Avg (99acres)", tier: "Premium", trend: "Consolidating after 3Y Boom", supply: "High Supply", connectivity: "Developing (Upcoming Metro)",
+      infra: "Wipro SEZ, Outer Ring Road access, upcoming Blue/Red Line Metro phases.",
+      pros: "~3.9% rental yield; huge 53.8% 3-year appreciation for early buyers.",
+      risks: "Heavy traffic & waterlogging in monsoon; prices already ran up sharply—check project completion track record.",
+      source: { name: "99acres Sarjapur Road 2026", url: "https://www.99acres.com/property-rates-and-price-trends-in-sarjapur-road-bangalore-east-prffid" }
+    },
+    {
+      id: "re-ecity", name: "Electronic City", avg: 7450, range: "₹6,500 – ₹8,500", yoy: "Steady",
+      dataType: "ANAROCK Published Avg", tier: "Affordable / Value", trend: "Stable", supply: "High Supply", connectivity: "Yellow Line Metro / NICE Rd",
+      infra: "Infosys/Biocon/Wipro campuses, Elevated Expressway, Yellow Line Metro corridor.",
+      pros: "Most affordable major IT hub in Bengaluru (₹7,450 vs ₹10,850+ in Whitefield).",
+      risks: "Far from Central/North Bengaluru; slower capital appreciation than North Bangalore.",
+      source: { name: "MyPropertyPoint Electronic City", url: "https://mypropertypoint.com/property-rates/electronic-city" }
+    },
+    {
+      id: "re-hebbal", name: "Hebbal", avg: 15500, range: "₹12,550 – ₹17,950", yoy: "+3.0% (1Y) | +44.2% (3Y)",
+      dataType: "Listing Avg (99acres)", tier: "Premium", trend: "Stable / High Base", supply: "Low–Moderate", connectivity: "Airport Corridor + Manyata",
+      infra: "Manyata Tech Park, Outer Ring Road, Kempegowda Airport Expressway.",
+      pros: "Prime North Bengaluru location with luxury lake-view projects.",
+      risks: "Very expensive entry point (₹2 Cr+ for most 3BHKs); Hebbal flyover bottlenecks.",
+      source: { name: "99acres Hebbal 2026", url: "https://www.99acres.com/property-rates-and-price-trends-in-hebbal-bangalore-north-prffid" }
+    },
+    {
+      id: "re-yelahanka", name: "Yelahanka", avg: 10950, range: "₹8,950 – ₹14,150", yoy: "+16.5% (1Y) | +52.1% (3Y)",
+      dataType: "Listing Avg (99acres)", tier: "Mid-range", trend: "Prices Rising Fast", supply: "Moderate", connectivity: "Airport Road & Rail",
+      infra: "Green open spaces, Airport Road connectivity, North Bangalore aerospace/tech expansion.",
+      pros: "16.5% 1-year growth while still ~30% cheaper than Hebbal; great for families.",
+      risks: "Longer commute to Whitefield/Electronic City if your office is in South-East Bengaluru.",
+      source: { name: "99acres Yelahanka 2026", url: "https://www.99acres.com/property-rates-and-price-trends-in-yelahanka-bangalore-north-prffid" }
+    }
+  ],
+  Nagpur: [
+    {
+      id: "re-wardha", name: "Wardha Road", avg: 5000, range: "₹4,300 – ₹5,650", yoy: "+5.3% (1Y) | +25.0% (3Y)",
+      dataType: "Listing Avg (99acres)", tier: "Affordable / Mid-range", trend: "Prices Rising", supply: "High Supply", connectivity: "Nagpur Metro Orange Line",
+      infra: "Nagpur Metro Orange Line, Dr. Babasaheb Ambedkar Airport, Samruddhi Mahamarg & MIHAN.",
+      pros: "Best growth corridor in Nagpur; metro connectivity + airport proximity at ₹5,000/sq ft.",
+      risks: "High number of new townships (2,100+ listings)—stick to MahaRERA-registered builders.",
+      source: { name: "99acres Wardha Road 2026", url: "https://www.99acres.com/property-rates-and-price-trends-in-wardha-road-nagpur-prffid" }
+    },
+    {
+      id: "re-mihan", name: "MIHAN", avg: 4592, range: "₹4,000 – ₹5,200", yoy: "+1% QoQ",
+      dataType: "Listing Avg (MagicBricks)", tier: "Affordable", trend: "Steady", supply: "High Supply", connectivity: "Metro + Airport + SEZ",
+      infra: "MIHAN SEZ (TCS, Infosys, HCL, AIIMS Nagpur, IIM Nagpur).",
+      pros: "Direct employment hub for IT, healthcare, and education; very affordable for first-time buyers.",
+      risks: "Social infrastructure (malls/schools outside campus) still developing compared to central Nagpur.",
+      source: { name: "MagicBricks MIHAN 2026", url: "https://www.magicbricks.com/Property-Rates-Trends/Multistorey-Apartment-rates-Mihan-in-Nagpur" }
+    },
+    {
+      id: "re-manish", name: "Manish Nagar", avg: 4700, range: "₹4,250 – ₹5,200", yoy: "+3.3% (1Y)",
+      dataType: "Listing Avg (99acres)", tier: "Affordable", trend: "Stable", supply: "Moderate", connectivity: "Good (Near Airport/Metro)",
+      infra: "Established residential markets, schools, clinics, quick access to Wardha Road Metro.",
+      pros: "Ready-to-live neighbourhood with daily conveniences; New Manish Nagar averages ₹4,600/sq ft.",
+      risks: "Slower 3-year appreciation (+1.1% 3Y) compared to Wardha Road (+25% 3Y)—better for living than quick flipping.",
+      source: { name: "99acres Manish Nagar 2026", url: "https://www.99acres.com/property-rates-and-price-trends-in-manish-nagar-nagpur-prffid" }
+    },
+    {
+      id: "re-besa", name: "Besa", avg: 4300, range: "₹3,950 – ₹4,950", yoy: "+4.9% (1Y) | +13.2% (3Y)",
+      dataType: "Listing Avg (99acres)", tier: "Affordable", trend: "Steady", supply: "High Supply", connectivity: "Developing (Besa-Pipla Rd)",
+      infra: "Besa-Pipla growth belt, proximity to Manish Nagar and Outer Ring Road.",
+      pros: "Most budget-friendly flats (2BHK under ₹45–55 Lakh) from reputed builders.",
+      risks: "Internal road width and drainage vary by pocket—visit site during monsoon if possible.",
+      source: { name: "99acres Besa 2026", url: "https://www.99acres.com/property-rates-and-price-trends-in-besa-nagpur-prffid" }
+    },
+    {
+      id: "re-dharampeth", name: "Dharampeth", avg: 10500, range: "₹9,850 – ₹12,000 (Govt Txn: ₹8,836)", yoy: "+9.4% (1Y) | +27.3% (3Y)",
+      dataType: "Listing Avg vs MahaGovt Txn", tier: "Premium", trend: "Prices Rising", supply: "Low Supply", connectivity: "Central Nagpur / Metro",
+      infra: "Nagpur's premier central hub—top schools, hospitals, cafes, and Sitabuldi/Dharampeth Metro.",
+      pros: "Scarcity value; note Maharashtra Govt actual registered transaction avg is ₹8,836/sq ft vs ₹10,500 asking.",
+      risks: "Very limited new flat supply; parking congestion on older lanes.",
+      source: { name: "99acres & MahaGovt Dharampeth", url: "https://www.99acres.com/property-rates-and-price-trends-in-dharampeth-nagpur-prffid" }
+    }
+  ]
+};
+
+const PROPERTY_TIPS = [
+  { t: "When is a good time to buy?", d: "Buy when your emergency fund is ready, your job is stable for 3+ years, and you plan to live there 7+ years—don't try to time interest rates alone." },
+  { t: "How to evaluate a builder?", d: "Visit 2 past completed projects by the same builder and talk to residents about seepage, lift maintenance, and whether OC (Occupancy Certificate) came on time." },
+  { t: "What is RERA?", d: "MahaRERA (Pune/Nagpur) and KarnRERA (Bangalore) are government portals where builders must register projects, upload approved plans, and commit to a possession date." },
+  { t: "How to check legal status?", d: "Verify the MahaRERA/KarnRERA number online, check the Title Deed (clear land ownership), Commencement Certificate (CC), and ask a bank to pre-approve the project." },
+  { t: "Carpet Area vs Built-up Area?", d: "Carpet area is the actual usable floor inside your walls (where you can lay a carpet). Built-up/Super Built-up adds walls, balconies, and lobby share—always compare price per sq ft on Carpet Area!" },
+  { t: "How much home loan can you afford?", d: "Keep your total monthly EMIs under 35%–40% of your monthly take-home salary, and put down at least 20% from your own savings." },
+  { t: "What hidden charges should buyers know?", d: "Budget an extra 10%–14% over the flat price for Stamp Duty, Registration, GST (5% on under-construction), society corpus, parking, and interiors." },
+  { t: "How to evaluate a locality?", d: "Check water source (municipal vs tanker), commute time to your office/metro, nearby schools/hospitals, and whether too many empty flats are sitting unsold." }
+];
+
+const EXPLORE_POOL = [
+  { id: "exp-rupee", title: "Why Does the Indian Rupee Weaken Against the US Dollar?", tag: "Indian Economy", summary: "Today the Rupee is at ₹93.73/USD. Learn how oil prices, US interest rates, and imports affect your everyday costs." },
+  { id: "exp-gold-etf", title: "Is Buying Gold ETFs Better Than Physical Gold?", tag: "Gold & ETFs", summary: "Compare making charges, GST, purity, and locker fees vs digital Gold ETFs." },
+  { id: "exp-gcc", title: "Why Are Global Capability Centres (GCCs) Expanding in India?", tag: "IT & Jobs", summary: "1,800+ GCCs now employ 1.9M Indians—why global firms are building AI & product hubs in Bengaluru, Pune & Tier-2 cities." },
+  { id: "exp-rates-re", title: "How Do RBI Interest Rates Affect Property Prices?", tag: "Real Estate", summary: "See how a 0.50% home loan rate change impacts your monthly EMI on a ₹60 Lakh flat." },
+  { id: "exp-ai-devs", title: "Will AI Reduce Demand for Software Developers?", tag: "AI & Tech", summary: "What 2026 US & India hiring data actually says about front-end vs AI/security/platform engineers." },
+  { id: "exp-mf-money", title: "How Do Mutual Funds Actually Make Money?", tag: "Personal Finance", summary: "Understand dividends, capital gains, and why compounding accelerates after Year 7." }
+];
+
+const EXTRA_ARTICLES = {
+  "exp-rupee": {
+    id: "exp-rupee", category: "Explore • Indian Economy", badge: "Explainer • 12 Nov 2026",
+    title: "Why Does the Indian Rupee Weaken Against the US Dollar?",
+    summary: "The Rupee opened at ₹93.73 per US Dollar on 12 Nov 2026 (prev close ₹93.69). Here is what moves it in plain English.",
+    simpleExplain: "A currency's price works like vegetables in a mandi: when more people need US Dollars (to buy oil, electronics, or US stocks) than Rupees, the Dollar becomes costlier in Rupee terms.",
+    stats: [{ label: "USD/INR (12 Nov 2026)", value: "₹93.73" }, { label: "Prev Close (11 Nov)", value: "₹93.69" }, { label: "Brent Crude", value: "$91.75 / bbl" }, { label: "FII Inflows (Nov)", value: "₹65,735 Cr" }],
+    whyMatters: "A weaker Rupee makes imported items (petrol, iPhones, foreign college tuition) slightly costlier, while helping Indian IT and pharma exporters earn more Rupees per dollar.",
+    realWorldExample: "If a laptop costs $1,000 in the US, at ₹85/USD it's ₹85,000; at ₹93.73/USD it becomes ₹93,730 before taxes.",
+    opportunities: "Strong FII inflows (₹65,735 Cr in Nov) and falling crude oil ($91.75) help cushion the Rupee.",
+    risks: "Stronger-than-expected US inflation keeps US interest rates high, strengthening the Dollar globally.",
+    sources: [{ name: "Kotak Neo — Rupee Update 12 Nov 2026", url: "https://www.kotakneo.com/news/market-news/stock-market-update-12-november-2026-sensex-nifty/", date: "12 Nov 2026" }],
+    related: ["indian-market-today", "gold-silver-today"]
+  },
+  "exp-gold-etf": { id: "exp-gold-etf", ...null },
+  "exp-gcc": { id: "exp-gcc", ...null },
+  "exp-rates-re": { id: "exp-rates-re", ...null },
+  "exp-ai-devs": { id: "exp-ai-devs", ...null },
+  "exp-mf-money": { id: "exp-mf-money", ...null }
+};
+
+// ==================== 4. STATE MANAGEMENT ====================
+let state = {
+  tab: "home",
+  city: "Pune",
+  exploreOffset: 0,
+  savedIds: [],
+  notes: "",
+  dark: false
+};
+
+try {
+  const s = localStorage.getItem("di_app_state_v1");
+  if (s) {
+    const parsed = JSON.parse(s);
+    state.savedIds = Array.isArray(parsed.savedIds) ? parsed.savedIds : [];
+    state.notes = typeof parsed.notes === "string" ? parsed.notes : "";
+    state.dark = !!parsed.dark;
+  }
+} catch (e) {}
+
+function saveState() {
+  try {
+    localStorage.setItem("di_app_state_v1", JSON.stringify({
+      savedIds: state.savedIds,
+      notes: state.notes,
+      dark: state.dark
+    }));
+  } catch (e) {}
+  updateSavedBadges();
+}
+
+function applyTheme() {
+  document.documentElement.classList.toggle("dark", state.dark);
+}
+applyTheme();
+
+function showToast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.remove("hidden");
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(() => t.classList.add("hidden"), 2200);
+}
+
+function updateSavedBadges() {
+  const n = state.savedIds.length;
+  const d = document.getElementById("saved-count-desktop");
+  const m = document.getElementById("saved-count-mobile");
+  if (d) d.textContent = n;
+  if (m) {
+    m.textContent = n;
+    m.classList.toggle("hidden", n === 0);
+  }
+}
+
+// Chart instance registry to prevent canvas reuse errors
+const charts = {};
+function destroyChart(id) {
+  if (charts[id]) { charts[id].destroy(); delete charts[id]; }
+}
+
+// ==================== 5. ARTICLE RESOLVER & MODAL ====================
+function getArticleById(id) {
+  if (ARTICLES[id]) return ARTICLES[id];
+  const edu = EDU_TOPICS.find(x => x.id === id);
+  if (edu) {
+    return {
+      id: edu.id, category: "Things You Should Know", badge: "Beginner Guide • Evergreen",
+      title: edu.title, summary: edu.oneLiner, simpleExplain: edu.detail,
+      stats: [{ label: "Difficulty", value: "Beginner Friendly" }, { label: "Best For", value: "Everyday Savers" }],
+      whyMatters: edu.oneLiner, realWorldExample: edu.example,
+      opportunities: "Building clear fundamentals prevents costly mistakes and helps you spot misleading sales pitches.",
+      risks: edu.risk,
+      sources: [{ name: edu.source.name, url: edu.source.url, date: "Verified Reference" }],
+      related: ["concept-sip", "concept-emergency", "concept-div"].filter(x => x !== id)
+    };
+  }
+  for (const cityName of Object.keys(REAL_ESTATE)) {
+    const loc = REAL_ESTATE[cityName].find(x => x.id === id);
+    if (loc) {
+      return {
+        id: loc.id, category: `Real Estate • ${cityName}`, badge: loc.dataType,
+        title: `${loc.name}, ${cityName}: ₹${loc.avg.toLocaleString("en-IN")}/sq ft (${loc.trend})`,
+        summary: `Apartment rates range ${loc.range}/sq ft with ${loc.yoy} growth. ${loc.infra}`,
+        simpleExplain: `In ${loc.name} (${cityName}), a typical 1,000 sq ft flat costs roughly ₹${Math.round(loc.avg * 1000 / 100000)} Lakh (before stamp duty & GST). ${loc.connectivity} is a major driver here.`,
+        stats: [
+          { label: "Avg Price / sq ft", value: `₹${loc.avg.toLocaleString("en-IN")}` },
+          { label: "Typical Range", value: loc.range },
+          { label: "Price Trend", value: loc.yoy },
+          { label: "Segment & Supply", value: `${loc.tier} • ${loc.supply}` }
+        ],
+        whyMatters: `Data Clarity: This figure is a ${loc.dataType}. Always check the builder's per-sq-ft price on Carpet Area and verify MahaRERA/KarnRERA status. Monthly/quarterly historical splits are not uniformly published across portals, so 1Y/3Y verified trends are shown.`,
+        realWorldExample: `On a 1,000 sq ft flat at ₹${loc.avg.toLocaleString("en-IN")}/sq ft (₹${Math.round(loc.avg/100)}L base), a 20% down payment is ~₹${Math.round(loc.avg * 2 / 100)}L, plus ~12% for stamp duty, registration & GST.`,
+        opportunities: loc.pros, risks: loc.risks,
+        sources: [{ name: loc.source.name, url: loc.source.url, date: "Nov 2026" }],
+        related: REAL_ESTATE[cityName].filter(x => x.id !== id).slice(0, 2).map(x => x.id)
+      };
+    }
+  }
+  if (id === "exp-rupee") return EXTRA_ARTICLES["exp-rupee"];
+  if (id === "exp-gold-etf") return ARTICLES["etf-comparison"];
+  if (id === "exp-gcc") return ARTICLES["it-jobs-india"];
+  if (id === "exp-rates-re") return getArticleById("concept-rbi");
+  if (id === "exp-ai-devs") return ARTICLES["it-jobs-usa"];
+  if (id === "exp-mf-money") return getArticleById("concept-compounding");
+  return null;
+}
+
+function openArticle(id) {
+  const art = getArticleById(id);
+  if (!art) return;
+  const modal = document.getElementById("article-modal");
+  document.getElementById("modal-category-badge").textContent = `${art.category} • ${art.badge}`;
+  const isSaved = state.savedIds.includes(art.id);
+  const bmBtn = document.getElementById("modal-bookmark-btn");
+  bmBtn.innerHTML = isSaved
+    ? `<svg class="w-4 h-4 text-indigo-600 fill-indigo-600" viewBox="0 0 24 24"><path d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg> Saved`
+    : `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg> Save`;
+  bmBtn.onclick = () => {
+    toggleSave(art.id);
+    openArticle(art.id);
+  };
+
+  const chartHtml = art.chartConfig ? `
+    <div class="bg-slate-50 dark:bg-slate-800/60 rounded-xl p-4 border border-slate-200 dark:border-slate-700">
+      <div class="text-xs font-semibold text-slate-600 dark:text-slate-300 mb-2">${art.chartConfig.title}</div>
+      <div class="relative h-48"><canvas id="modal-chart-canvas"></canvas></div>
+    </div>` : "";
+
+  const relatedHtml = (art.related && art.related.length) ? `
+    <div class="pt-3 border-t border-slate-200 dark:border-slate-800">
+      <div class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2">Explore Next</div>
+      <div class="flex flex-wrap gap-2">
+        ${art.related.map(rid => {
+          const r = getArticleById(rid);
+          return r ? `<button onclick="openArticle('${rid}')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-900/40 text-slate-700 dark:text-slate-200 font-medium transition">${r.title.slice(0, 48)}${r.title.length > 48 ? '...' : ''}</button>` : '';
+        }).join("")}
+      </div>
+    </div>` : "";
+
+  document.getElementById("modal-body").innerHTML = `
+    <div>
+      <h2 class="text-xl md:text-2xl font-bold tracking-tight text-slate-900 dark:text-white leading-snug">${art.title}</h2>
+      <p class="mt-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${art.summary}</p>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+      ${art.stats.map(s => `
+        <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200/80 dark:border-slate-700/80">
+          <div class="text-[11px] text-slate-500 dark:text-slate-400">${s.label}</div>
+          <div class="text-xs sm:text-sm font-bold mt-0.5 text-slate-900 dark:text-white">${s.value}</div>
+        </div>
+      `).join("")}
+    </div>
+
+    ${chartHtml}
+
+    <div class="p-4 rounded-xl bg-indigo-50/70 dark:bg-indigo-950/30 border border-indigo-100 dark:border-indigo-900/50">
+      <div class="text-xs font-bold uppercase tracking-wider text-indigo-700 dark:text-indigo-300 mb-1">In Everyday Language</div>
+      <p class="text-sm text-slate-700 dark:text-slate-200 leading-relaxed">${art.simpleExplain}</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800">
+        <div class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Why This Matters</div>
+        <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">${art.whyMatters}</p>
+      </div>
+      <div class="p-4 rounded-xl bg-emerald-50/60 dark:bg-emerald-950/20 border border-emerald-200/70 dark:border-emerald-900/40">
+        <div class="text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-300 mb-1">Real-World Example</div>
+        <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">${art.realWorldExample}</p>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <div class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-1">Opportunities</div>
+        <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">${art.opportunities}</p>
+      </div>
+      <div class="p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+        <div class="text-xs font-bold uppercase tracking-wider text-rose-600 dark:text-rose-400 mb-1">Risks &amp; Things to Watch</div>
+        <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">${art.risks}</p>
+      </div>
+    </div>
+
+    <div class="text-xs text-slate-500 dark:text-slate-400 space-y-1">
+      <div class="font-semibold text-slate-600 dark:text-slate-300">Verified Sources:</div>
+      <div class="flex flex-wrap gap-2">
+        ${art.sources.map(src => `<a href="${src.url}" target="_blank" rel="noopener noreferrer" class="underline hover:text-indigo-600 dark:hover:text-indigo-400">${src.name} (${src.date})</a>`).join(" &bull; ")}
+      </div>
+    </div>
+
+    ${relatedHtml}
+  `;
+
+  modal.classList.remove("hidden");
+  document.body.style.overflow = "hidden";
+
+  if (art.chartConfig) {
+    setTimeout(() => {
+      destroyChart("modal-chart");
+      const ctx = document.getElementById("modal-chart-canvas");
+      if (!ctx) return;
+      charts["modal-chart"] = new Chart(ctx, {
+        type: art.chartConfig.type,
+        data: {
+          labels: art.chartConfig.labels,
+          datasets: [{
+            label: art.chartConfig.title,
+            data: art.chartConfig.data,
+            borderColor: art.chartConfig.color,
+            backgroundColor: art.chartConfig.color + "22",
+            fill: true,
+            tension: 0.3,
+            pointRadius: 4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: { grid: { display: false }, ticks: { color: state.dark ? "#94a3b8" : "#64748b", font: { size: 11 } } },
+            y: { grid: { color: state.dark ? "#1e293b" : "#e2e8f0" }, ticks: { color: state.dark ? "#94a3b8" : "#64748b", font: { size: 11 } } }
+          }
+        }
+      });
+    }, 30);
+  }
+}
+
+function closeModal() {
+  document.getElementById("article-modal").classList.add("hidden");
+  document.body.style.overflow = "";
+  destroyChart("modal-chart");
+}
+
+function toggleSave(id) {
+  const idx = state.savedIds.indexOf(id);
+  if (idx >= 0) {
+    state.savedIds.splice(idx, 1);
+    showToast("Removed from Saved Articles");
+  } else {
+    state.savedIds.push(id);
+    showToast("Saved to your reading list");
+  }
+  saveState();
+  if (state.tab === "saved") render();
+}
+
+// ==================== 6. VIEW RENDERERS ====================
+function renderHome() {
+  const exploreItems = [];
+  for (let i = 0; i < 4; i++) {
+    exploreItems.push(EXPLORE_POOL[(state.exploreOffset + i) % EXPLORE_POOL.length]);
+  }
+
+  return `
+    <!-- Hero Briefing Banner -->
+    <section class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <div>
+          <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> 3-Minute Morning Read &bull; 12 Nov 2026
+          </span>
+          <h1 class="text-xl md:text-2xl font-extrabold tracking-tight mt-2 text-slate-900 dark:text-white">Your Daily Intelligence Briefing</h1>
+        </div>
+        <div class="text-xs text-slate-500 dark:text-slate-400">Rupee: <strong class="text-slate-800 dark:text-slate-200">₹93.73/USD</strong> &bull; Brent Oil: <strong class="text-emerald-600">$91.75 (-1.1%)</strong></div>
+      </div>
+      <p class="mt-2.5 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+        Indian markets edged higher today as foreign investors poured ₹65,735 crore into shares this month and oil prices cooled. Gold dipped 1.5% to ₹1,39,800/10g, Anthropic opened its mega IPO, and Indian GCCs are hiring heavily for AI &amp; cybersecurity while trimming routine roles.
+      </p>
+    </section>
+
+    <!-- A. Indian Stock Market Today -->
+    <section class="space-y-3">
+      <div class="flex items-center justify-between">
+        <h2 class="text-base font-bold tracking-tight">A. Indian Stock Market Today</h2>
+        <button onclick="switchTab('markets')" class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">Full Market View &rarr;</button>
+      </div>
+      <div class="grid md:grid-cols-3 gap-4">
+        <div onclick="openArticle('indian-market-today')" class="md:col-span-2 cursor-pointer bg-white dark:bg-slate-900 rounded-2xl p-4 md:p-5 border border-slate-200 dark:border-slate-800 hover:border-indigo-300 dark:hover:border-indigo-700 transition shadow-sm space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">12 Nov Closing vs 11 Nov Prev Close</span>
+            <span class="text-xs font-medium text-indigo-600 dark:text-indigo-400">Tap for simple breakdown &rarr;</span>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="p-3 rounded-xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200/70 dark:border-emerald-900/50">
+              <div class="text-xs text-slate-500 dark:text-slate-400">BSE Sensex (12 Nov)</div>
+              <div class="text-lg md:text-xl font-extrabold text-slate-900 dark:text-white mt-0.5">~81,967</div>
+              <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">&#9650; +88 pts (+0.11%)</div>
+              <div class="text-[10px] text-slate-500 mt-1">Prev close (11 Nov): 81,879.40 (+0.95%)</div>
+            </div>
+            <div class="p-3 rounded-xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200/70 dark:border-emerald-900/50">
+              <div class="text-xs text-slate-500 dark:text-slate-400">NSE Nifty 50 (12 Nov)</div>
+              <div class="text-lg md:text-xl font-extrabold text-slate-900 dark:text-white mt-0.5">25,299.35</div>
+              <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">&#9650; +44.30 pts (+0.18%)</div>
+              <div class="text-[10px] text-slate-500 mt-1">Prev close (11 Nov): 25,255.05 (+0.84%)</div>
+            </div>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+            <strong>What this means:</strong> India's top companies finished slightly higher today. Foreign investors bought ₹65,735 Cr of Indian stocks in Nov, and cheaper oil ($91.75) boosted banks &amp; realty.
+          </p>
+          <div class="grid grid-cols-2 gap-3 pt-1 text-xs">
+            <div>
+              <div class="font-semibold text-emerald-600 dark:text-emerald-400 mb-1">Top Gainers (Intraday)</div>
+              <div class="text-slate-600 dark:text-slate-300 space-y-0.5">
+                <div>1. HDFC Life Insurance</div><div>2. Bajaj Finance</div><div>3. Bajaj Finserv</div>
+              </div>
+            </div>
+            <div>
+              <div class="font-semibold text-rose-600 dark:text-rose-400 mb-1">Top Losers (Intraday)</div>
+              <div class="text-slate-600 dark:text-slate-300 space-y-0.5">
+                <div>1. Apollo Hospitals</div><div>2. GAIL (India)</div><div>3. Samvardhana Motherson</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="text-xs font-bold text-slate-700 dark:text-slate-200">Nifty 50 Trend (Nov 2026)</div>
+            <div class="text-[11px] text-slate-500">9-month high territory</div>
+          </div>
+          <div class="relative h-40 my-2"><canvas id="home-nifty-chart"></canvas></div>
+          <button onclick="openArticle('indian-market-today')" class="w-full py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-semibold transition">Read Full Market Story</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- B. Global Markets -->
+    <section class="space-y-3">
+      <div class="flex items-center justify-between">
+        <h2 class="text-base font-bold tracking-tight">B. Global Markets</h2>
+        <span class="text-[11px] text-slate-500">11–12 Nov Close</span>
+      </div>
+      <div onclick="openArticle('global-markets-today')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-2xl p-4 border border-slate-200 dark:border-slate-800 hover:border-indigo-300 transition shadow-sm space-y-3">
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5 text-xs">
+          <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/70"><div class="text-slate-500">S&amp;P 500 (US)</div><div class="font-bold mt-0.5">7,628.31</div><div class="text-emerald-600 font-semibold">+1.31%</div></div>
+          <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/70"><div class="text-slate-500">Nasdaq (US)</div><div class="font-bold mt-0.5">Tech Rally</div><div class="text-emerald-600 font-semibold">+1.60%</div></div>
+          <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/70"><div class="text-slate-500">FTSE 100 (UK)</div><div class="font-bold mt-0.5">10,835.47</div><div class="text-emerald-600 font-semibold">+0.78%</div></div>
+          <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/70"><div class="text-slate-500">Nikkei (JP)</div><div class="font-bold mt-0.5">61,248.59</div><div class="text-emerald-600 font-semibold">+1.31%</div></div>
+          <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/70 col-span-2 sm:col-span-1"><div class="text-slate-500">Hang Seng (HK)</div><div class="font-bold mt-0.5">24,061.00</div><div class="text-rose-600 font-semibold">-1.05%</div></div>
+        </div>
+        <p class="text-xs text-slate-600 dark:text-slate-300"><strong>Link to India:</strong> Calm US and European gains lowered global fear (VIX -10%), encouraging foreign funds to keep buying Indian equities.</p>
+      </div>
+    </section>
+
+    <!-- C. AI & Technology + D. AI Impact on IT Jobs -->
+    <div class="grid md:grid-cols-2 gap-5">
+      <section class="space-y-3">
+        <div class="flex items-center justify-between">
+          <h2 class="text-base font-bold tracking-tight">C. AI &amp; Tech Updates</h2>
+          <button onclick="switchTab('ai_jobs')" class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">All AI News &rarr;</button>
+        </div>
+        <div class="space-y-2.5">
+          ${["ai-anthropic-ipo", "ai-paris-call", "ai-publisher-optout", "ai-adobe-coworker"].map(id => {
+            const a = ARTICLES[id];
+            return `
+              <div onclick="openArticle('${id}')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-xl p-3.5 border border-slate-200 dark:border-slate-800 hover:border-indigo-300 transition shadow-sm">
+                <div class="text-[10px] font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">${a.badge}</div>
+                <div class="text-sm font-bold mt-0.5 text-slate-900 dark:text-white">${a.title}</div>
+                <p class="text-xs text-slate-600 dark:text-slate-400 mt-1 line-clamp-2">${a.summary}</p>
+              </div>
+            `;
+          }).join("")}
+        </div>
+      </section>
+
+      <section class="space-y-3">
+        <div class="flex items-center justify-between">
+          <h2 class="text-base font-bold tracking-tight">D. AI Impact on IT Jobs</h2>
+          <button onclick="switchTab('ai_jobs')" class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">India / US / EU &rarr;</button>
+        </div>
+        <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+          <div onclick="openArticle('it-jobs-india')" class="cursor-pointer p-3 rounded-xl bg-amber-50/70 dark:bg-amber-950/30 border border-amber-200/80 dark:border-amber-900/50 hover:opacity-95 transition">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-bold uppercase text-amber-700 dark:text-amber-300">🇮🇳 India (Highest Priority)</span>
+              <span class="text-[11px] font-semibold text-indigo-600 dark:text-indigo-400">Read &rarr;</span>
+            </div>
+            <div class="text-sm font-bold mt-1">1,800+ GCCs: 30.3% Hiring in AI/Data/Cyber</div>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-0.5">38–42% talent shortage in AI/Data, even as 5k–30k routine roles were trimmed.</p>
+          </div>
+          <div class="grid grid-cols-2 gap-2.5">
+            <div onclick="openArticle('it-jobs-usa')" class="cursor-pointer p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 hover:border-indigo-300 transition">
+              <div class="text-[10px] font-bold uppercase text-slate-500">🇺🇸 USA</div>
+              <div class="text-xs font-bold mt-1">125k+ Tech Layoffs</div>
+              <div class="text-[11px] text-slate-500 mt-0.5">Security +34%, Front-end -51%</div>
+            </div>
+            <div onclick="openArticle('it-jobs-europe')" class="cursor-pointer p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 hover:border-indigo-300 transition">
+              <div class="text-[10px] font-bold uppercase text-slate-500">🇪🇺 Europe</div>
+              <div class="text-xs font-bold mt-1">Selective Hiring</div>
+              <div class="text-[11px] text-slate-500 mt-0.5">Focus on AI compliance &amp; cloud</div>
+            </div>
+          </div>
+          <div class="relative h-36 pt-1"><canvas id="home-jobs-chart"></canvas></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- E. Things You Should Know + F. Gold, Silver & IPOs -->
+    <div class="grid md:grid-cols-2 gap-5">
+      <section class="space-y-3">
+        <div class="flex items-center justify-between">
+          <h2 class="text-base font-bold tracking-tight">E. Things You Should Know</h2>
+          <button onclick="switchTab('investments')" class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">All 17 Topics &rarr;</button>
+        </div>
+        <div class="grid grid-cols-2 gap-2.5">
+          ${EDU_TOPICS.slice(0, 4).map(t => `
+            <div onclick="openArticle('${t.id}')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-xl p-3.5 border border-slate-200 dark:border-slate-800 hover:border-indigo-300 transition shadow-sm">
+              <div class="text-xl">${t.icon}</div>
+              <div class="text-xs font-bold mt-1.5 text-slate-900 dark:text-white">${t.title}</div>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">${t.oneLiner}</p>
+            </div>
+          `).join("")}
+        </div>
+        <div onclick="switchTab('investments')" class="cursor-pointer p-3.5 rounded-xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200/80 dark:border-emerald-900/50 hover:opacity-95 transition">
+          <div class="text-[10px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-300">Mutual Fund Tip</div>
+          <p class="text-xs text-slate-700 dark:text-slate-200 mt-1 leading-relaxed">Your SIPs already buy more units when prices fall. For extra money, keep a small cash or liquid-fund reserve and invest it in 2–3 tranches when the Nifty falls, say, 10% and then 15%—so you don't have to guess the bottom.</p>
+        </div>
+      </section>
+
+      <section class="space-y-3">
+        <div class="flex items-center justify-between">
+          <h2 class="text-base font-bold tracking-tight">F. Gold, Silver, ETFs &amp; IPOs</h2>
+          <button onclick="switchTab('markets')" class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">ETF &amp; IPO Tracker &rarr;</button>
+        </div>
+        <div class="space-y-2.5">
+          <div onclick="openArticle('gold-silver-today')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-xl p-3.5 border border-slate-200 dark:border-slate-800 hover:border-amber-300 transition shadow-sm flex items-center justify-between">
+            <div>
+              <div class="text-xs font-bold">Nagpur Gold &amp; Silver (12 Nov)</div>
+              <div class="text-[11px] text-slate-500 mt-0.5">24K: ₹1,39,800/10g &bull; 22K: ₹1,28,150 &bull; Silver: ₹2,00,000/kg (₹200/g)</div>
+            </div>
+            <span class="text-xs font-semibold text-rose-600 bg-rose-50 dark:bg-rose-950/50 px-2 py-1 rounded-lg shrink-0">-1.54%</span>
+          </div>
+          <div onclick="openArticle('etf-comparison')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-xl p-3.5 border border-slate-200 dark:border-slate-800 hover:border-indigo-300 transition shadow-sm flex items-center justify-between">
+            <div>
+              <div class="text-xs font-bold">Gold &amp; Silver ETFs (India)</div>
+              <div class="text-[11px] text-slate-500 mt-0.5">HDFC Gold (0.59% BER) &bull; SBI (0.65%) &bull; Nippon (0.69%)</div>
+            </div>
+            <span class="text-xs font-semibold text-indigo-600">Compare</span>
+          </div>
+          <div onclick="openArticle('ipo-tracker-nov')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-xl p-3.5 border border-slate-200 dark:border-slate-800 hover:border-emerald-300 transition shadow-sm flex items-center justify-between">
+            <div>
+              <div class="text-xs font-bold">Recent Mainboard IPOs</div>
+              <div class="text-[11px] text-slate-500 mt-0.5">BLS Polymers +65.3% &bull; Bombay Coated +11.0%</div>
+            </div>
+            <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 dark:bg-emerald-950/50 px-2 py-1 rounded-lg">5 Listed</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- G. Real Estate Snapshot -->
+    <section class="space-y-3">
+      <div class="flex items-center justify-between">
+        <h2 class="text-base font-bold tracking-tight">G. Where Should You Buy Your Next Home?</h2>
+        <button onclick="switchTab('real_estate')" class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">Compare Localities &rarr;</button>
+      </div>
+      <div class="grid sm:grid-cols-3 gap-3">
+        <div onclick="state.city='Pune';switchTab('real_estate')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-800 hover:border-indigo-300 transition shadow-sm">
+          <div class="flex justify-between items-center"><span class="text-sm font-bold">Pune</span><span class="text-[11px] px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-300 font-semibold">IT + Metro</span></div>
+          <div class="text-xs text-slate-500 mt-1">Hinjewadi ₹8,550 &bull; Baner ₹12,350 &bull; Kharadi ₹11,511/sq ft</div>
+        </div>
+        <div onclick="state.city='Bangalore';switchTab('real_estate')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-800 hover:border-indigo-300 transition shadow-sm">
+          <div class="flex justify-between items-center"><span class="text-sm font-bold">Bangalore</span><span class="text-[11px] px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-300 font-semibold">3.8–4.5% Yield</span></div>
+          <div class="text-xs text-slate-500 mt-1">E-City ₹7,450 &bull; Whitefield ₹10,850 &bull; Hebbal ₹15,500/sq ft</div>
+        </div>
+        <div onclick="state.city='Nagpur';switchTab('real_estate')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-800 hover:border-indigo-300 transition shadow-sm">
+          <div class="flex justify-between items-center"><span class="text-sm font-bold">Nagpur</span><span class="text-[11px] px-2 py-0.5 rounded bg-amber-50 dark:bg-amber-950 text-amber-700 dark:text-amber-300 font-semibold">High Value</span></div>
+          <div class="text-xs text-slate-500 mt-1">Besa ₹4,300 &bull; Wardha Rd ₹5,000 &bull; Dharampeth ₹10,500/sq ft</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- H. Explore Something New -->
+    <section class="space-y-3">
+      <div class="flex items-center justify-between">
+        <h2 class="text-base font-bold tracking-tight">Explore Something New</h2>
+        <button id="rotate-explore-btn" class="text-xs font-semibold px-3 py-1 rounded-lg bg-slate-200/70 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 transition">Show Next Topics &#8635;</button>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        ${exploreItems.map(item => `
+          <div onclick="openArticle('${item.id}')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-xl p-3.5 border border-slate-200 dark:border-slate-800 hover:border-indigo-300 transition shadow-sm">
+            <div class="text-[10px] font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">${item.tag}</div>
+            <div class="text-xs font-bold mt-1 text-slate-900 dark:text-white">${item.title}</div>
+            <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">${item.summary}</p>
+          </div>
+        `).join("")}
+      </div>
+    </section>
+  `;
+}
+
+function renderMarkets() {
+  return `
+    <div class="space-y-6">
+      <div>
+        <h1 class="text-xl font-extrabold tracking-tight">Markets, Gold, ETFs &amp; IPOs</h1>
+        <p class="text-xs text-slate-500 mt-0.5">Verified closing &amp; bullion data as of 12 Nov 2026. Tap any card for beginner explanations.</p>
+      </div>
+
+      <!-- Indian & Global -->
+      <div class="grid md:grid-cols-2 gap-4">
+        <div onclick="openArticle('indian-market-today')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+          <div class="flex justify-between items-center">
+            <span class="text-sm font-bold">Indian Indices (12 Nov Close)</span>
+            <span class="text-xs text-emerald-600 font-bold">&#9650; Green</span>
+          </div>
+          <div class="grid grid-cols-2 gap-3 text-xs">
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800"><div>Sensex</div><div class="text-base font-extrabold mt-0.5">~81,967</div><div class="text-emerald-600">+88 pts (+0.11%)</div></div>
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800"><div>Nifty 50</div><div class="text-base font-extrabold mt-0.5">25,299.35</div><div class="text-emerald-600">+44.30 pts (+0.18%)</div></div>
+          </div>
+          <div class="text-xs text-slate-600 dark:text-slate-300">Sectors: Nifty Realty (+3.03% intraday), Fin Services (+1.27%), Private Bank (+0.85%) led; IT (-0.36%) &amp; Pharma (-0.33%) lagged.</div>
+        </div>
+
+        <div onclick="openArticle('gold-silver-today')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+          <div class="flex justify-between items-center">
+            <span class="text-sm font-bold">Nagpur Gold &amp; Silver (12 Nov 2026)</span>
+            <span class="text-xs text-amber-600 font-semibold">4-Day Gold Trend</span>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+            <div class="p-2 rounded-lg bg-amber-50/70 dark:bg-amber-950/30"><div class="text-[10px] text-slate-500">24K Gold (10g)</div><div class="font-bold">₹1,39,800</div><div class="text-[10px] text-rose-600">₹13,980/g</div></div>
+            <div class="p-2 rounded-lg bg-amber-50/70 dark:bg-amber-950/30"><div class="text-[10px] text-slate-500">22K Gold (10g)</div><div class="font-bold">₹1,28,150</div><div class="text-[10px] text-rose-600">₹12,815/g</div></div>
+            <div class="p-2 rounded-lg bg-slate-50 dark:bg-slate-800"><div class="text-[10px] text-slate-500">18K Gold (10g)</div><div class="font-bold">₹1,04,850</div><div class="text-[10px] text-slate-500">₹10,485/g</div></div>
+            <div class="p-2 rounded-lg bg-slate-50 dark:bg-slate-800"><div class="text-[10px] text-slate-500">999 Silver (1kg)</div><div class="font-bold">₹2,00,000</div><div class="text-[10px] text-slate-500">₹200/g (Groww)</div></div>
+          </div>
+          <div class="relative h-36"><canvas id="markets-gold-chart"></canvas></div>
+        </div>
+      </div>
+
+      <!-- ETF Comparison Table -->
+      <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+        <div class="flex items-center justify-between">
+          <h2 class="text-sm font-bold">Popular Gold &amp; Silver ETFs in India</h2>
+          <button onclick="openArticle('etf-comparison')" class="text-xs font-semibold text-indigo-600 hover:underline">How ETFs Work &rarr;</button>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="text-slate-500 border-b border-slate-200 dark:border-slate-800">
+              <tr><th class="py-2 pr-3">ETF / Fund Name</th><th class="py-2 pr-3">Metal</th><th class="py-2 pr-3">Expense Ratio</th><th class="py-2">Notes</th></tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+              <tr><td class="py-2.5 pr-3 font-semibold">HDFC Gold ETF</td><td class="py-2.5 pr-3">Gold</td><td class="py-2.5 pr-3 text-emerald-600 font-semibold">0.59% (BER)</td><td class="py-2.5 text-slate-500">Lowest base ER among top 3</td></tr>
+              <tr><td class="py-2.5 pr-3 font-semibold">SBI Gold ETF</td><td class="py-2.5 pr-3">Gold</td><td class="py-2.5 pr-3">0.65%</td><td class="py-2.5 text-slate-500">Large bank-backed fund</td></tr>
+              <tr><td class="py-2.5 pr-3 font-semibold">Nippon India ETF Gold BeES</td><td class="py-2.5 pr-3">Gold</td><td class="py-2.5 pr-3">0.69% (BER)</td><td class="py-2.5 text-slate-500">Very high NSE liquidity</td></tr>
+              <tr><td class="py-2.5 pr-3 font-semibold">Nippon India Silver ETF FoF</td><td class="py-2.5 pr-3">Silver</td><td class="py-2.5 pr-3">0.22% Direct / 0.49% Reg</td><td class="py-2.5 text-slate-500">₹4,354 Cr AUM; no Demat needed for FoF</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- IPO Tracker -->
+      <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+        <div class="flex items-center justify-between">
+          <h2 class="text-sm font-bold">IPO Tracker (Recently Listed &amp; Upcoming)</h2>
+          <button onclick="openArticle('ipo-tracker-nov')" class="text-xs font-semibold text-indigo-600 hover:underline">IPO Risks &amp; Guide &rarr;</button>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="text-slate-500 border-b border-slate-200 dark:border-slate-800">
+              <tr><th class="py-2 pr-3">Company</th><th class="py-2 pr-3">Issue Price</th><th class="py-2 pr-3">Listing Price</th><th class="py-2 pr-3">Gain / Loss</th><th class="py-2">Subscription</th></tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+              <tr><td class="py-2.5 pr-3 font-semibold">BLS Polymers (02 Nov)</td><td class="py-2.5 pr-3">₹150</td><td class="py-2.5 pr-3">₹248.00</td><td class="py-2.5 pr-3 text-emerald-600 font-bold">+65.33%</td><td class="py-2.5">238.64x</td></tr>
+              <tr><td class="py-2.5 pr-3 font-semibold">Bombay Coated Steels (04 Nov)</td><td class="py-2.5 pr-3">₹82</td><td class="py-2.5 pr-3">₹91.00</td><td class="py-2.5 pr-3 text-emerald-600 font-bold">+10.98%</td><td class="py-2.5">59.83x</td></tr>
+              <tr><td class="py-2.5 pr-3 font-semibold">SFC Environmental (02 Nov)</td><td class="py-2.5 pr-3">₹330</td><td class="py-2.5 pr-3">₹355.10</td><td class="py-2.5 pr-3 text-emerald-600 font-bold">+7.61%</td><td class="py-2.5">9.08x</td></tr>
+              <tr><td class="py-2.5 pr-3 font-semibold">M.K. Sons Fine Jewels (03 Nov)</td><td class="py-2.5 pr-3">₹162</td><td class="py-2.5 pr-3">₹171.00</td><td class="py-2.5 pr-3 text-emerald-600 font-bold">+5.56%</td><td class="py-2.5">5.04x</td></tr>
+              <tr><td class="py-2.5 pr-3 font-semibold">EAAA India Alt (01 Nov)</td><td class="py-2.5 pr-3">₹1,665</td><td class="py-2.5 pr-3">₹1,675.50</td><td class="py-2.5 pr-3 text-emerald-600 font-bold">+0.63%</td><td class="py-2.5">5.17x</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="text-xs text-slate-500 pt-1"><strong>Upcoming Pipeline:</strong> Mahanadi Coalfields (shareholder quota announced 12 Nov), PhonePe (DRHP filed), Haldiram Snacks (targeting ₹10,000 Cr late 2027).</div>
+      </div>
+    </div>
+  `;
+}
+
+function renderAiJobs() {
+  return `
+    <div class="space-y-6">
+      <div>
+        <h1 class="text-xl font-extrabold tracking-tight">AI Developments &amp; IT Job Impact</h1>
+        <p class="text-xs text-slate-500 mt-0.5">Separating verified hiring data from layoff hype across India, USA &amp; Europe.</p>
+      </div>
+
+      <!-- Comparison Chart -->
+      <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+        <div class="flex flex-wrap justify-between items-center gap-2">
+          <h2 class="text-sm font-bold">IT Role Demand Shifts (2026 Verified Data)</h2>
+          <span class="text-[11px] text-slate-500">Sources: Quess Corp Q2 FY27 &amp; Lenny's/CellCog Report</span>
+        </div>
+        <div class="relative h-60"><canvas id="ai-jobs-compare-chart"></canvas></div>
+      </div>
+
+      <!-- 3 Geographies -->
+      <div class="grid md:grid-cols-3 gap-4">
+        <div onclick="openArticle('it-jobs-india')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-2xl p-5 border-2 border-amber-300 dark:border-amber-700 shadow-sm space-y-2">
+          <div class="text-xs font-bold uppercase text-amber-600">🇮🇳 India (Highest Priority)</div>
+          <div class="text-base font-bold">GCCs Shift to AI &amp; Product</div>
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">1,800+ GCCs employ 1.9M staff. AI/Data/Cyber roles hit 30.3% of hiring with a 38–42% talent gap. Meanwhile, 5k–30k routine roles were trimmed.</p>
+          <div class="text-xs font-semibold text-indigo-600 pt-1">Read India Skill Roadmap &rarr;</div>
+        </div>
+        <div onclick="openArticle('it-jobs-usa')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+          <div class="text-xs font-bold uppercase text-slate-500">🇺🇸 USA</div>
+          <div class="text-base font-bold">125k+ Cuts, Specialized Hiring</div>
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">Eng hiring (113k) is half of 2022 peak. Security (+34%) and Platform (+30%) grew while Front-end (-51%) and Mobile (-39%) shrank.</p>
+          <div class="text-xs font-semibold text-indigo-600 pt-1">Read US Breakdown &rarr;</div>
+        </div>
+        <div onclick="openArticle('it-jobs-europe')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+          <div class="text-xs font-bold uppercase text-slate-500">🇪🇺 Europe</div>
+          <div class="text-base font-bold">AI Governance &amp; Upskilling</div>
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">Strict labour rules limit mass layoffs; hiring focuses on EU AI compliance, cloud security, and upskilling existing engineers.</p>
+          <div class="text-xs font-semibold text-indigo-600 pt-1">Read Europe Breakdown &rarr;</div>
+        </div>
+      </div>
+
+      <!-- What Indian IT Pros Should Learn -->
+      <div class="bg-indigo-50/70 dark:bg-indigo-950/30 rounded-2xl p-5 border border-indigo-100 dark:border-indigo-900/50 space-y-2">
+        <h3 class="text-sm font-bold text-indigo-900 dark:text-indigo-200">What Should an Indian IT Professional Learn Right Now?</h3>
+        <div class="grid sm:grid-cols-3 gap-3 text-xs text-slate-700 dark:text-slate-300">
+          <div class="p-3 rounded-xl bg-white dark:bg-slate-900/80"><strong>1. AI-Assisted Engineering:</strong> Use coding agents to build &amp; test faster, focusing on system design and debugging.</div>
+          <div class="p-3 rounded-xl bg-white dark:bg-slate-900/80"><strong>2. Data &amp; Cloud Pipelines:</strong> Learn how to connect company databases safely to AI models (RAG, APIs, Cloud).</div>
+          <div class="p-3 rounded-xl bg-white dark:bg-slate-900/80"><strong>3. Cybersecurity &amp; Testing Automation:</strong> Automated security and QA remain the fastest-growing GCC needs.</div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderInvestments() {
+  return `
+    <div class="space-y-6">
+      <div>
+        <h1 class="text-xl font-extrabold tracking-tight">Things You Should Know</h1>
+        <p class="text-xs text-slate-500 mt-0.5">17 essential money concepts explained with everyday Indian examples. Tap any card to read more.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        ${EDU_TOPICS.map(t => `
+          <div onclick="openArticle('${t.id}')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-800 hover:border-indigo-300 transition shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-xl">${t.icon}</span>
+                <h3 class="text-sm font-bold text-slate-900 dark:text-white">${t.title}</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">${t.oneLiner}</p>
+            </div>
+            <div class="text-[11px] font-semibold text-indigo-600 dark:text-indigo-400 mt-3">See real-world example &rarr;</div>
+          </div>
+        `).join("")}
+      </div>
+
+      <!-- Investment Tips & SIP Calculator -->
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+          <h2 class="text-base font-bold">Investment Tips You Should Know</h2>
+          <ul class="space-y-2.5 text-xs text-slate-600 dark:text-slate-300">
+            <li><strong>1. Emergency Fund First:</strong> Keep 6 months of expenses in a bank/liquid fund before starting equity SIPs.</li>
+            <li><strong>2. Avoid "Guaranteed Return" Traps:</strong> No stock, mutual fund, or crypto can legally guarantee high fixed returns.</li>
+            <li><strong>3. Keep Costs Low:</strong> Prefer Direct Mutual Funds or Index Funds/ETFs over high-commission plans.</li>
+            <li><strong>4. Don't Panic in Crashes:</strong> Continue your monthly SIP when markets fall—that's when you buy more units cheaply.</li>
+            <li><strong>5. A Simple Rule for Extra Mutual Fund Money:</strong> Your SIPs already buy more units when prices fall. For extra money, keep a small cash or liquid-fund reserve and invest it in 2–3 tranches when the Nifty falls, say, 10% and then 15%. That way you don't have to guess the bottom.</li>
+            <li><strong>6. Health &amp; Term Insurance:</strong> One hospital bill can wipe out years of savings; protect your family first.</li>
+          </ul>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+          <h2 class="text-base font-bold">Interactive SIP Calculator (Illustrative)</h2>
+          <div class="grid grid-cols-3 gap-2.5 text-xs">
+            <div>
+              <label class="block text-slate-500 mb-1">Monthly SIP (₹)</label>
+              <input id="sip-amt" type="number" value="5000" min="500" step="500" class="w-full px-2.5 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 font-semibold" />
+            </div>
+            <div>
+              <label class="block text-slate-500 mb-1">Years</label>
+              <input id="sip-yrs" type="number" value="10" min="1" max="40" class="w-full px-2.5 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 font-semibold" />
+            </div>
+            <div>
+              <label class="block text-slate-500 mb-1">Est. Return (%)</label>
+              <input id="sip-rate" type="number" value="12" min="1" max="25" step="0.5" class="w-full px-2.5 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 font-semibold" />
+            </div>
+          </div>
+          <div id="sip-output" class="p-3.5 rounded-xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200/70 dark:border-emerald-900/50 text-xs space-y-1"></div>
+          <div class="text-[10px] text-slate-400">Note: Market returns are not guaranteed; this tool shows mathematical compounding only.</div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderRealEstate() {
+  const locs = REAL_ESTATE[state.city] || [];
+  return `
+    <div class="space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h1 class="text-xl font-extrabold tracking-tight">Where Should You Buy Your Next Home?</h1>
+          <p class="text-xs text-slate-500 mt-0.5">Residential apartment rates in Pune, Bangalore &amp; Nagpur. Data types clearly labeled.</p>
+        </div>
+        <div class="flex bg-slate-200/70 dark:bg-slate-800 p-1 rounded-xl">
+          ${["Pune", "Bangalore", "Nagpur"].map(c => `
+            <button onclick="state.city='${c}';render()" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition ${state.city === c ? 'bg-white dark:bg-slate-900 shadow-sm text-indigo-600 dark:text-indigo-400' : 'text-slate-600 dark:text-slate-400'}">${c}</button>
+          `).join("")}
+        </div>
+      </div>
+
+      <!-- 3-City Comparison Chart -->
+      <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+        <div class="flex justify-between items-center">
+          <h2 class="text-sm font-bold">${state.city} Locality Prices (₹ / sq ft)</h2>
+          <span class="text-[11px] text-slate-500">99acres / ANAROCK / MagicBricks 2026</span>
+        </div>
+        <div class="relative h-56"><canvas id="re-city-chart"></canvas></div>
+      </div>
+
+      <!-- Locality Cards -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+        ${locs.map(l => `
+          <div onclick="openArticle('${l.id}')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-2xl p-4 border border-slate-200 dark:border-slate-800 hover:border-indigo-300 transition shadow-sm space-y-2.5">
+            <div class="flex justify-between items-start gap-2">
+              <div>
+                <h3 class="text-base font-bold">${l.name}</h3>
+                <div class="text-[10px] text-slate-500">${l.dataType}</div>
+              </div>
+              <span class="text-sm font-extrabold text-indigo-600 dark:text-indigo-400">₹${l.avg.toLocaleString("en-IN")}/sqft</span>
+            </div>
+            <div class="flex flex-wrap gap-1.5 text-[10px] font-semibold">
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">${l.tier}</span>
+              <span class="px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300">${l.trend}</span>
+              <span class="px-2 py-0.5 rounded bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300">${l.connectivity}</span>
+            </div>
+            <p class="text-xs text-slate-600 dark:text-slate-300 line-clamp-2">${l.pros}</p>
+            <div class="text-[11px] text-slate-500">Growth: <strong>${l.yoy}</strong> &bull; Tap for risks &amp; details &rarr;</div>
+          </div>
+        `).join("")}
+      </div>
+
+      <!-- Property Buying Tips + EMI Calculator -->
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+          <h2 class="text-base font-bold">Property Buying Tips</h2>
+          <div class="space-y-2.5 text-xs">
+            ${PROPERTY_TIPS.map(tip => `
+              <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60">
+                <div class="font-bold text-slate-900 dark:text-white">${tip.t}</div>
+                <div class="text-slate-600 dark:text-slate-300 mt-0.5">${tip.d}</div>
+              </div>
+            `).join("")}
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3 h-fit">
+          <h2 class="text-base font-bold">Home Loan EMI Calculator</h2>
+          <div class="grid grid-cols-3 gap-2.5 text-xs">
+            <div>
+              <label class="block text-slate-500 mb-1">Loan (₹ Lakh)</label>
+              <input id="emi-loan" type="number" value="50" min="5" step="5" class="w-full px-2.5 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 font-semibold" />
+            </div>
+            <div>
+              <label class="block text-slate-500 mb-1">Rate (% p.a.)</label>
+              <input id="emi-rate" type="number" value="8.5" min="5" max="15" step="0.1" class="w-full px-2.5 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 font-semibold" />
+            </div>
+            <div>
+              <label class="block text-slate-500 mb-1">Tenure (Yrs)</label>
+              <input id="emi-yrs" type="number" value="20" min="1" max="30" class="w-full px-2.5 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 font-semibold" />
+            </div>
+          </div>
+          <div id="emi-output" class="p-4 rounded-xl bg-indigo-50/70 dark:bg-indigo-950/30 border border-indigo-100 dark:border-indigo-900/50 text-xs space-y-1"></div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderSaved() {
+  const savedArts = state.savedIds.map(id => getArticleById(id)).filter(Boolean);
+  return `
+    <div class="space-y-6">
+      <div>
+        <h1 class="text-xl font-extrabold tracking-tight">Saved Articles &amp; Watchlist Notes</h1>
+        <p class="text-xs text-slate-500 mt-0.5">Your bookmarked guides and personal notes are saved locally in your browser.</p>
+      </div>
+
+      ${savedArts.length === 0 ? `
+        <div class="bg-white dark:bg-slate-900 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 text-center space-y-2">
+          <div class="text-2xl">🔖</div>
+          <div class="text-sm font-bold">No saved articles yet</div>
+          <p class="text-xs text-slate-500">Tap any news card, market update, or "Things You Should Know" topic and hit <strong>Save</strong>.</p>
+          <button onclick="switchTab('home')" class="mt-2 px-4 py-2 rounded-xl bg-indigo-600 text-white text-xs font-semibold">Explore Today's Briefing</button>
+        </div>
+      ` : `
+        <div class="grid sm:grid-cols-2 gap-3">
+          ${savedArts.map(a => `
+            <div class="bg-white dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between gap-2">
+              <div onclick="openArticle('${a.id}')" class="cursor-pointer">
+                <div class="text-[10px] font-bold uppercase text-indigo-600">${a.category}</div>
+                <div class="text-sm font-bold mt-0.5">${a.title}</div>
+                <p class="text-xs text-slate-500 mt-1 line-clamp-2">${a.summary}</p>
+              </div>
+              <div class="flex justify-between items-center pt-2 border-t border-slate-100 dark:border-slate-800 text-xs">
+                <button onclick="openArticle('${a.id}')" class="font-semibold text-indigo-600">Read Article &rarr;</button>
+                <button onclick="toggleSave('${a.id}')" class="text-rose-600 font-medium">Remove</button>
+              </div>
+            </div>
+          `).join("")}
+        </div>
+      `}
+
+      <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+        <label for="personal-notes" class="text-sm font-bold block">Personal Watchlist / Reminders</label>
+        <textarea id="personal-notes" rows="4" placeholder="E.g., Check HDFC Gold ETF vs Nifty 50 SIP on 5th; Compare Hinjewadi vs Wakad 2BHK..." class="w-full p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs focus:outline-none focus:border-indigo-500">${state.notes}</textarea>
+      </div>
+    </div>
+  `;
+}
+
+// ==================== 7. CALCULATORS & CHARTS WIRING ====================
+function updateSipCalc() {
+  const amt = parseFloat(document.getElementById("sip-amt")?.value || 0);
+  const yrs = parseFloat(document.getElementById("sip-yrs")?.value || 0);
+  const rate = parseFloat(document.getElementById("sip-rate")?.value || 0);
+  const out = document.getElementById("sip-output");
+  if (!out) return;
+  if (amt <= 0 || yrs <= 0 || rate <= 0) { out.innerHTML = "Enter positive values above."; return; }
+  const n = yrs * 12;
+  const r = rate / 12 / 100;
+  const fv = amt * ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
+  const invested = amt * n;
+  const gain = fv - invested;
+  out.innerHTML = `
+    <div>You Invest: <strong>₹${Math.round(invested).toLocaleString("en-IN")}</strong></div>
+    <div>Est. Wealth Gained: <strong class="text-emerald-600">₹${Math.round(gain).toLocaleString("en-IN")}</strong></div>
+    <div class="text-sm pt-1">Estimated Total Value: <strong class="text-emerald-700 dark:text-emerald-300">₹${Math.round(fv).toLocaleString("en-IN")}</strong></div>
+  `;
+}
+
+function updateEmiCalc() {
+  const loanL = parseFloat(document.getElementById("emi-loan")?.value || 0);
+  const rate = parseFloat(document.getElementById("emi-rate")?.value || 0);
+  const yrs = parseFloat(document.getElementById("emi-yrs")?.value || 0);
+  const out = document.getElementById("emi-output");
+  if (!out) return;
+  if (loanL <= 0 || rate <= 0 || yrs <= 0) { out.innerHTML = "Enter positive values above."; return; }
+  const P = loanL * 100000;
+  const r = rate / 12 / 100;
+  const n = yrs * 12;
+  const emi = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+  const total = emi * n;
+  const interest = total - P;
+  out.innerHTML = `
+    <div class="text-sm">Monthly EMI: <strong class="text-indigo-700 dark:text-indigo-300">₹${Math.round(emi).toLocaleString("en-IN")} / mo</strong></div>
+    <div>Total Interest: <strong>₹${(interest / 100000).toFixed(2)} Lakh</strong></div>
+    <div>Total Payable: <strong>₹${(total / 100000).toFixed(2)} Lakh</strong></div>
+  `;
+}
+
+function mountChartsForTab() {
+  const tickColor = state.dark ? "#94a3b8" : "#64748b";
+  const gridColor = state.dark ? "#1e293b" : "#e2e8f0";
+
+  if (state.tab === "home") {
+    destroyChart("home-nifty");
+    const c1 = document.getElementById("home-nifty-chart");
+    if (c1) {
+      charts["home-nifty"] = new Chart(c1, {
+        type: "line",
+        data: { labels: ["09 Nov", "11 Nov", "12 Nov AM", "12 Nov Close"], datasets: [{ data: [25044.65, 25255.05, 25354.35, 25299.35], borderColor: "#059669", backgroundColor: "#05966920", fill: true, tension: 0.3, pointRadius: 3 }] },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false }, ticks: { color: tickColor, font: { size: 10 } } }, y: { grid: { color: gridColor }, ticks: { color: tickColor, font: { size: 10 } } } } }
+      });
+    }
+    destroyChart("home-jobs");
+    const c2 = document.getElementById("home-jobs-chart");
+    if (c2) {
+      charts["home-jobs"] = new Chart(c2, {
+        type: "bar",
+        data: { labels: ["India GCC AI/Data", "US Security", "US Platform", "US Front-End"], datasets: [{ data: [30.3, 34, 30, -51], backgroundColor: ["#d97706", "#059669", "#4f46e5", "#e11d48"], borderRadius: 6 }] },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false }, ticks: { color: tickColor, font: { size: 9 } } }, y: { grid: { color: gridColor }, ticks: { color: tickColor, font: { size: 10 }, callback: v => v + "%" } } } }
+      });
+    }
+  } else if (state.tab === "markets") {
+    destroyChart("markets-gold");
+    const cg = document.getElementById("markets-gold-chart");
+    if (cg) {
+      charts["markets-gold"] = new Chart(cg, {
+        type: "line",
+        data: { labels: ["09 Nov", "10 Nov", "11 Nov", "12 Nov"], datasets: [{ label: "24K Gold / 10g (₹)", data: [144600, 142690, 141980, 139800], borderColor: "#d97706", backgroundColor: "#d9770622", fill: true, tension: 0.3 }] },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false }, ticks: { color: tickColor, font: { size: 11 } } }, y: { grid: { color: gridColor }, ticks: { color: tickColor, font: { size: 10 } } } } }
+      });
+    }
+  } else if (state.tab === "ai_jobs") {
+    destroyChart("ai-jobs-compare");
+    const caj = document.getElementById("ai-jobs-compare-chart");
+    if (caj) {
+      charts["ai-jobs-compare"] = new Chart(caj, {
+        type: "bar",
+        data: {
+          labels: ["US Security (+34%)", "India GCC AI/Cyber (30.3% share)", "US Platform (+30%)", "US Embedded (+25%)", "US Mobile (-39%)", "US Front-End (-51%)"],
+          datasets: [{ label: "Demand / Share %", data: [34, 30.3, 30, 25, -39, -51], backgroundColor: ["#059669", "#d97706", "#4f46e5", "#0284c7", "#f43f5e", "#e11d48"], borderRadius: 6 }]
+        },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false }, ticks: { color: tickColor, font: { size: 10 } } }, y: { grid: { color: gridColor }, ticks: { color: tickColor, font: { size: 10 }, callback: v => v + "%" } } } }
+      });
+    }
+  } else if (state.tab === "real_estate") {
+    destroyChart("re-city");
+    const cre = document.getElementById("re-city-chart");
+    if (cre) {
+      const locs = REAL_ESTATE[state.city] || [];
+      charts["re-city"] = new Chart(cre, {
+        type: "bar",
+        data: { labels: locs.map(l => l.name), datasets: [{ label: "Avg ₹ / sq ft", data: locs.map(l => l.avg), backgroundColor: "#4f46e5", borderRadius: 8 }] },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false }, ticks: { color: tickColor, font: { size: 11 } } }, y: { grid: { color: gridColor }, ticks: { color: tickColor, font: { size: 11 }, callback: v => "₹" + v.toLocaleString("en-IN") } } } }
+      });
+    }
+  }
+}
+
+function render() {
+  const main = document.getElementById("app-main");
+  if (state.tab === "home") main.innerHTML = renderHome();
+  else if (state.tab === "markets") main.innerHTML = renderMarkets();
+  else if (state.tab === "ai_jobs") main.innerHTML = renderAiJobs();
+  else if (state.tab === "investments") main.innerHTML = renderInvestments();
+  else if (state.tab === "real_estate") main.innerHTML = renderRealEstate();
+  else if (state.tab === "saved") main.innerHTML = renderSaved();
+
+  // Highlight active nav buttons
+  document.querySelectorAll(".nav-btn").forEach(b => {
+    const active = b.dataset.tab === state.tab;
+    b.className = `nav-btn px-3 py-1.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-1.5 ${active ? "bg-slate-900 text-white dark:bg-indigo-600" : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"}`;
+  });
+  document.querySelectorAll(".mob-nav-btn").forEach(b => {
+    const active = b.dataset.tab === state.tab;
+    b.className = `mob-nav-btn relative flex flex-col items-center gap-0.5 px-2 py-1 rounded-lg text-[10px] font-medium ${active ? "text-indigo-600 dark:text-indigo-400 font-bold" : "text-slate-500 dark:text-slate-400"}`;
+  });
+
+  updateSavedBadges();
+  mountChartsForTab();
+
+  // Bind dynamic listeners
+  const rotBtn = document.getElementById("rotate-explore-btn");
+  if (rotBtn) rotBtn.onclick = () => { state.exploreOffset = (state.exploreOffset + 4) % EXPLORE_POOL.length; render(); };
+
+  ["sip-amt", "sip-yrs", "sip-rate"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener("input", updateSipCalc);
+  });
+  updateSipCalc();
+
+  ["emi-loan", "emi-rate", "emi-yrs"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener("input", updateEmiCalc);
+  });
+  updateEmiCalc();
+
+  const notesEl = document.getElementById("personal-notes");
+  if (notesEl) {
+    notesEl.addEventListener("input", e => {
+      state.notes = e.target.value;
+      saveState();
+    });
+  }
+}
+
+function switchTab(t) {
+  state.tab = t;
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  render();
+}
+
+// ==================== 8. SEARCH & GLOBAL EVENTS ====================
+function buildSearchIndex() {
+  const items = [];
+  Object.values(ARTICLES).forEach(a => items.push({ id: a.id, title: a.title, cat: a.category }));
+  EDU_TOPICS.forEach(t => items.push({ id: t.id, title: t.title, cat: "Things You Should Know" }));
+  Object.keys(REAL_ESTATE).forEach(c => REAL_ESTATE[c].forEach(l => items.push({ id: l.id, title: `${l.name}, ${c} (₹${l.avg}/sqft)`, cat: `Real Estate • ${c}` })));
+  EXPLORE_POOL.forEach(e => items.push({ id: e.id, title: e.title, cat: e.tag }));
+  return items;
+}
+
+function renderSearchResults(q) {
+  const box = document.getElementById("search-results");
+  const idx = buildSearchIndex();
+  const term = (q || "").trim().toLowerCase();
+  const matches = term ? idx.filter(i => i.title.toLowerCase().includes(term) || i.cat.toLowerCase().includes(term)) : idx.slice(0, 8);
+  if (matches.length === 0) {
+    box.innerHTML = `<div class="p-4 text-xs text-slate-500 text-center">No matching topics found. Try "Sensex", "Gold", "SIP", or "Pune".</div>`;
+    return;
+  }
+  box.innerHTML = matches.slice(0, 12).map(m => `
+    <button onclick="document.getElementById('search-modal').classList.add('hidden');openArticle('${m.id}')" class="w-full text-left px-3 py-2.5 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition flex items-center justify-between gap-2">
+      <div>
+        <div class="text-xs font-bold text-slate-900 dark:text-white">${m.title}</div>
+        <div class="text-[10px] text-slate-500">${m.cat}</div>
+      </div>
+      <span class="text-xs text-indigo-600">&rarr;</span>
+    </button>
+  `).join("");
+}
+
+document.querySelectorAll("[data-tab]").forEach(btn => {
+  btn.addEventListener("click", () => switchTab(btn.dataset.tab));
+});
+
+document.getElementById("theme-toggle-btn").addEventListener("click", () => {
+  state.dark = !state.dark;
+  applyTheme();
+  saveState();
+  render();
+});
+
+document.getElementById("close-modal-btn").addEventListener("click", closeModal);
+document.getElementById("article-modal").addEventListener("click", e => {
+  if (e.target.id === "article-modal") closeModal();
+});
+
+document.getElementById("open-search-btn").addEventListener("click", () => {
+  document.getElementById("search-modal").classList.remove("hidden");
+  renderSearchResults("");
+  setTimeout(() => document.getElementById("search-input").focus(), 40);
+});
+document.getElementById("close-search-btn").addEventListener("click", () => {
+  document.getElementById("search-modal").classList.add("hidden");
+});
+document.getElementById("search-modal").addEventListener("click", e => {
+  if (e.target.id === "search-modal") document.getElementById("search-modal").classList.add("hidden");
+});
+document.getElementById("search-input").addEventListener("input", e => renderSearchResults(e.target.value));
+
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") {
+    closeModal();
+    document.getElementById("search-modal").classList.add("hidden");
+  }
+});
+
+let activeArticleId = null;
+let geminiMessages = [];
+
+const origOpenArticle = openArticle;
+openArticle = function(id) {
+  activeArticleId = id;
+  origOpenArticle(id);
+};
+
+function getQuickPrompts(artId) {
+  if (artId && ARTICLES[artId]) {
+    return [
+      "Explain this in even simpler words",
+      "What are the main risks here?",
+      "How does this affect an ordinary saver?"
+    ];
+  }
+  if (artId && artId.startsWith("re-")) {
+    return [
+      "Is this good for living or investment?",
+      "What hidden costs should I budget?",
+      "How do I check RERA status?"
+    ];
+  }
+  return [
+    "Why did Sensex & Nifty rise today?",
+    "What is today's gold & silver rate in Nagpur?",
+    "How should I invest extra cash in mutual funds?",
+    "Which IT skills are safest in India?"
+  ];
+}
+
+function answerWithAppKnowledge(question, artId) {
+  const q = question.toLowerCase();
+  const art = artId ? getArticleById(artId) : null;
+
+  if (art && (q.includes("simpler") || q.includes("simple") || q.includes("explain") || q.includes("mean"))) {
+    return `${art.simpleExplain} For example: ${art.realWorldExample}`;
+  }
+  if (art && (q.includes("risk") || q.includes("watch") || q.includes("danger") || q.includes("careful"))) {
+    return `Key risks to watch for "${art.title}": ${art.risks}`;
+  }
+  if (art && (q.includes("opportun") || q.includes("affect") || q.includes("matter") || q.includes("saver") || q.includes("living"))) {
+    return `${art.whyMatters} Opportunities: ${art.opportunities}`;
+  }
+  if (q.includes("nagpur") && (q.includes("gold") || q.includes("silver") || q.includes("rate"))) {
+    return "In Nagpur today (12 Nov 2026), 24K gold is ₹1,39,800 per 10g (₹13,980/g, down 1.54%), 22K gold is ₹1,28,150 per 10g, and 18K is ₹1,04,850 per 10g. 999 silver in Nagpur is ₹2,00,000/kg (₹200/g) on Groww/BankBazaar, with bullion-linked quotes around ₹1,74,225/kg (ABP Live).";
+  }
+  if (q.includes("sensex") || q.includes("nifty") || q.includes("stock") || q.includes("market")) {
+    return "On 12 Nov 2026, Nifty 50 closed at 25,299.35 (+0.18%) and Sensex ended ~88 pts higher (~81,967). Foreign investors (FIIs) brought ₹65,735 Cr into Indian equities this month, and Brent crude oil cooled to ~$91.75/bbl, helping banks and real estate.";
+  }
+  if (q.includes("sip") || q.includes("mutual fund") || q.includes("extra") || q.includes("tranche") || q.includes("dip")) {
+    return "Your regular monthly SIP already buys more units automatically when prices drop. For extra lump-sum money, keep it in a cash or liquid-fund reserve and invest in 2–3 tranches when the Nifty falls (say 10% and 15%)—so you don't have to guess the exact bottom.";
+  }
+  if (q.includes("it ") || q.includes("job") || q.includes("ai") || q.includes("skill") || q.includes("gcc")) {
+    return "In India's 1,800+ GCCs, AI, data, and cybersecurity roles now make up 30.3% of tech hiring with a 38–42% talent shortage, while 5,000–30,000 routine roles were trimmed. Focus on AI-assisted engineering, cloud/data pipelines, and cybersecurity.";
+  }
+  if (q.includes("pune") || q.includes("bangalore") || q.includes("nagpur") || q.includes("flat") || q.includes("home") || q.includes("rera") || q.includes("hidden")) {
+    return "Average apartment rates vary widely: Nagpur (₹4,300–₹5,000/sqft in Besa, Manish Nagar, Wardha Rd; ₹10,500 in Dharampeth), Pune (₹8,550 in Hinjewadi to ₹12,400 in Hadapsar), and Bangalore (₹7,450 in Electronic City to ₹15,500 in Hebbal). Always verify RERA registration, compare on Carpet Area, and budget 10–14% extra for stamp duty, GST & registration.";
+  }
+  if (q.includes("ipo") || q.includes("etf")) {
+    return "For ETFs, HDFC Gold ETF (0.59% BER), SBI Gold ETF (0.65%), and Nippon Gold BeES (0.69% BER) are popular, while Nippon Silver ETF FoF lets you invest without a Demat account. For IPOs, recent listings like BLS Polymers (+65.3%) gained, but others fell—always check company profits and valuation rather than chasing hype.";
+  }
+  if (art) {
+    return `Here's the key takeaway on "${art.title}": ${art.summary} ${art.simpleExplain}`;
+  }
+  return "I can answer questions about today's Sensex/Nifty, Nagpur gold & silver rates, ETFs & IPOs, AI & IT jobs, mutual fund SIP rules, or Pune/Bangalore/Nagpur real estate. You can also tap 'Copy' to paste your question directly into Gemini Chat!";
+}
+
+function renderGeminiModal() {
+  const art = activeArticleId ? getArticleById(activeArticleId) : null;
+  document.getElementById("gemini-context-label").textContent = art ? `About: ${art.title}` : `Tab: ${state.tab.replace("_", " ").toUpperCase()} • 12 Nov 2026`;
+  const box = document.getElementById("gemini-chat-messages");
+  box.innerHTML = geminiMessages.map(m => `
+    <div class="flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}">
+      <div class="max-w-[85%] rounded-2xl px-3.5 py-2.5 text-xs leading-relaxed ${m.role === 'user' ? 'bg-indigo-600 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200'}">
+        ${m.text}
+      </div>
+    </div>
+  `).join("");
+  box.scrollTop = box.scrollHeight;
+
+  const qp = document.getElementById("gemini-quick-prompts");
+  qp.innerHTML = getQuickPrompts(activeArticleId).map(p => `
+    <button type="button" class="gemini-chip text-[11px] px-2.5 py-1 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-indigo-400 text-slate-700 dark:text-slate-300 transition">${p}</button>
+  `).join("");
+  qp.querySelectorAll(".gemini-chip").forEach(btn => {
+    btn.addEventListener("click", () => submitGeminiQuestion(btn.textContent));
+  });
+}
+
+function submitGeminiQuestion(text) {
+  const q = (text || "").trim();
+  if (!q) return;
+  geminiMessages.push({ role: "user", text: q });
+  const ans = answerWithAppKnowledge(q, activeArticleId);
+  geminiMessages.push({ role: "assistant", text: ans });
+  renderGeminiModal();
+}
+
+function openGeminiModal(fromArticle) {
+  if (!fromArticle) activeArticleId = null;
+  const art = activeArticleId ? getArticleById(activeArticleId) : null;
+  geminiMessages = [{
+    role: "assistant",
+    text: art
+      ? `Hi! Ask me anything about "${art.title}" in simple, everyday language.`
+      : "Hi! Ask me anything about today's Indian/Global markets, Nagpur gold & silver rates, mutual funds, AI & IT jobs, or Pune/Bangalore/Nagpur real estate."
+  }];
+  document.getElementById("gemini-modal").classList.remove("hidden");
+  renderGeminiModal();
+  setTimeout(() => document.getElementById("gemini-input").focus(), 50);
+}
+
+function closeGeminiModal() {
+  document.getElementById("gemini-modal").classList.add("hidden");
+}
+
+document.getElementById("open-gemini-btn").addEventListener("click", () => openGeminiModal(false));
+document.getElementById("modal-gemini-btn").addEventListener("click", () => openGeminiModal(true));
+document.getElementById("close-gemini-btn").addEventListener("click", closeGeminiModal);
+document.getElementById("gemini-modal").addEventListener("click", e => {
+  if (e.target.id === "gemini-modal") closeGeminiModal();
+});
+document.getElementById("gemini-form").addEventListener("submit", e => {
+  e.preventDefault();
+  const inp = document.getElementById("gemini-input");
+  const val = inp.value;
+  inp.value = "";
+  submitGeminiQuestion(val);
+});
+document.getElementById("gemini-copy-btn").addEventListener("click", () => {
+  const art = activeArticleId ? getArticleById(activeArticleId) : null;
+  const inp = document.getElementById("gemini-input").value.trim();
+  const qText = inp || (geminiMessages.filter(m => m.role === "user").slice(-1)[0]?.text) || "Tell me more about this topic.";
+  const payload = art ? `Context: ${art.title} (${art.summary})
+Question: ${qText}` : `Context: Daily Intelligence Briefing (12 Nov 2026)
+Question: ${qText}`;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(payload).then(() => showToast("Copied question + context!")).catch(() => fallbackCopy(payload));
+  } else {
+    fallbackCopy(payload);
+  }
+});
+function fallbackCopy(text) {
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand("copy"); showToast("Copied question + context!"); } catch (e) {}
+  document.body.removeChild(ta);
+}
+
+// Initial render
+render();
+</script>
+</body>
+</html>
