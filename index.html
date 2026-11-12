@@ -65,9 +65,9 @@
 
       <!-- Actions -->
       <div class="flex items-center gap-2 shrink-0">
-        <button id="open-gemini-btn" aria-label="Ask Gemini about app content" class="h-9 px-3 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white flex items-center gap-1.5 text-xs font-semibold shadow-sm transition">
-          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/></svg>
-          <span>Ask Gemini</span>
+        <button id="refresh-data-btn" aria-label="Refresh live rates and data" title="Refresh live USD/INR &amp; data.json" class="h-9 px-3 rounded-lg border border-slate-200 dark:border-neutral-700 bg-slate-50 dark:bg-neutral-800 text-slate-700 dark:text-neutral-200 hover:bg-slate-100 dark:hover:bg-neutral-700 flex items-center gap-1.5 text-xs font-medium transition">
+          <svg id="refresh-icon" class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          <span class="hidden sm:inline">Refresh</span>
         </button>
         <button id="open-search-btn" aria-label="Search topics" class="h-9 px-3 rounded-lg border border-slate-200 dark:border-neutral-700 bg-slate-50 dark:bg-neutral-800 text-slate-600 dark:text-neutral-300 hover:bg-slate-100 dark:hover:bg-neutral-700 flex items-center gap-1.5 text-xs font-medium transition">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/></svg>
@@ -119,10 +119,6 @@
       <div class="px-5 py-3.5 border-b border-slate-200 dark:border-neutral-800 flex items-center justify-between gap-3 shrink-0">
         <div id="modal-category-badge" class="text-xs font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400"></div>
         <div class="flex items-center gap-2">
-          <button id="modal-gemini-btn" class="h-8 px-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold flex items-center gap-1 transition">
-            <svg class="w-3 h-3" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/></svg>
-            <span>Ask Gemini</span>
-          </button>
           <button id="modal-bookmark-btn" class="h-8 px-3 rounded-lg border border-slate-200 dark:border-neutral-700 text-xs font-medium flex items-center gap-1.5 hover:bg-slate-100 dark:hover:bg-neutral-800 transition"></button>
           <button id="close-modal-btn" aria-label="Close article" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-neutral-800 text-slate-600 dark:text-neutral-300 hover:bg-slate-200 dark:hover:bg-neutral-700 flex items-center justify-center font-bold">&times;</button>
         </div>
@@ -140,34 +136,6 @@
         <button id="close-search-btn" class="text-xs px-2.5 py-1 rounded-md bg-slate-100 dark:bg-neutral-800 text-slate-500 font-medium">Esc</button>
       </div>
       <div id="search-results" class="max-h-96 overflow-y-auto divide-y divide-slate-100 dark:divide-neutral-800 p-2"></div>
-    </div>
-  </div>
-
-  <!-- Ask Gemini Modal -->
-  <div id="gemini-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 dark:bg-black/75 backdrop-blur-sm flex items-end md:items-center justify-center p-0 md:p-4">
-    <div class="bg-white dark:bg-neutral-900 w-full md:max-w-xl max-h-[88vh] rounded-t-2xl md:rounded-2xl shadow-2xl border border-slate-200 dark:border-neutral-800 flex flex-col overflow-hidden animate-fade-up">
-      <div class="px-5 py-3.5 border-b border-slate-200 dark:border-neutral-800 flex items-center justify-between gap-2 shrink-0 bg-indigo-50/60 dark:bg-indigo-950/30">
-        <div class="flex items-center gap-2 min-w-0">
-          <span class="w-7 h-7 rounded-lg bg-indigo-600 text-white flex items-center justify-center shrink-0">
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/></svg>
-          </span>
-          <div class="min-w-0">
-            <div class="text-sm font-bold text-slate-900 dark:text-white">Ask Gemini</div>
-            <div id="gemini-context-label" class="text-[11px] text-indigo-700 dark:text-indigo-300 truncate">Daily Intelligence Briefing</div>
-          </div>
-        </div>
-        <button id="close-gemini-btn" aria-label="Close Ask Gemini" class="w-8 h-8 rounded-lg bg-white dark:bg-neutral-800 text-slate-600 dark:text-neutral-300 hover:bg-slate-100 dark:hover:bg-neutral-700 flex items-center justify-center font-bold border border-slate-200 dark:border-neutral-700">&times;</button>
-      </div>
-
-      <div id="gemini-chat-messages" class="p-4 overflow-y-auto space-y-3 flex-1 min-h-[220px] max-h-[48vh]"></div>
-
-      <div class="px-4 py-2 border-t border-slate-100 dark:border-neutral-800 flex flex-wrap gap-1.5 bg-slate-50/70 dark:bg-neutral-900" id="gemini-quick-prompts"></div>
-
-      <form id="gemini-form" class="p-3 border-t border-slate-200 dark:border-neutral-800 flex items-center gap-2 bg-white dark:bg-neutral-900 shrink-0">
-        <input id="gemini-input" type="text" placeholder="Ask a simple question about this topic..." class="flex-1 px-3 py-2 rounded-xl border border-slate-200 dark:border-neutral-700 bg-slate-50 dark:bg-neutral-800 text-xs focus:outline-none focus:border-indigo-500" />
-        <button type="submit" class="px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold transition shrink-0">Ask</button>
-        <button type="button" id="gemini-copy-btn" title="Copy question + context for Gemini Chat" class="px-2.5 py-2 rounded-xl border border-slate-200 dark:border-neutral-700 text-xs font-medium hover:bg-slate-100 dark:hover:bg-neutral-800 transition shrink-0">Copy</button>
-      </form>
     </div>
   </div>
 
@@ -844,6 +812,21 @@ function updateSavedBadges() {
   }
 }
 
+// Verified snapshot fallback + on-demand live data state (never fetched automatically)
+const FALLBACK_SNAPSHOT = {
+  usdInr: "93.73",
+  brent: "$91.75 (-1.1%)",
+  sensex: "~81,967",
+  sensexDelta: "&#9650; +88 pts (+0.11%)",
+  nifty: "25,299.35",
+  niftyDelta: "&#9650; +44.30 pts (+0.18%)",
+  gold24k: "₹1,39,800",
+  gold22k: "₹1,28,150",
+  silverKg: "₹2,00,000",
+  liveSource: ""
+};
+let liveData = { ...FALLBACK_SNAPSHOT };
+
 // Chart instance registry to prevent canvas reuse errors
 const charts = {};
 function destroyChart(id) {
@@ -1055,7 +1038,7 @@ function renderHome() {
           </span>
           <h1 class="text-xl md:text-2xl font-extrabold tracking-tight mt-2 text-slate-900 dark:text-white">Your Daily Intelligence Briefing</h1>
         </div>
-        <div class="text-xs text-slate-500 dark:text-neutral-400">Rupee: <strong class="text-slate-800 dark:text-neutral-200">₹93.73/USD</strong> &bull; Brent Oil: <strong class="text-emerald-600">$91.75 (-1.1%)</strong></div>
+        <div class="text-xs text-slate-500 dark:text-neutral-400">Rupee: <strong class="text-slate-800 dark:text-neutral-200">₹${liveData.usdInr}/USD</strong> &bull; Brent Oil: <strong class="text-emerald-600">${liveData.brent}</strong>${liveData.liveSource ? ` &bull; <span class="text-emerald-600 dark:text-emerald-400 font-medium">${liveData.liveSource}</span>` : ""}</div>
       </div>
       <p class="mt-2.5 text-sm text-slate-600 dark:text-neutral-300 leading-relaxed">
         Indian markets edged higher today as foreign investors poured ₹65,735 crore into shares this month and oil prices cooled. Gold dipped 1.5% to ₹1,39,800/10g, Anthropic opened its mega IPO, and Indian GCCs are hiring heavily for AI &amp; cybersecurity while trimming routine roles.
@@ -1077,14 +1060,14 @@ function renderHome() {
           <div class="grid grid-cols-2 gap-3">
             <div class="p-3 rounded-xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200/70 dark:border-emerald-900/50">
               <div class="text-xs text-slate-500 dark:text-neutral-400">BSE Sensex (12 Nov)</div>
-              <div class="text-lg md:text-xl font-extrabold text-slate-900 dark:text-white mt-0.5">~81,967</div>
-              <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">&#9650; +88 pts (+0.11%)</div>
+              <div class="text-lg md:text-xl font-extrabold text-slate-900 dark:text-white mt-0.5">${liveData.sensex}</div>
+              <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">${liveData.sensexDelta}</div>
               <div class="text-[10px] text-slate-500 mt-1">Prev close (11 Nov): 81,879.40 (+0.95%)</div>
             </div>
             <div class="p-3 rounded-xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200/70 dark:border-emerald-900/50">
               <div class="text-xs text-slate-500 dark:text-neutral-400">NSE Nifty 50 (12 Nov)</div>
-              <div class="text-lg md:text-xl font-extrabold text-slate-900 dark:text-white mt-0.5">25,299.35</div>
-              <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">&#9650; +44.30 pts (+0.18%)</div>
+              <div class="text-lg md:text-xl font-extrabold text-slate-900 dark:text-white mt-0.5">${liveData.nifty}</div>
+              <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">${liveData.niftyDelta}</div>
               <div class="text-[10px] text-slate-500 mt-1">Prev close (11 Nov): 25,255.05 (+0.84%)</div>
             </div>
           </div>
@@ -1297,8 +1280,8 @@ function renderMarkets() {
             <span class="text-xs text-emerald-600 font-bold">&#9650; Green</span>
           </div>
           <div class="grid grid-cols-2 gap-3 text-xs">
-            <div class="p-3 rounded-xl bg-slate-50 dark:bg-neutral-800"><div>Sensex</div><div class="text-base font-extrabold mt-0.5">~81,967</div><div class="text-emerald-600">+88 pts (+0.11%)</div></div>
-            <div class="p-3 rounded-xl bg-slate-50 dark:bg-neutral-800"><div>Nifty 50</div><div class="text-base font-extrabold mt-0.5">25,299.35</div><div class="text-emerald-600">+44.30 pts (+0.18%)</div></div>
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-neutral-800"><div>Sensex</div><div class="text-base font-extrabold mt-0.5">${liveData.sensex}</div><div class="text-emerald-600">${liveData.sensexDelta}</div></div>
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-neutral-800"><div>Nifty 50</div><div class="text-base font-extrabold mt-0.5">${liveData.nifty}</div><div class="text-emerald-600">${liveData.niftyDelta}</div></div>
           </div>
           <div class="text-xs text-slate-600 dark:text-neutral-300">Sectors: Nifty Realty (+3.03% intraday), Fin Services (+1.27%), Private Bank (+0.85%) led; IT (-0.36%) &amp; Pharma (-0.33%) lagged.</div>
         </div>
@@ -1309,10 +1292,10 @@ function renderMarkets() {
             <span class="text-xs text-amber-600 font-semibold">4-Day Gold Trend</span>
           </div>
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
-            <div class="p-2 rounded-lg bg-amber-50/70 dark:bg-amber-950/30"><div class="text-[10px] text-slate-500">24K Gold (10g)</div><div class="font-bold">₹1,39,800</div><div class="text-[10px] text-rose-600">₹13,980/g</div></div>
-            <div class="p-2 rounded-lg bg-amber-50/70 dark:bg-amber-950/30"><div class="text-[10px] text-slate-500">22K Gold (10g)</div><div class="font-bold">₹1,28,150</div><div class="text-[10px] text-rose-600">₹12,815/g</div></div>
+            <div class="p-2 rounded-lg bg-amber-50/70 dark:bg-amber-950/30"><div class="text-[10px] text-slate-500">24K Gold (10g)</div><div class="font-bold">${liveData.gold24k}</div><div class="text-[10px] text-rose-600">₹13,980/g</div></div>
+            <div class="p-2 rounded-lg bg-amber-50/70 dark:bg-amber-950/30"><div class="text-[10px] text-slate-500">22K Gold (10g)</div><div class="font-bold">${liveData.gold22k}</div><div class="text-[10px] text-rose-600">₹12,815/g</div></div>
             <div class="p-2 rounded-lg bg-slate-50 dark:bg-neutral-800"><div class="text-[10px] text-slate-500">18K Gold (10g)</div><div class="font-bold">₹1,04,850</div><div class="text-[10px] text-slate-500">₹10,485/g</div></div>
-            <div class="p-2 rounded-lg bg-slate-50 dark:bg-neutral-800"><div class="text-[10px] text-slate-500">999 Silver (1kg)</div><div class="font-bold">₹2,00,000</div><div class="text-[10px] text-slate-500">₹200/g (Groww)</div></div>
+            <div class="p-2 rounded-lg bg-slate-50 dark:bg-neutral-800"><div class="text-[10px] text-slate-500">999 Silver (1kg)</div><div class="font-bold">${liveData.silverKg}</div><div class="text-[10px] text-slate-500">₹200/g (Groww)</div></div>
           </div>
           <div class="relative h-36"><canvas id="markets-gold-chart"></canvas></div>
         </div>
@@ -1823,158 +1806,73 @@ document.addEventListener("keydown", e => {
   }
 });
 
-let activeArticleId = null;
-let geminiMessages = [];
+async function refreshLiveData() {
+  const btn = document.getElementById("refresh-data-btn");
+  const icon = document.getElementById("refresh-icon");
+  if (btn) btn.disabled = true;
+  if (icon) icon.classList.add("animate-spin");
 
-const origOpenArticle = openArticle;
-openArticle = function(id) {
-  activeArticleId = id;
-  origOpenArticle(id);
-};
+  let fxRate = null;
+  let dataJsonApplied = false;
 
-function getQuickPrompts(artId) {
-  if (artId && ARTICLES[artId]) {
-    return [
-      "Explain this in even simpler words",
-      "What are the main risks here?",
-      "How does this affect an ordinary saver?"
+  try {
+    // 1. Fetch live USD/INR directly in browser (on-demand only)
+    const fxUrls = [
+      { url: "https://open.er-api.com/v6/latest/USD", pick: d => d?.rates?.INR },
+      { url: "https://api.frankfurter.app/latest?from=USD&to=INR", pick: d => d?.rates?.INR }
     ];
+    for (const src of fxUrls) {
+      try {
+        const res = await fetch(src.url, { cache: "no-store" });
+        if (res.ok) {
+          const json = await res.json();
+          const val = src.pick(json);
+          if (typeof val === "number" && Number.isFinite(val)) {
+            fxRate = val.toFixed(2);
+            break;
+          }
+        }
+      } catch (err) {}
+    }
+
+    // 2. Check for optional data.json in GitHub Pages repo
+    try {
+      const djRes = await fetch(`./data.json?t=${Date.now()}`, { cache: "no-store" });
+      if (djRes.ok) {
+        const dj = await djRes.json();
+        if (dj && typeof dj === "object") {
+          for (const key of ["usdInr", "brent", "sensex", "sensexDelta", "nifty", "niftyDelta", "gold24k", "gold22k", "silverKg"]) {
+            if (dj[key]) liveData[key] = String(dj[key]);
+          }
+          dataJsonApplied = true;
+        }
+      }
+    } catch (err) {}
+
+    if (fxRate) {
+      liveData.usdInr = fxRate;
+      if (ARTICLES["global-markets-today"]?.stats?.[0]) {
+        ARTICLES["global-markets-today"].stats[0].value = `₹${fxRate}`;
+      }
+    }
+
+    if (fxRate || dataJsonApplied) {
+      const timeStr = new Date().toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" });
+      liveData.liveSource = dataJsonApplied ? `Refreshed ${timeStr} (FX + data.json)` : `Live FX ${timeStr}`;
+      render();
+      showToast(dataJsonApplied ? `Updated USD/INR (₹${liveData.usdInr}) & data.json` : `Live USD/INR updated: ₹${liveData.usdInr}`);
+    } else {
+      liveData = { ...FALLBACK_SNAPSHOT };
+      render();
+      showToast("Using verified snapshot (live fetch unavailable)");
+    }
+  } finally {
+    if (icon) icon.classList.remove("animate-spin");
+    if (btn) btn.disabled = false;
   }
-  if (artId && artId.startsWith("re-")) {
-    return [
-      "Is this good for living or investment?",
-      "What hidden costs should I budget?",
-      "How do I check RERA status?"
-    ];
-  }
-  return [
-    "Why did Sensex & Nifty rise today?",
-    "What is today's gold & silver rate in Nagpur?",
-    "How should I invest extra cash in mutual funds?",
-    "Which IT skills are safest in India?"
-  ];
 }
 
-function answerWithAppKnowledge(question, artId) {
-  const q = question.toLowerCase();
-  const art = artId ? getArticleById(artId) : null;
-
-  if (art && (q.includes("simpler") || q.includes("simple") || q.includes("explain") || q.includes("mean"))) {
-    return `${art.simpleExplain} For example: ${art.realWorldExample}`;
-  }
-  if (art && (q.includes("risk") || q.includes("watch") || q.includes("danger") || q.includes("careful"))) {
-    return `Key risks to watch for "${art.title}": ${art.risks}`;
-  }
-  if (art && (q.includes("opportun") || q.includes("affect") || q.includes("matter") || q.includes("saver") || q.includes("living"))) {
-    return `${art.whyMatters} Opportunities: ${art.opportunities}`;
-  }
-  if (q.includes("nagpur") && (q.includes("gold") || q.includes("silver") || q.includes("rate"))) {
-    return "In Nagpur today (12 Nov 2026), 24K gold is ₹1,39,800 per 10g (₹13,980/g, down 1.54%), 22K gold is ₹1,28,150 per 10g, and 18K is ₹1,04,850 per 10g. 999 silver in Nagpur is ₹2,00,000/kg (₹200/g) on Groww/BankBazaar, with bullion-linked quotes around ₹1,74,225/kg (ABP Live).";
-  }
-  if (q.includes("sensex") || q.includes("nifty") || q.includes("stock") || q.includes("market")) {
-    return "On 12 Nov 2026, Nifty 50 closed at 25,299.35 (+0.18%) and Sensex ended ~88 pts higher (~81,967). Foreign investors (FIIs) brought ₹65,735 Cr into Indian equities this month, and Brent crude oil cooled to ~$91.75/bbl, helping banks and real estate.";
-  }
-  if (q.includes("sip") || q.includes("mutual fund") || q.includes("extra") || q.includes("tranche") || q.includes("dip")) {
-    return "Your regular monthly SIP already buys more units automatically when prices drop. For extra lump-sum money, keep it in a cash or liquid-fund reserve and invest in 2–3 tranches when the Nifty falls (say 10% and 15%)—so you don't have to guess the exact bottom.";
-  }
-  if (q.includes("it ") || q.includes("job") || q.includes("ai") || q.includes("skill") || q.includes("gcc")) {
-    return "In India's 1,800+ GCCs, AI, data, and cybersecurity roles now make up 30.3% of tech hiring with a 38–42% talent shortage, while 5,000–30,000 routine roles were trimmed. Focus on AI-assisted engineering, cloud/data pipelines, and cybersecurity.";
-  }
-  if (q.includes("pune") || q.includes("bangalore") || q.includes("nagpur") || q.includes("flat") || q.includes("home") || q.includes("rera") || q.includes("hidden")) {
-    return "Average apartment rates vary widely: Nagpur (₹4,300–₹5,000/sqft in Besa, Manish Nagar, Wardha Rd; ₹10,500 in Dharampeth), Pune (₹8,550 in Hinjewadi to ₹12,400 in Hadapsar), and Bangalore (₹7,450 in Electronic City to ₹15,500 in Hebbal). Always verify RERA registration, compare on Carpet Area, and budget 10–14% extra for stamp duty, GST & registration.";
-  }
-  if (q.includes("ipo") || q.includes("etf")) {
-    return "For ETFs, HDFC Gold ETF (0.59% BER), SBI Gold ETF (0.65%), and Nippon Gold BeES (0.69% BER) are popular, while Nippon Silver ETF FoF lets you invest without a Demat account. For IPOs, recent listings like BLS Polymers (+65.3%) gained, but others fell—always check company profits and valuation rather than chasing hype.";
-  }
-  if (art) {
-    return `Here's the key takeaway on "${art.title}": ${art.summary} ${art.simpleExplain}`;
-  }
-  return "I can answer questions about today's Sensex/Nifty, Nagpur gold & silver rates, ETFs & IPOs, AI & IT jobs, mutual fund SIP rules, or Pune/Bangalore/Nagpur real estate. You can also tap 'Copy' to paste your question directly into Gemini Chat!";
-}
-
-function renderGeminiModal() {
-  const art = activeArticleId ? getArticleById(activeArticleId) : null;
-  document.getElementById("gemini-context-label").textContent = art ? `About: ${art.title}` : `Tab: ${state.tab.replace("_", " ").toUpperCase()} • 12 Nov 2026`;
-  const box = document.getElementById("gemini-chat-messages");
-  box.innerHTML = geminiMessages.map(m => `
-    <div class="flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}">
-      <div class="max-w-[85%] rounded-2xl px-3.5 py-2.5 text-xs leading-relaxed ${m.role === 'user' ? 'bg-indigo-600 text-white' : 'bg-slate-100 dark:bg-neutral-800 text-slate-800 dark:text-neutral-200'}">
-        ${m.text}
-      </div>
-    </div>
-  `).join("");
-  box.scrollTop = box.scrollHeight;
-
-  const qp = document.getElementById("gemini-quick-prompts");
-  qp.innerHTML = getQuickPrompts(activeArticleId).map(p => `
-    <button type="button" class="gemini-chip text-[11px] px-2.5 py-1 rounded-full bg-white dark:bg-neutral-800 border border-slate-200 dark:border-neutral-700 hover:border-indigo-400 text-slate-700 dark:text-neutral-300 transition">${p}</button>
-  `).join("");
-  qp.querySelectorAll(".gemini-chip").forEach(btn => {
-    btn.addEventListener("click", () => submitGeminiQuestion(btn.textContent));
-  });
-}
-
-function submitGeminiQuestion(text) {
-  const q = (text || "").trim();
-  if (!q) return;
-  geminiMessages.push({ role: "user", text: q });
-  const ans = answerWithAppKnowledge(q, activeArticleId);
-  geminiMessages.push({ role: "assistant", text: ans });
-  renderGeminiModal();
-}
-
-function openGeminiModal(fromArticle) {
-  if (!fromArticle) activeArticleId = null;
-  const art = activeArticleId ? getArticleById(activeArticleId) : null;
-  geminiMessages = [{
-    role: "assistant",
-    text: art
-      ? `Hi! Ask me anything about "${art.title}" in simple, everyday language.`
-      : "Hi! Ask me anything about today's Indian/Global markets, Nagpur gold & silver rates, mutual funds, AI & IT jobs, or Pune/Bangalore/Nagpur real estate."
-  }];
-  document.getElementById("gemini-modal").classList.remove("hidden");
-  renderGeminiModal();
-  setTimeout(() => document.getElementById("gemini-input").focus(), 50);
-}
-
-function closeGeminiModal() {
-  document.getElementById("gemini-modal").classList.add("hidden");
-}
-
-document.getElementById("open-gemini-btn").addEventListener("click", () => openGeminiModal(false));
-document.getElementById("modal-gemini-btn").addEventListener("click", () => openGeminiModal(true));
-document.getElementById("close-gemini-btn").addEventListener("click", closeGeminiModal);
-document.getElementById("gemini-modal").addEventListener("click", e => {
-  if (e.target.id === "gemini-modal") closeGeminiModal();
-});
-document.getElementById("gemini-form").addEventListener("submit", e => {
-  e.preventDefault();
-  const inp = document.getElementById("gemini-input");
-  const val = inp.value;
-  inp.value = "";
-  submitGeminiQuestion(val);
-});
-document.getElementById("gemini-copy-btn").addEventListener("click", () => {
-  const art = activeArticleId ? getArticleById(activeArticleId) : null;
-  const inp = document.getElementById("gemini-input").value.trim();
-  const qText = inp || (geminiMessages.filter(m => m.role === "user").slice(-1)[0]?.text) || "Tell me more about this topic.";
-  const payload = art ? `Context: ${art.title} (${art.summary})
-Question: ${qText}` : `Context: Daily Intelligence Briefing (12 Nov 2026)
-Question: ${qText}`;
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(payload).then(() => showToast("Copied question + context!")).catch(() => fallbackCopy(payload));
-  } else {
-    fallbackCopy(payload);
-  }
-});
-function fallbackCopy(text) {
-  const ta = document.createElement("textarea");
-  ta.value = text;
-  document.body.appendChild(ta);
-  ta.select();
-  try { document.execCommand("copy"); showToast("Copied question + context!"); } catch (e) {}
-  document.body.removeChild(ta);
-}
+document.getElementById("refresh-data-btn").addEventListener("click", refreshLiveData);
 
 // Initial render
 render();
