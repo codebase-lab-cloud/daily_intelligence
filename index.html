@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Daily Intelligence Briefing — Finance, AI &amp; Markets</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 36 36%27%3E%3Cdefs%3E%3ClinearGradient id=%27g%27 x1=%270%27 y1=%270%27 x2=%271%27 y2=%271%27%3E%3Cstop offset=%270%25%27 stop-color=%27%23171717%27/%3E%3Cstop offset=%27100%25%27 stop-color=%27%230a0a0a%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=%2736%27 height=%2736%27 rx=%279%27 fill=%27url(%23g)%27/%3E%3Cpath d=%27M7 24l6-7 4.5 3.5L26 11%27 fill=%27none%27 stroke=%27%2334d399%27 stroke-width=%272.6%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3Ccircle cx=%2726%27 cy=%2711%27 r=%272.2%27 fill=%27%2334d399%27/%3E%3Cpath d=%27M11 8l1 2.5L14.5 11.5 12 12.5 11 15l-1-2.5L7.5 11.5 10 10.5z%27 fill=%27%23818cf8%27/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -30,18 +31,23 @@
     .animate-fade-up { animation: fadeUp 0.22s ease-out; }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 min-h-screen pb-24 md:pb-10 transition-colors duration-200">
+<body class="bg-slate-50 text-slate-900 dark:bg-neutral-950 dark:text-neutral-100 min-h-screen pb-24 md:pb-10 transition-colors duration-200">
 
   <!-- Top Header -->
-  <header class="sticky top-0 z-30 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+  <header class="sticky top-0 z-30 bg-white/90 dark:bg-neutral-900/90 backdrop-blur-md border-b border-slate-200 dark:border-neutral-800">
     <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
       <div class="flex items-center gap-2.5 min-w-0">
-        <div class="w-9 h-9 rounded-xl bg-slate-900 dark:bg-indigo-600 text-white flex items-center justify-center font-bold text-sm shrink-0 shadow-sm">
-          DI
+        <div class="w-9 h-9 rounded-xl bg-neutral-900 dark:bg-neutral-800 border border-neutral-800 dark:border-neutral-700 flex items-center justify-center shrink-0 shadow-sm" aria-hidden="true">
+          <svg class="w-6 h-6" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 25l6.5-7.5 4.5 3.5L26.5 10.5" stroke="#34d399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="26.5" cy="10.5" r="2.3" fill="#34d399"/>
+            <path d="M11 7.5l1.1 2.7 2.7 1.1-2.7 1.1L11 15.1l-1.1-2.7-2.7-1.1 2.7-1.1L11 7.5z" fill="#818cf8"/>
+            <path d="M7 29.5h22" stroke="#525252" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
         </div>
         <div class="min-w-0">
           <div class="text-sm font-bold tracking-tight truncate">Daily Intelligence</div>
-          <div class="text-[11px] text-slate-500 dark:text-slate-400 truncate">Thu, 12 Nov 2026 &bull; India Edition</div>
+          <div class="text-[11px] text-slate-500 dark:text-neutral-400 truncate">Thu, 12 Nov 2026 &bull; India Edition</div>
         </div>
       </div>
 
@@ -53,7 +59,7 @@
         <button data-tab="investments" class="nav-btn px-3 py-1.5 rounded-lg text-sm font-medium transition-colors">Investments</button>
         <button data-tab="real_estate" class="nav-btn px-3 py-1.5 rounded-lg text-sm font-medium transition-colors">Real Estate</button>
         <button data-tab="saved" class="nav-btn px-3 py-1.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-1.5">
-          Saved <span id="saved-count-desktop" class="text-[11px] px-1.5 py-0.5 rounded-full bg-slate-200 dark:bg-slate-700 font-semibold">0</span>
+          Saved <span id="saved-count-desktop" class="text-[11px] px-1.5 py-0.5 rounded-full bg-slate-200 dark:bg-neutral-700 font-semibold">0</span>
         </button>
       </nav>
 
@@ -63,11 +69,11 @@
           <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/></svg>
           <span>Ask Gemini</span>
         </button>
-        <button id="open-search-btn" aria-label="Search topics" class="h-9 px-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-1.5 text-xs font-medium transition">
+        <button id="open-search-btn" aria-label="Search topics" class="h-9 px-3 rounded-lg border border-slate-200 dark:border-neutral-700 bg-slate-50 dark:bg-neutral-800 text-slate-600 dark:text-neutral-300 hover:bg-slate-100 dark:hover:bg-neutral-700 flex items-center gap-1.5 text-xs font-medium transition">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/></svg>
           <span class="hidden sm:inline">Search</span>
         </button>
-        <button id="theme-toggle-btn" aria-label="Toggle dark mode" class="w-9 h-9 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center justify-center transition">
+        <button id="theme-toggle-btn" aria-label="Toggle dark mode" class="w-9 h-9 rounded-lg border border-slate-200 dark:border-neutral-700 bg-slate-50 dark:bg-neutral-800 text-slate-600 dark:text-neutral-300 hover:bg-slate-100 dark:hover:bg-neutral-700 flex items-center justify-center transition">
           <svg id="sun-icon" class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m8.66-10h-1M4.34 12h-1m15.07 6.07l-.7-.7M6.34 6.34l-.7-.7m12.73 0l-.7.7M6.34 17.66l-.7.7M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
           <svg id="moon-icon" class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
         </button>
@@ -79,7 +85,7 @@
   <main id="app-main" class="max-w-6xl mx-auto px-4 pt-5 space-y-6"></main>
 
   <!-- Mobile Bottom Navigation -->
-  <nav class="md:hidden fixed bottom-0 inset-x-0 z-30 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 px-1 py-1.5 flex justify-around items-center" id="mobile-nav">
+  <nav class="md:hidden fixed bottom-0 inset-x-0 z-30 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md border-t border-slate-200 dark:border-neutral-800 px-1 py-1.5 flex justify-around items-center" id="mobile-nav">
     <button data-tab="home" class="mob-nav-btn flex flex-col items-center gap-0.5 px-2 py-1 rounded-lg text-[10px] font-medium">
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0h6"/></svg>
       Home
@@ -108,17 +114,17 @@
   </nav>
 
   <!-- Detailed Article Modal -->
-  <div id="article-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-end md:items-center justify-center p-0 md:p-4">
-    <div class="bg-white dark:bg-slate-900 w-full md:max-w-3xl max-h-[92vh] rounded-t-2xl md:rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 flex flex-col overflow-hidden animate-fade-up">
-      <div class="px-5 py-3.5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-3 shrink-0">
+  <div id="article-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 dark:bg-black/75 backdrop-blur-sm flex items-end md:items-center justify-center p-0 md:p-4">
+    <div class="bg-white dark:bg-neutral-900 w-full md:max-w-3xl max-h-[92vh] rounded-t-2xl md:rounded-2xl shadow-2xl border border-slate-200 dark:border-neutral-800 flex flex-col overflow-hidden animate-fade-up">
+      <div class="px-5 py-3.5 border-b border-slate-200 dark:border-neutral-800 flex items-center justify-between gap-3 shrink-0">
         <div id="modal-category-badge" class="text-xs font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400"></div>
         <div class="flex items-center gap-2">
           <button id="modal-gemini-btn" class="h-8 px-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold flex items-center gap-1 transition">
             <svg class="w-3 h-3" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/></svg>
             <span>Ask Gemini</span>
           </button>
-          <button id="modal-bookmark-btn" class="h-8 px-3 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-medium flex items-center gap-1.5 hover:bg-slate-100 dark:hover:bg-slate-800 transition"></button>
-          <button id="close-modal-btn" aria-label="Close article" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center font-bold">&times;</button>
+          <button id="modal-bookmark-btn" class="h-8 px-3 rounded-lg border border-slate-200 dark:border-neutral-700 text-xs font-medium flex items-center gap-1.5 hover:bg-slate-100 dark:hover:bg-neutral-800 transition"></button>
+          <button id="close-modal-btn" aria-label="Close article" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-neutral-800 text-slate-600 dark:text-neutral-300 hover:bg-slate-200 dark:hover:bg-neutral-700 flex items-center justify-center font-bold">&times;</button>
         </div>
       </div>
       <div id="modal-body" class="p-5 md:p-6 overflow-y-auto space-y-5"></div>
@@ -126,21 +132,21 @@
   </div>
 
   <!-- Search Modal -->
-  <div id="search-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-start justify-center pt-12 md:pt-20 px-4">
-    <div class="bg-white dark:bg-slate-900 w-full max-w-xl rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden animate-fade-up">
-      <div class="p-3.5 border-b border-slate-200 dark:border-slate-800 flex items-center gap-2.5">
+  <div id="search-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 dark:bg-black/75 backdrop-blur-sm flex items-start justify-center pt-12 md:pt-20 px-4">
+    <div class="bg-white dark:bg-neutral-900 w-full max-w-xl rounded-2xl shadow-2xl border border-slate-200 dark:border-neutral-800 overflow-hidden animate-fade-up">
+      <div class="p-3.5 border-b border-slate-200 dark:border-neutral-800 flex items-center gap-2.5">
         <svg class="w-5 h-5 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/></svg>
-        <input id="search-input" type="text" placeholder="Search Sensex, Gold ETF, SIP, Anthropic, Hinjewadi, Nagpur..." class="w-full bg-transparent text-sm focus:outline-none text-slate-900 dark:text-slate-100" />
-        <button id="close-search-btn" class="text-xs px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-500 font-medium">Esc</button>
+        <input id="search-input" type="text" placeholder="Search Sensex, Gold ETF, SIP, Anthropic, Hinjewadi, Nagpur..." class="w-full bg-transparent text-sm focus:outline-none text-slate-900 dark:text-neutral-100" />
+        <button id="close-search-btn" class="text-xs px-2.5 py-1 rounded-md bg-slate-100 dark:bg-neutral-800 text-slate-500 font-medium">Esc</button>
       </div>
-      <div id="search-results" class="max-h-96 overflow-y-auto divide-y divide-slate-100 dark:divide-slate-800 p-2"></div>
+      <div id="search-results" class="max-h-96 overflow-y-auto divide-y divide-slate-100 dark:divide-neutral-800 p-2"></div>
     </div>
   </div>
 
   <!-- Ask Gemini Modal -->
-  <div id="gemini-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-end md:items-center justify-center p-0 md:p-4">
-    <div class="bg-white dark:bg-slate-900 w-full md:max-w-xl max-h-[88vh] rounded-t-2xl md:rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 flex flex-col overflow-hidden animate-fade-up">
-      <div class="px-5 py-3.5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2 shrink-0 bg-indigo-50/60 dark:bg-indigo-950/30">
+  <div id="gemini-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 dark:bg-black/75 backdrop-blur-sm flex items-end md:items-center justify-center p-0 md:p-4">
+    <div class="bg-white dark:bg-neutral-900 w-full md:max-w-xl max-h-[88vh] rounded-t-2xl md:rounded-2xl shadow-2xl border border-slate-200 dark:border-neutral-800 flex flex-col overflow-hidden animate-fade-up">
+      <div class="px-5 py-3.5 border-b border-slate-200 dark:border-neutral-800 flex items-center justify-between gap-2 shrink-0 bg-indigo-50/60 dark:bg-indigo-950/30">
         <div class="flex items-center gap-2 min-w-0">
           <span class="w-7 h-7 rounded-lg bg-indigo-600 text-white flex items-center justify-center shrink-0">
             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/></svg>
@@ -150,23 +156,23 @@
             <div id="gemini-context-label" class="text-[11px] text-indigo-700 dark:text-indigo-300 truncate">Daily Intelligence Briefing</div>
           </div>
         </div>
-        <button id="close-gemini-btn" aria-label="Close Ask Gemini" class="w-8 h-8 rounded-lg bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center justify-center font-bold border border-slate-200 dark:border-slate-700">&times;</button>
+        <button id="close-gemini-btn" aria-label="Close Ask Gemini" class="w-8 h-8 rounded-lg bg-white dark:bg-neutral-800 text-slate-600 dark:text-neutral-300 hover:bg-slate-100 dark:hover:bg-neutral-700 flex items-center justify-center font-bold border border-slate-200 dark:border-neutral-700">&times;</button>
       </div>
 
       <div id="gemini-chat-messages" class="p-4 overflow-y-auto space-y-3 flex-1 min-h-[220px] max-h-[48vh]"></div>
 
-      <div class="px-4 py-2 border-t border-slate-100 dark:border-slate-800 flex flex-wrap gap-1.5 bg-slate-50/70 dark:bg-slate-900" id="gemini-quick-prompts"></div>
+      <div class="px-4 py-2 border-t border-slate-100 dark:border-neutral-800 flex flex-wrap gap-1.5 bg-slate-50/70 dark:bg-neutral-900" id="gemini-quick-prompts"></div>
 
-      <form id="gemini-form" class="p-3 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2 bg-white dark:bg-slate-900 shrink-0">
-        <input id="gemini-input" type="text" placeholder="Ask a simple question about this topic..." class="flex-1 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs focus:outline-none focus:border-indigo-500" />
+      <form id="gemini-form" class="p-3 border-t border-slate-200 dark:border-neutral-800 flex items-center gap-2 bg-white dark:bg-neutral-900 shrink-0">
+        <input id="gemini-input" type="text" placeholder="Ask a simple question about this topic..." class="flex-1 px-3 py-2 rounded-xl border border-slate-200 dark:border-neutral-700 bg-slate-50 dark:bg-neutral-800 text-xs focus:outline-none focus:border-indigo-500" />
         <button type="submit" class="px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold transition shrink-0">Ask</button>
-        <button type="button" id="gemini-copy-btn" title="Copy question + context for Gemini Chat" class="px-2.5 py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition shrink-0">Copy</button>
+        <button type="button" id="gemini-copy-btn" title="Copy question + context for Gemini Chat" class="px-2.5 py-2 rounded-xl border border-slate-200 dark:border-neutral-700 text-xs font-medium hover:bg-slate-100 dark:hover:bg-neutral-800 transition shrink-0">Copy</button>
       </form>
     </div>
   </div>
 
   <!-- Toast Notification -->
-  <div id="toast" class="fixed bottom-20 md:bottom-6 right-4 z-50 hidden bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 text-xs font-medium px-4 py-2.5 rounded-xl shadow-lg"></div>
+  <div id="toast" class="fixed bottom-20 md:bottom-6 right-4 z-50 hidden bg-slate-900 dark:bg-neutral-100 text-white dark:text-neutral-900 text-xs font-medium px-4 py-2.5 rounded-xl shadow-lg"></div>
 
 <script>
 // ==================== 1. VERIFIED DATA STORE (NOV 12, 2026) ====================
@@ -907,18 +913,18 @@ function openArticle(id) {
   };
 
   const chartHtml = art.chartConfig ? `
-    <div class="bg-slate-50 dark:bg-slate-800/60 rounded-xl p-4 border border-slate-200 dark:border-slate-700">
-      <div class="text-xs font-semibold text-slate-600 dark:text-slate-300 mb-2">${art.chartConfig.title}</div>
+    <div class="bg-slate-50 dark:bg-neutral-800/60 rounded-xl p-4 border border-slate-200 dark:border-neutral-700">
+      <div class="text-xs font-semibold text-slate-600 dark:text-neutral-300 mb-2">${art.chartConfig.title}</div>
       <div class="relative h-48"><canvas id="modal-chart-canvas"></canvas></div>
     </div>` : "";
 
   const relatedHtml = (art.related && art.related.length) ? `
-    <div class="pt-3 border-t border-slate-200 dark:border-slate-800">
+    <div class="pt-3 border-t border-slate-200 dark:border-neutral-800">
       <div class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2">Explore Next</div>
       <div class="flex flex-wrap gap-2">
         ${art.related.map(rid => {
           const r = getArticleById(rid);
-          return r ? `<button onclick="openArticle('${rid}')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-900/40 text-slate-700 dark:text-slate-200 font-medium transition">${r.title.slice(0, 48)}${r.title.length > 48 ? '...' : ''}</button>` : '';
+          return r ? `<button onclick="openArticle('${rid}')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-neutral-800 hover:bg-indigo-50 dark:hover:bg-indigo-900/40 text-slate-700 dark:text-neutral-200 font-medium transition">${r.title.slice(0, 48)}${r.title.length > 48 ? '...' : ''}</button>` : '';
         }).join("")}
       </div>
     </div>` : "";
@@ -926,13 +932,13 @@ function openArticle(id) {
   document.getElementById("modal-body").innerHTML = `
     <div>
       <h2 class="text-xl md:text-2xl font-bold tracking-tight text-slate-900 dark:text-white leading-snug">${art.title}</h2>
-      <p class="mt-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${art.summary}</p>
+      <p class="mt-2 text-sm text-slate-600 dark:text-neutral-300 leading-relaxed">${art.summary}</p>
     </div>
 
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
       ${art.stats.map(s => `
-        <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200/80 dark:border-slate-700/80">
-          <div class="text-[11px] text-slate-500 dark:text-slate-400">${s.label}</div>
+        <div class="p-3 rounded-xl bg-slate-50 dark:bg-neutral-800/70 border border-slate-200/80 dark:border-neutral-700/80">
+          <div class="text-[11px] text-slate-500 dark:text-neutral-400">${s.label}</div>
           <div class="text-xs sm:text-sm font-bold mt-0.5 text-slate-900 dark:text-white">${s.value}</div>
         </div>
       `).join("")}
@@ -942,33 +948,33 @@ function openArticle(id) {
 
     <div class="p-4 rounded-xl bg-indigo-50/70 dark:bg-indigo-950/30 border border-indigo-100 dark:border-indigo-900/50">
       <div class="text-xs font-bold uppercase tracking-wider text-indigo-700 dark:text-indigo-300 mb-1">In Everyday Language</div>
-      <p class="text-sm text-slate-700 dark:text-slate-200 leading-relaxed">${art.simpleExplain}</p>
+      <p class="text-sm text-slate-700 dark:text-neutral-200 leading-relaxed">${art.simpleExplain}</p>
     </div>
 
     <div class="grid md:grid-cols-2 gap-4">
-      <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800">
+      <div class="p-4 rounded-xl bg-slate-50 dark:bg-neutral-800/50 border border-slate-200 dark:border-neutral-800">
         <div class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Why This Matters</div>
-        <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">${art.whyMatters}</p>
+        <p class="text-sm text-slate-700 dark:text-neutral-300 leading-relaxed">${art.whyMatters}</p>
       </div>
       <div class="p-4 rounded-xl bg-emerald-50/60 dark:bg-emerald-950/20 border border-emerald-200/70 dark:border-emerald-900/40">
         <div class="text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-300 mb-1">Real-World Example</div>
-        <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">${art.realWorldExample}</p>
+        <p class="text-sm text-slate-700 dark:text-neutral-300 leading-relaxed">${art.realWorldExample}</p>
       </div>
     </div>
 
     <div class="grid md:grid-cols-2 gap-4">
-      <div class="p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+      <div class="p-4 rounded-xl border border-slate-200 dark:border-neutral-800">
         <div class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-1">Opportunities</div>
-        <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">${art.opportunities}</p>
+        <p class="text-sm text-slate-700 dark:text-neutral-300 leading-relaxed">${art.opportunities}</p>
       </div>
-      <div class="p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+      <div class="p-4 rounded-xl border border-slate-200 dark:border-neutral-800">
         <div class="text-xs font-bold uppercase tracking-wider text-rose-600 dark:text-rose-400 mb-1">Risks &amp; Things to Watch</div>
-        <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">${art.risks}</p>
+        <p class="text-sm text-slate-700 dark:text-neutral-300 leading-relaxed">${art.risks}</p>
       </div>
     </div>
 
-    <div class="text-xs text-slate-500 dark:text-slate-400 space-y-1">
-      <div class="font-semibold text-slate-600 dark:text-slate-300">Verified Sources:</div>
+    <div class="text-xs text-slate-500 dark:text-neutral-400 space-y-1">
+      <div class="font-semibold text-slate-600 dark:text-neutral-300">Verified Sources:</div>
       <div class="flex flex-wrap gap-2">
         ${art.sources.map(src => `<a href="${src.url}" target="_blank" rel="noopener noreferrer" class="underline hover:text-indigo-600 dark:hover:text-indigo-400">${src.name} (${src.date})</a>`).join(" &bull; ")}
       </div>
@@ -1004,8 +1010,8 @@ function openArticle(id) {
           maintainAspectRatio: false,
           plugins: { legend: { display: false } },
           scales: {
-            x: { grid: { display: false }, ticks: { color: state.dark ? "#94a3b8" : "#64748b", font: { size: 11 } } },
-            y: { grid: { color: state.dark ? "#1e293b" : "#e2e8f0" }, ticks: { color: state.dark ? "#94a3b8" : "#64748b", font: { size: 11 } } }
+            x: { grid: { display: false }, ticks: { color: state.dark ? "#a3a3a3" : "#64748b", font: { size: 11 } } },
+            y: { grid: { color: state.dark ? "#262626" : "#e2e8f0" }, ticks: { color: state.dark ? "#a3a3a3" : "#64748b", font: { size: 11 } } }
           }
         }
       });
@@ -1041,7 +1047,7 @@ function renderHome() {
 
   return `
     <!-- Hero Briefing Banner -->
-    <section class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+    <section class="bg-white dark:bg-neutral-900 rounded-2xl p-5 border border-slate-200 dark:border-neutral-800 shadow-sm">
       <div class="flex flex-wrap items-center justify-between gap-2">
         <div>
           <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
@@ -1049,9 +1055,9 @@ function renderHome() {
           </span>
           <h1 class="text-xl md:text-2xl font-extrabold tracking-tight mt-2 text-slate-900 dark:text-white">Your Daily Intelligence Briefing</h1>
         </div>
-        <div class="text-xs text-slate-500 dark:text-slate-400">Rupee: <strong class="text-slate-800 dark:text-slate-200">₹93.73/USD</strong> &bull; Brent Oil: <strong class="text-emerald-600">$91.75 (-1.1%)</strong></div>
+        <div class="text-xs text-slate-500 dark:text-neutral-400">Rupee: <strong class="text-slate-800 dark:text-neutral-200">₹93.73/USD</strong> &bull; Brent Oil: <strong class="text-emerald-600">$91.75 (-1.1%)</strong></div>
       </div>
-      <p class="mt-2.5 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+      <p class="mt-2.5 text-sm text-slate-600 dark:text-neutral-300 leading-relaxed">
         Indian markets edged higher today as foreign investors poured ₹65,735 crore into shares this month and oil prices cooled. Gold dipped 1.5% to ₹1,39,800/10g, Anthropic opened its mega IPO, and Indian GCCs are hiring heavily for AI &amp; cybersecurity while trimming routine roles.
       </p>
     </section>
@@ -1063,50 +1069,50 @@ function renderHome() {
         <button onclick="switchTab('markets')" class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">Full Market View &rarr;</button>
       </div>
       <div class="grid md:grid-cols-3 gap-4">
-        <div onclick="openArticle('indian-market-today')" class="md:col-span-2 cursor-pointer bg-white dark:bg-slate-900 rounded-2xl p-4 md:p-5 border border-slate-200 dark:border-slate-800 hover:border-indigo-300 dark:hover:border-indigo-700 transition shadow-sm space-y-4">
+        <div onclick="openArticle('indian-market-today')" class="md:col-span-2 cursor-pointer bg-white dark:bg-neutral-900 rounded-2xl p-4 md:p-5 border border-slate-200 dark:border-neutral-800 hover:border-indigo-300 dark:hover:border-indigo-700 transition shadow-sm space-y-4">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">12 Nov Closing vs 11 Nov Prev Close</span>
+            <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-neutral-800 text-slate-600 dark:text-neutral-300">12 Nov Closing vs 11 Nov Prev Close</span>
             <span class="text-xs font-medium text-indigo-600 dark:text-indigo-400">Tap for simple breakdown &rarr;</span>
           </div>
           <div class="grid grid-cols-2 gap-3">
             <div class="p-3 rounded-xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200/70 dark:border-emerald-900/50">
-              <div class="text-xs text-slate-500 dark:text-slate-400">BSE Sensex (12 Nov)</div>
+              <div class="text-xs text-slate-500 dark:text-neutral-400">BSE Sensex (12 Nov)</div>
               <div class="text-lg md:text-xl font-extrabold text-slate-900 dark:text-white mt-0.5">~81,967</div>
               <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">&#9650; +88 pts (+0.11%)</div>
               <div class="text-[10px] text-slate-500 mt-1">Prev close (11 Nov): 81,879.40 (+0.95%)</div>
             </div>
             <div class="p-3 rounded-xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200/70 dark:border-emerald-900/50">
-              <div class="text-xs text-slate-500 dark:text-slate-400">NSE Nifty 50 (12 Nov)</div>
+              <div class="text-xs text-slate-500 dark:text-neutral-400">NSE Nifty 50 (12 Nov)</div>
               <div class="text-lg md:text-xl font-extrabold text-slate-900 dark:text-white mt-0.5">25,299.35</div>
               <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">&#9650; +44.30 pts (+0.18%)</div>
               <div class="text-[10px] text-slate-500 mt-1">Prev close (11 Nov): 25,255.05 (+0.84%)</div>
             </div>
           </div>
-          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-neutral-300">
             <strong>What this means:</strong> India's top companies finished slightly higher today. Foreign investors bought ₹65,735 Cr of Indian stocks in Nov, and cheaper oil ($91.75) boosted banks &amp; realty.
           </p>
           <div class="grid grid-cols-2 gap-3 pt-1 text-xs">
             <div>
               <div class="font-semibold text-emerald-600 dark:text-emerald-400 mb-1">Top Gainers (Intraday)</div>
-              <div class="text-slate-600 dark:text-slate-300 space-y-0.5">
+              <div class="text-slate-600 dark:text-neutral-300 space-y-0.5">
                 <div>1. HDFC Life Insurance</div><div>2. Bajaj Finance</div><div>3. Bajaj Finserv</div>
               </div>
             </div>
             <div>
               <div class="font-semibold text-rose-600 dark:text-rose-400 mb-1">Top Losers (Intraday)</div>
-              <div class="text-slate-600 dark:text-slate-300 space-y-0.5">
+              <div class="text-slate-600 dark:text-neutral-300 space-y-0.5">
                 <div>1. Apollo Hospitals</div><div>2. GAIL (India)</div><div>3. Samvardhana Motherson</div>
               </div>
             </div>
           </div>
         </div>
-        <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+        <div class="bg-white dark:bg-neutral-900 rounded-2xl p-4 border border-slate-200 dark:border-neutral-800 shadow-sm flex flex-col justify-between">
           <div>
-            <div class="text-xs font-bold text-slate-700 dark:text-slate-200">Nifty 50 Trend (Nov 2026)</div>
+            <div class="text-xs font-bold text-slate-700 dark:text-neutral-200">Nifty 50 Trend (Nov 2026)</div>
             <div class="text-[11px] text-slate-500">9-month high territory</div>
           </div>
           <div class="relative h-40 my-2"><canvas id="home-nifty-chart"></canvas></div>
-          <button onclick="openArticle('indian-market-today')" class="w-full py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-semibold transition">Read Full Market Story</button>
+          <button onclick="openArticle('indian-market-today')" class="w-full py-2 rounded-xl bg-slate-100 dark:bg-neutral-800 hover:bg-slate-200 dark:hover:bg-neutral-700 text-xs font-semibold transition">Read Full Market Story</button>
         </div>
       </div>
     </section>
@@ -1117,15 +1123,15 @@ function renderHome() {
         <h2 class="text-base font-bold tracking-tight">B. Global Markets</h2>
         <span class="text-[11px] text-slate-500">11–12 Nov Close</span>
       </div>
-      <div onclick="openArticle('global-markets-today')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-2xl p-4 border border-slate-200 dark:border-slate-800 hover:border-indigo-300 transition shadow-sm space-y-3">
+      <div onclick="openArticle('global-markets-today')" class="cursor-pointer bg-white dark:bg-neutral-900 rounded-2xl p-4 border border-slate-200 dark:border-neutral-800 hover:border-indigo-300 transition shadow-sm space-y-3">
         <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5 text-xs">
-          <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/70"><div class="text-slate-500">S&amp;P 500 (US)</div><div class="font-bold mt-0.5">7,628.31</div><div class="text-emerald-600 font-semibold">+1.31%</div></div>
-          <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/70"><div class="text-slate-500">Nasdaq (US)</div><div class="font-bold mt-0.5">Tech Rally</div><div class="text-emerald-600 font-semibold">+1.60%</div></div>
-          <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/70"><div class="text-slate-500">FTSE 100 (UK)</div><div class="font-bold mt-0.5">10,835.47</div><div class="text-emerald-600 font-semibold">+0.78%</div></div>
-          <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/70"><div class="text-slate-500">Nikkei (JP)</div><div class="font-bold mt-0.5">61,248.59</div><div class="text-emerald-600 font-semibold">+1.31%</div></div>
-          <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/70 col-span-2 sm:col-span-1"><div class="text-slate-500">Hang Seng (HK)</div><div class="font-bold mt-0.5">24,061.00</div><div class="text-rose-600 font-semibold">-1.05%</div></div>
+          <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-neutral-800/70"><div class="text-slate-500">S&amp;P 500 (US)</div><div class="font-bold mt-0.5">7,628.31</div><div class="text-emerald-600 font-semibold">+1.31%</div></div>
+          <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-neutral-800/70"><div class="text-slate-500">Nasdaq (US)</div><div class="font-bold mt-0.5">Tech Rally</div><div class="text-emerald-600 font-semibold">+1.60%</div></div>
+          <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-neutral-800/70"><div class="text-slate-500">FTSE 100 (UK)</div><div class="font-bold mt-0.5">10,835.47</div><div class="text-emerald-600 font-semibold">+0.78%</div></div>
+          <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-neutral-800/70"><div class="text-slate-500">Nikkei (JP)</div><div class="font-bold mt-0.5">61,248.59</div><div class="text-emerald-600 font-semibold">+1.31%</div></div>
+          <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-neutral-800/70 col-span-2 sm:col-span-1"><div class="text-slate-500">Hang Seng (HK)</div><div class="font-bold mt-0.5">24,061.00</div><div class="text-rose-600 font-semibold">-1.05%</div></div>
         </div>
-        <p class="text-xs text-slate-600 dark:text-slate-300"><strong>Link to India:</strong> Calm US and European gains lowered global fear (VIX -10%), encouraging foreign funds to keep buying Indian equities.</p>
+        <p class="text-xs text-slate-600 dark:text-neutral-300"><strong>Link to India:</strong> Calm US and European gains lowered global fear (VIX -10%), encouraging foreign funds to keep buying Indian equities.</p>
       </div>
     </section>
 
@@ -1140,10 +1146,10 @@ function renderHome() {
           ${["ai-anthropic-ipo", "ai-paris-call", "ai-publisher-optout", "ai-adobe-coworker"].map(id => {
             const a = ARTICLES[id];
             return `
-              <div onclick="openArticle('${id}')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-xl p-3.5 border border-slate-200 dark:border-slate-800 hover:border-indigo-300 transition shadow-sm">
+              <div onclick="openArticle('${id}')" class="cursor-pointer bg-white dark:bg-neutral-900 rounded-xl p-3.5 border border-slate-200 dark:border-neutral-800 hover:border-indigo-300 transition shadow-sm">
                 <div class="text-[10px] font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">${a.badge}</div>
                 <div class="text-sm font-bold mt-0.5 text-slate-900 dark:text-white">${a.title}</div>
-                <p class="text-xs text-slate-600 dark:text-slate-400 mt-1 line-clamp-2">${a.summary}</p>
+                <p class="text-xs text-slate-600 dark:text-neutral-400 mt-1 line-clamp-2">${a.summary}</p>
               </div>
             `;
           }).join("")}
@@ -1155,22 +1161,22 @@ function renderHome() {
           <h2 class="text-base font-bold tracking-tight">D. AI Impact on IT Jobs</h2>
           <button onclick="switchTab('ai_jobs')" class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">India / US / EU &rarr;</button>
         </div>
-        <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+        <div class="bg-white dark:bg-neutral-900 rounded-2xl p-4 border border-slate-200 dark:border-neutral-800 shadow-sm space-y-3">
           <div onclick="openArticle('it-jobs-india')" class="cursor-pointer p-3 rounded-xl bg-amber-50/70 dark:bg-amber-950/30 border border-amber-200/80 dark:border-amber-900/50 hover:opacity-95 transition">
             <div class="flex items-center justify-between">
               <span class="text-[10px] font-bold uppercase text-amber-700 dark:text-amber-300">🇮🇳 India (Highest Priority)</span>
               <span class="text-[11px] font-semibold text-indigo-600 dark:text-indigo-400">Read &rarr;</span>
             </div>
             <div class="text-sm font-bold mt-1">1,800+ GCCs: 30.3% Hiring in AI/Data/Cyber</div>
-            <p class="text-xs text-slate-600 dark:text-slate-300 mt-0.5">38–42% talent shortage in AI/Data, even as 5k–30k routine roles were trimmed.</p>
+            <p class="text-xs text-slate-600 dark:text-neutral-300 mt-0.5">38–42% talent shortage in AI/Data, even as 5k–30k routine roles were trimmed.</p>
           </div>
           <div class="grid grid-cols-2 gap-2.5">
-            <div onclick="openArticle('it-jobs-usa')" class="cursor-pointer p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 hover:border-indigo-300 transition">
+            <div onclick="openArticle('it-jobs-usa')" class="cursor-pointer p-3 rounded-xl bg-slate-50 dark:bg-neutral-800/60 border border-slate-200 dark:border-neutral-700 hover:border-indigo-300 transition">
               <div class="text-[10px] font-bold uppercase text-slate-500">🇺🇸 USA</div>
               <div class="text-xs font-bold mt-1">125k+ Tech Layoffs</div>
               <div class="text-[11px] text-slate-500 mt-0.5">Security +34%, Front-end -51%</div>
             </div>
-            <div onclick="openArticle('it-jobs-europe')" class="cursor-pointer p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 hover:border-indigo-300 transition">
+            <div onclick="openArticle('it-jobs-europe')" class="cursor-pointer p-3 rounded-xl bg-slate-50 dark:bg-neutral-800/60 border border-slate-200 dark:border-neutral-700 hover:border-indigo-300 transition">
               <div class="text-[10px] font-bold uppercase text-slate-500">🇪🇺 Europe</div>
               <div class="text-xs font-bold mt-1">Selective Hiring</div>
               <div class="text-[11px] text-slate-500 mt-0.5">Focus on AI compliance &amp; cloud</div>
@@ -1190,16 +1196,16 @@ function renderHome() {
         </div>
         <div class="grid grid-cols-2 gap-2.5">
           ${EDU_TOPICS.slice(0, 4).map(t => `
-            <div onclick="openArticle('${t.id}')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-xl p-3.5 border border-slate-200 dark:border-slate-800 hover:border-indigo-300 transition shadow-sm">
+            <div onclick="openArticle('${t.id}')" class="cursor-pointer bg-white dark:bg-neutral-900 rounded-xl p-3.5 border border-slate-200 dark:border-neutral-800 hover:border-indigo-300 transition shadow-sm">
               <div class="text-xl">${t.icon}</div>
               <div class="text-xs font-bold mt-1.5 text-slate-900 dark:text-white">${t.title}</div>
-              <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">${t.oneLiner}</p>
+              <p class="text-[11px] text-slate-500 dark:text-neutral-400 mt-1 line-clamp-2">${t.oneLiner}</p>
             </div>
           `).join("")}
         </div>
         <div onclick="switchTab('investments')" class="cursor-pointer p-3.5 rounded-xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200/80 dark:border-emerald-900/50 hover:opacity-95 transition">
           <div class="text-[10px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-300">Mutual Fund Tip</div>
-          <p class="text-xs text-slate-700 dark:text-slate-200 mt-1 leading-relaxed">Your SIPs already buy more units when prices fall. For extra money, keep a small cash or liquid-fund reserve and invest it in 2–3 tranches when the Nifty falls, say, 10% and then 15%—so you don't have to guess the bottom.</p>
+          <p class="text-xs text-slate-700 dark:text-neutral-200 mt-1 leading-relaxed">Your SIPs already buy more units when prices fall. For extra money, keep a small cash or liquid-fund reserve and invest it in 2–3 tranches when the Nifty falls, say, 10% and then 15%—so you don't have to guess the bottom.</p>
         </div>
       </section>
 
@@ -1209,21 +1215,21 @@ function renderHome() {
           <button onclick="switchTab('markets')" class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">ETF &amp; IPO Tracker &rarr;</button>
         </div>
         <div class="space-y-2.5">
-          <div onclick="openArticle('gold-silver-today')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-xl p-3.5 border border-slate-200 dark:border-slate-800 hover:border-amber-300 transition shadow-sm flex items-center justify-between">
+          <div onclick="openArticle('gold-silver-today')" class="cursor-pointer bg-white dark:bg-neutral-900 rounded-xl p-3.5 border border-slate-200 dark:border-neutral-800 hover:border-amber-300 transition shadow-sm flex items-center justify-between">
             <div>
               <div class="text-xs font-bold">Nagpur Gold &amp; Silver (12 Nov)</div>
               <div class="text-[11px] text-slate-500 mt-0.5">24K: ₹1,39,800/10g &bull; 22K: ₹1,28,150 &bull; Silver: ₹2,00,000/kg (₹200/g)</div>
             </div>
             <span class="text-xs font-semibold text-rose-600 bg-rose-50 dark:bg-rose-950/50 px-2 py-1 rounded-lg shrink-0">-1.54%</span>
           </div>
-          <div onclick="openArticle('etf-comparison')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-xl p-3.5 border border-slate-200 dark:border-slate-800 hover:border-indigo-300 transition shadow-sm flex items-center justify-between">
+          <div onclick="openArticle('etf-comparison')" class="cursor-pointer bg-white dark:bg-neutral-900 rounded-xl p-3.5 border border-slate-200 dark:border-neutral-800 hover:border-indigo-300 transition shadow-sm flex items-center justify-between">
             <div>
               <div class="text-xs font-bold">Gold &amp; Silver ETFs (India)</div>
               <div class="text-[11px] text-slate-500 mt-0.5">HDFC Gold (0.59% BER) &bull; SBI (0.65%) &bull; Nippon (0.69%)</div>
             </div>
             <span class="text-xs font-semibold text-indigo-600">Compare</span>
           </div>
-          <div onclick="openArticle('ipo-tracker-nov')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-xl p-3.5 border border-slate-200 dark:border-slate-800 hover:border-emerald-300 transition shadow-sm flex items-center justify-between">
+          <div onclick="openArticle('ipo-tracker-nov')" class="cursor-pointer bg-white dark:bg-neutral-900 rounded-xl p-3.5 border border-slate-200 dark:border-neutral-800 hover:border-emerald-300 transition shadow-sm flex items-center justify-between">
             <div>
               <div class="text-xs font-bold">Recent Mainboard IPOs</div>
               <div class="text-[11px] text-slate-500 mt-0.5">BLS Polymers +65.3% &bull; Bombay Coated +11.0%</div>
@@ -1241,15 +1247,15 @@ function renderHome() {
         <button onclick="switchTab('real_estate')" class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">Compare Localities &rarr;</button>
       </div>
       <div class="grid sm:grid-cols-3 gap-3">
-        <div onclick="state.city='Pune';switchTab('real_estate')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-800 hover:border-indigo-300 transition shadow-sm">
+        <div onclick="state.city='Pune';switchTab('real_estate')" class="cursor-pointer bg-white dark:bg-neutral-900 rounded-xl p-4 border border-slate-200 dark:border-neutral-800 hover:border-indigo-300 transition shadow-sm">
           <div class="flex justify-between items-center"><span class="text-sm font-bold">Pune</span><span class="text-[11px] px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-300 font-semibold">IT + Metro</span></div>
           <div class="text-xs text-slate-500 mt-1">Hinjewadi ₹8,550 &bull; Baner ₹12,350 &bull; Kharadi ₹11,511/sq ft</div>
         </div>
-        <div onclick="state.city='Bangalore';switchTab('real_estate')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-800 hover:border-indigo-300 transition shadow-sm">
+        <div onclick="state.city='Bangalore';switchTab('real_estate')" class="cursor-pointer bg-white dark:bg-neutral-900 rounded-xl p-4 border border-slate-200 dark:border-neutral-800 hover:border-indigo-300 transition shadow-sm">
           <div class="flex justify-between items-center"><span class="text-sm font-bold">Bangalore</span><span class="text-[11px] px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-300 font-semibold">3.8–4.5% Yield</span></div>
           <div class="text-xs text-slate-500 mt-1">E-City ₹7,450 &bull; Whitefield ₹10,850 &bull; Hebbal ₹15,500/sq ft</div>
         </div>
-        <div onclick="state.city='Nagpur';switchTab('real_estate')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-800 hover:border-indigo-300 transition shadow-sm">
+        <div onclick="state.city='Nagpur';switchTab('real_estate')" class="cursor-pointer bg-white dark:bg-neutral-900 rounded-xl p-4 border border-slate-200 dark:border-neutral-800 hover:border-indigo-300 transition shadow-sm">
           <div class="flex justify-between items-center"><span class="text-sm font-bold">Nagpur</span><span class="text-[11px] px-2 py-0.5 rounded bg-amber-50 dark:bg-amber-950 text-amber-700 dark:text-amber-300 font-semibold">High Value</span></div>
           <div class="text-xs text-slate-500 mt-1">Besa ₹4,300 &bull; Wardha Rd ₹5,000 &bull; Dharampeth ₹10,500/sq ft</div>
         </div>
@@ -1260,14 +1266,14 @@ function renderHome() {
     <section class="space-y-3">
       <div class="flex items-center justify-between">
         <h2 class="text-base font-bold tracking-tight">Explore Something New</h2>
-        <button id="rotate-explore-btn" class="text-xs font-semibold px-3 py-1 rounded-lg bg-slate-200/70 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 transition">Show Next Topics &#8635;</button>
+        <button id="rotate-explore-btn" class="text-xs font-semibold px-3 py-1 rounded-lg bg-slate-200/70 dark:bg-neutral-800 hover:bg-slate-300 dark:hover:bg-neutral-700 transition">Show Next Topics &#8635;</button>
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
         ${exploreItems.map(item => `
-          <div onclick="openArticle('${item.id}')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-xl p-3.5 border border-slate-200 dark:border-slate-800 hover:border-indigo-300 transition shadow-sm">
+          <div onclick="openArticle('${item.id}')" class="cursor-pointer bg-white dark:bg-neutral-900 rounded-xl p-3.5 border border-slate-200 dark:border-neutral-800 hover:border-indigo-300 transition shadow-sm">
             <div class="text-[10px] font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">${item.tag}</div>
             <div class="text-xs font-bold mt-1 text-slate-900 dark:text-white">${item.title}</div>
-            <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">${item.summary}</p>
+            <p class="text-[11px] text-slate-500 dark:text-neutral-400 mt-1 line-clamp-2">${item.summary}</p>
           </div>
         `).join("")}
       </div>
@@ -1285,19 +1291,19 @@ function renderMarkets() {
 
       <!-- Indian & Global -->
       <div class="grid md:grid-cols-2 gap-4">
-        <div onclick="openArticle('indian-market-today')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+        <div onclick="openArticle('indian-market-today')" class="cursor-pointer bg-white dark:bg-neutral-900 rounded-2xl p-5 border border-slate-200 dark:border-neutral-800 shadow-sm space-y-3">
           <div class="flex justify-between items-center">
             <span class="text-sm font-bold">Indian Indices (12 Nov Close)</span>
             <span class="text-xs text-emerald-600 font-bold">&#9650; Green</span>
           </div>
           <div class="grid grid-cols-2 gap-3 text-xs">
-            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800"><div>Sensex</div><div class="text-base font-extrabold mt-0.5">~81,967</div><div class="text-emerald-600">+88 pts (+0.11%)</div></div>
-            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800"><div>Nifty 50</div><div class="text-base font-extrabold mt-0.5">25,299.35</div><div class="text-emerald-600">+44.30 pts (+0.18%)</div></div>
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-neutral-800"><div>Sensex</div><div class="text-base font-extrabold mt-0.5">~81,967</div><div class="text-emerald-600">+88 pts (+0.11%)</div></div>
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-neutral-800"><div>Nifty 50</div><div class="text-base font-extrabold mt-0.5">25,299.35</div><div class="text-emerald-600">+44.30 pts (+0.18%)</div></div>
           </div>
-          <div class="text-xs text-slate-600 dark:text-slate-300">Sectors: Nifty Realty (+3.03% intraday), Fin Services (+1.27%), Private Bank (+0.85%) led; IT (-0.36%) &amp; Pharma (-0.33%) lagged.</div>
+          <div class="text-xs text-slate-600 dark:text-neutral-300">Sectors: Nifty Realty (+3.03% intraday), Fin Services (+1.27%), Private Bank (+0.85%) led; IT (-0.36%) &amp; Pharma (-0.33%) lagged.</div>
         </div>
 
-        <div onclick="openArticle('gold-silver-today')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+        <div onclick="openArticle('gold-silver-today')" class="cursor-pointer bg-white dark:bg-neutral-900 rounded-2xl p-5 border border-slate-200 dark:border-neutral-800 shadow-sm space-y-3">
           <div class="flex justify-between items-center">
             <span class="text-sm font-bold">Nagpur Gold &amp; Silver (12 Nov 2026)</span>
             <span class="text-xs text-amber-600 font-semibold">4-Day Gold Trend</span>
@@ -1305,25 +1311,25 @@ function renderMarkets() {
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
             <div class="p-2 rounded-lg bg-amber-50/70 dark:bg-amber-950/30"><div class="text-[10px] text-slate-500">24K Gold (10g)</div><div class="font-bold">₹1,39,800</div><div class="text-[10px] text-rose-600">₹13,980/g</div></div>
             <div class="p-2 rounded-lg bg-amber-50/70 dark:bg-amber-950/30"><div class="text-[10px] text-slate-500">22K Gold (10g)</div><div class="font-bold">₹1,28,150</div><div class="text-[10px] text-rose-600">₹12,815/g</div></div>
-            <div class="p-2 rounded-lg bg-slate-50 dark:bg-slate-800"><div class="text-[10px] text-slate-500">18K Gold (10g)</div><div class="font-bold">₹1,04,850</div><div class="text-[10px] text-slate-500">₹10,485/g</div></div>
-            <div class="p-2 rounded-lg bg-slate-50 dark:bg-slate-800"><div class="text-[10px] text-slate-500">999 Silver (1kg)</div><div class="font-bold">₹2,00,000</div><div class="text-[10px] text-slate-500">₹200/g (Groww)</div></div>
+            <div class="p-2 rounded-lg bg-slate-50 dark:bg-neutral-800"><div class="text-[10px] text-slate-500">18K Gold (10g)</div><div class="font-bold">₹1,04,850</div><div class="text-[10px] text-slate-500">₹10,485/g</div></div>
+            <div class="p-2 rounded-lg bg-slate-50 dark:bg-neutral-800"><div class="text-[10px] text-slate-500">999 Silver (1kg)</div><div class="font-bold">₹2,00,000</div><div class="text-[10px] text-slate-500">₹200/g (Groww)</div></div>
           </div>
           <div class="relative h-36"><canvas id="markets-gold-chart"></canvas></div>
         </div>
       </div>
 
       <!-- ETF Comparison Table -->
-      <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+      <div class="bg-white dark:bg-neutral-900 rounded-2xl p-5 border border-slate-200 dark:border-neutral-800 shadow-sm space-y-3">
         <div class="flex items-center justify-between">
           <h2 class="text-sm font-bold">Popular Gold &amp; Silver ETFs in India</h2>
           <button onclick="openArticle('etf-comparison')" class="text-xs font-semibold text-indigo-600 hover:underline">How ETFs Work &rarr;</button>
         </div>
         <div class="overflow-x-auto">
           <table class="w-full text-left text-xs">
-            <thead class="text-slate-500 border-b border-slate-200 dark:border-slate-800">
+            <thead class="text-slate-500 border-b border-slate-200 dark:border-neutral-800">
               <tr><th class="py-2 pr-3">ETF / Fund Name</th><th class="py-2 pr-3">Metal</th><th class="py-2 pr-3">Expense Ratio</th><th class="py-2">Notes</th></tr>
             </thead>
-            <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+            <tbody class="divide-y divide-slate-100 dark:divide-neutral-800">
               <tr><td class="py-2.5 pr-3 font-semibold">HDFC Gold ETF</td><td class="py-2.5 pr-3">Gold</td><td class="py-2.5 pr-3 text-emerald-600 font-semibold">0.59% (BER)</td><td class="py-2.5 text-slate-500">Lowest base ER among top 3</td></tr>
               <tr><td class="py-2.5 pr-3 font-semibold">SBI Gold ETF</td><td class="py-2.5 pr-3">Gold</td><td class="py-2.5 pr-3">0.65%</td><td class="py-2.5 text-slate-500">Large bank-backed fund</td></tr>
               <tr><td class="py-2.5 pr-3 font-semibold">Nippon India ETF Gold BeES</td><td class="py-2.5 pr-3">Gold</td><td class="py-2.5 pr-3">0.69% (BER)</td><td class="py-2.5 text-slate-500">Very high NSE liquidity</td></tr>
@@ -1334,17 +1340,17 @@ function renderMarkets() {
       </div>
 
       <!-- IPO Tracker -->
-      <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+      <div class="bg-white dark:bg-neutral-900 rounded-2xl p-5 border border-slate-200 dark:border-neutral-800 shadow-sm space-y-3">
         <div class="flex items-center justify-between">
           <h2 class="text-sm font-bold">IPO Tracker (Recently Listed &amp; Upcoming)</h2>
           <button onclick="openArticle('ipo-tracker-nov')" class="text-xs font-semibold text-indigo-600 hover:underline">IPO Risks &amp; Guide &rarr;</button>
         </div>
         <div class="overflow-x-auto">
           <table class="w-full text-left text-xs">
-            <thead class="text-slate-500 border-b border-slate-200 dark:border-slate-800">
+            <thead class="text-slate-500 border-b border-slate-200 dark:border-neutral-800">
               <tr><th class="py-2 pr-3">Company</th><th class="py-2 pr-3">Issue Price</th><th class="py-2 pr-3">Listing Price</th><th class="py-2 pr-3">Gain / Loss</th><th class="py-2">Subscription</th></tr>
             </thead>
-            <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+            <tbody class="divide-y divide-slate-100 dark:divide-neutral-800">
               <tr><td class="py-2.5 pr-3 font-semibold">BLS Polymers (02 Nov)</td><td class="py-2.5 pr-3">₹150</td><td class="py-2.5 pr-3">₹248.00</td><td class="py-2.5 pr-3 text-emerald-600 font-bold">+65.33%</td><td class="py-2.5">238.64x</td></tr>
               <tr><td class="py-2.5 pr-3 font-semibold">Bombay Coated Steels (04 Nov)</td><td class="py-2.5 pr-3">₹82</td><td class="py-2.5 pr-3">₹91.00</td><td class="py-2.5 pr-3 text-emerald-600 font-bold">+10.98%</td><td class="py-2.5">59.83x</td></tr>
               <tr><td class="py-2.5 pr-3 font-semibold">SFC Environmental (02 Nov)</td><td class="py-2.5 pr-3">₹330</td><td class="py-2.5 pr-3">₹355.10</td><td class="py-2.5 pr-3 text-emerald-600 font-bold">+7.61%</td><td class="py-2.5">9.08x</td></tr>
@@ -1368,7 +1374,7 @@ function renderAiJobs() {
       </div>
 
       <!-- Comparison Chart -->
-      <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+      <div class="bg-white dark:bg-neutral-900 rounded-2xl p-5 border border-slate-200 dark:border-neutral-800 shadow-sm space-y-3">
         <div class="flex flex-wrap justify-between items-center gap-2">
           <h2 class="text-sm font-bold">IT Role Demand Shifts (2026 Verified Data)</h2>
           <span class="text-[11px] text-slate-500">Sources: Quess Corp Q2 FY27 &amp; Lenny's/CellCog Report</span>
@@ -1378,22 +1384,22 @@ function renderAiJobs() {
 
       <!-- 3 Geographies -->
       <div class="grid md:grid-cols-3 gap-4">
-        <div onclick="openArticle('it-jobs-india')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-2xl p-5 border-2 border-amber-300 dark:border-amber-700 shadow-sm space-y-2">
+        <div onclick="openArticle('it-jobs-india')" class="cursor-pointer bg-white dark:bg-neutral-900 rounded-2xl p-5 border-2 border-amber-300 dark:border-amber-700 shadow-sm space-y-2">
           <div class="text-xs font-bold uppercase text-amber-600">🇮🇳 India (Highest Priority)</div>
           <div class="text-base font-bold">GCCs Shift to AI &amp; Product</div>
-          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">1,800+ GCCs employ 1.9M staff. AI/Data/Cyber roles hit 30.3% of hiring with a 38–42% talent gap. Meanwhile, 5k–30k routine roles were trimmed.</p>
+          <p class="text-xs text-slate-600 dark:text-neutral-300 leading-relaxed">1,800+ GCCs employ 1.9M staff. AI/Data/Cyber roles hit 30.3% of hiring with a 38–42% talent gap. Meanwhile, 5k–30k routine roles were trimmed.</p>
           <div class="text-xs font-semibold text-indigo-600 pt-1">Read India Skill Roadmap &rarr;</div>
         </div>
-        <div onclick="openArticle('it-jobs-usa')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+        <div onclick="openArticle('it-jobs-usa')" class="cursor-pointer bg-white dark:bg-neutral-900 rounded-2xl p-5 border border-slate-200 dark:border-neutral-800 shadow-sm space-y-2">
           <div class="text-xs font-bold uppercase text-slate-500">🇺🇸 USA</div>
           <div class="text-base font-bold">125k+ Cuts, Specialized Hiring</div>
-          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">Eng hiring (113k) is half of 2022 peak. Security (+34%) and Platform (+30%) grew while Front-end (-51%) and Mobile (-39%) shrank.</p>
+          <p class="text-xs text-slate-600 dark:text-neutral-300 leading-relaxed">Eng hiring (113k) is half of 2022 peak. Security (+34%) and Platform (+30%) grew while Front-end (-51%) and Mobile (-39%) shrank.</p>
           <div class="text-xs font-semibold text-indigo-600 pt-1">Read US Breakdown &rarr;</div>
         </div>
-        <div onclick="openArticle('it-jobs-europe')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+        <div onclick="openArticle('it-jobs-europe')" class="cursor-pointer bg-white dark:bg-neutral-900 rounded-2xl p-5 border border-slate-200 dark:border-neutral-800 shadow-sm space-y-2">
           <div class="text-xs font-bold uppercase text-slate-500">🇪🇺 Europe</div>
           <div class="text-base font-bold">AI Governance &amp; Upskilling</div>
-          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">Strict labour rules limit mass layoffs; hiring focuses on EU AI compliance, cloud security, and upskilling existing engineers.</p>
+          <p class="text-xs text-slate-600 dark:text-neutral-300 leading-relaxed">Strict labour rules limit mass layoffs; hiring focuses on EU AI compliance, cloud security, and upskilling existing engineers.</p>
           <div class="text-xs font-semibold text-indigo-600 pt-1">Read Europe Breakdown &rarr;</div>
         </div>
       </div>
@@ -1401,10 +1407,10 @@ function renderAiJobs() {
       <!-- What Indian IT Pros Should Learn -->
       <div class="bg-indigo-50/70 dark:bg-indigo-950/30 rounded-2xl p-5 border border-indigo-100 dark:border-indigo-900/50 space-y-2">
         <h3 class="text-sm font-bold text-indigo-900 dark:text-indigo-200">What Should an Indian IT Professional Learn Right Now?</h3>
-        <div class="grid sm:grid-cols-3 gap-3 text-xs text-slate-700 dark:text-slate-300">
-          <div class="p-3 rounded-xl bg-white dark:bg-slate-900/80"><strong>1. AI-Assisted Engineering:</strong> Use coding agents to build &amp; test faster, focusing on system design and debugging.</div>
-          <div class="p-3 rounded-xl bg-white dark:bg-slate-900/80"><strong>2. Data &amp; Cloud Pipelines:</strong> Learn how to connect company databases safely to AI models (RAG, APIs, Cloud).</div>
-          <div class="p-3 rounded-xl bg-white dark:bg-slate-900/80"><strong>3. Cybersecurity &amp; Testing Automation:</strong> Automated security and QA remain the fastest-growing GCC needs.</div>
+        <div class="grid sm:grid-cols-3 gap-3 text-xs text-slate-700 dark:text-neutral-300">
+          <div class="p-3 rounded-xl bg-white dark:bg-neutral-900/80"><strong>1. AI-Assisted Engineering:</strong> Use coding agents to build &amp; test faster, focusing on system design and debugging.</div>
+          <div class="p-3 rounded-xl bg-white dark:bg-neutral-900/80"><strong>2. Data &amp; Cloud Pipelines:</strong> Learn how to connect company databases safely to AI models (RAG, APIs, Cloud).</div>
+          <div class="p-3 rounded-xl bg-white dark:bg-neutral-900/80"><strong>3. Cybersecurity &amp; Testing Automation:</strong> Automated security and QA remain the fastest-growing GCC needs.</div>
         </div>
       </div>
     </div>
@@ -1421,13 +1427,13 @@ function renderInvestments() {
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
         ${EDU_TOPICS.map(t => `
-          <div onclick="openArticle('${t.id}')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-800 hover:border-indigo-300 transition shadow-sm flex flex-col justify-between">
+          <div onclick="openArticle('${t.id}')" class="cursor-pointer bg-white dark:bg-neutral-900 rounded-xl p-4 border border-slate-200 dark:border-neutral-800 hover:border-indigo-300 transition shadow-sm flex flex-col justify-between">
             <div>
               <div class="flex items-center gap-2">
                 <span class="text-xl">${t.icon}</span>
                 <h3 class="text-sm font-bold text-slate-900 dark:text-white">${t.title}</h3>
               </div>
-              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">${t.oneLiner}</p>
+              <p class="text-xs text-slate-600 dark:text-neutral-300 mt-2 leading-relaxed">${t.oneLiner}</p>
             </div>
             <div class="text-[11px] font-semibold text-indigo-600 dark:text-indigo-400 mt-3">See real-world example &rarr;</div>
           </div>
@@ -1436,9 +1442,9 @@ function renderInvestments() {
 
       <!-- Investment Tips & SIP Calculator -->
       <div class="grid md:grid-cols-2 gap-5">
-        <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+        <div class="bg-white dark:bg-neutral-900 rounded-2xl p-5 border border-slate-200 dark:border-neutral-800 shadow-sm space-y-3">
           <h2 class="text-base font-bold">Investment Tips You Should Know</h2>
-          <ul class="space-y-2.5 text-xs text-slate-600 dark:text-slate-300">
+          <ul class="space-y-2.5 text-xs text-slate-600 dark:text-neutral-300">
             <li><strong>1. Emergency Fund First:</strong> Keep 6 months of expenses in a bank/liquid fund before starting equity SIPs.</li>
             <li><strong>2. Avoid "Guaranteed Return" Traps:</strong> No stock, mutual fund, or crypto can legally guarantee high fixed returns.</li>
             <li><strong>3. Keep Costs Low:</strong> Prefer Direct Mutual Funds or Index Funds/ETFs over high-commission plans.</li>
@@ -1448,20 +1454,20 @@ function renderInvestments() {
           </ul>
         </div>
 
-        <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+        <div class="bg-white dark:bg-neutral-900 rounded-2xl p-5 border border-slate-200 dark:border-neutral-800 shadow-sm space-y-3">
           <h2 class="text-base font-bold">Interactive SIP Calculator (Illustrative)</h2>
           <div class="grid grid-cols-3 gap-2.5 text-xs">
             <div>
               <label class="block text-slate-500 mb-1">Monthly SIP (₹)</label>
-              <input id="sip-amt" type="number" value="5000" min="500" step="500" class="w-full px-2.5 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 font-semibold" />
+              <input id="sip-amt" type="number" value="5000" min="500" step="500" class="w-full px-2.5 py-2 rounded-lg border border-slate-200 dark:border-neutral-700 bg-slate-50 dark:bg-neutral-800 font-semibold" />
             </div>
             <div>
               <label class="block text-slate-500 mb-1">Years</label>
-              <input id="sip-yrs" type="number" value="10" min="1" max="40" class="w-full px-2.5 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 font-semibold" />
+              <input id="sip-yrs" type="number" value="10" min="1" max="40" class="w-full px-2.5 py-2 rounded-lg border border-slate-200 dark:border-neutral-700 bg-slate-50 dark:bg-neutral-800 font-semibold" />
             </div>
             <div>
               <label class="block text-slate-500 mb-1">Est. Return (%)</label>
-              <input id="sip-rate" type="number" value="12" min="1" max="25" step="0.5" class="w-full px-2.5 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 font-semibold" />
+              <input id="sip-rate" type="number" value="12" min="1" max="25" step="0.5" class="w-full px-2.5 py-2 rounded-lg border border-slate-200 dark:border-neutral-700 bg-slate-50 dark:bg-neutral-800 font-semibold" />
             </div>
           </div>
           <div id="sip-output" class="p-3.5 rounded-xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200/70 dark:border-emerald-900/50 text-xs space-y-1"></div>
@@ -1481,15 +1487,15 @@ function renderRealEstate() {
           <h1 class="text-xl font-extrabold tracking-tight">Where Should You Buy Your Next Home?</h1>
           <p class="text-xs text-slate-500 mt-0.5">Residential apartment rates in Pune, Bangalore &amp; Nagpur. Data types clearly labeled.</p>
         </div>
-        <div class="flex bg-slate-200/70 dark:bg-slate-800 p-1 rounded-xl">
+        <div class="flex bg-slate-200/70 dark:bg-neutral-800 p-1 rounded-xl">
           ${["Pune", "Bangalore", "Nagpur"].map(c => `
-            <button onclick="state.city='${c}';render()" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition ${state.city === c ? 'bg-white dark:bg-slate-900 shadow-sm text-indigo-600 dark:text-indigo-400' : 'text-slate-600 dark:text-slate-400'}">${c}</button>
+            <button onclick="state.city='${c}';render()" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition ${state.city === c ? 'bg-white dark:bg-neutral-900 shadow-sm text-indigo-600 dark:text-indigo-400' : 'text-slate-600 dark:text-neutral-400'}">${c}</button>
           `).join("")}
         </div>
       </div>
 
       <!-- 3-City Comparison Chart -->
-      <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+      <div class="bg-white dark:bg-neutral-900 rounded-2xl p-5 border border-slate-200 dark:border-neutral-800 shadow-sm space-y-2">
         <div class="flex justify-between items-center">
           <h2 class="text-sm font-bold">${state.city} Locality Prices (₹ / sq ft)</h2>
           <span class="text-[11px] text-slate-500">99acres / ANAROCK / MagicBricks 2026</span>
@@ -1500,7 +1506,7 @@ function renderRealEstate() {
       <!-- Locality Cards -->
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
         ${locs.map(l => `
-          <div onclick="openArticle('${l.id}')" class="cursor-pointer bg-white dark:bg-slate-900 rounded-2xl p-4 border border-slate-200 dark:border-slate-800 hover:border-indigo-300 transition shadow-sm space-y-2.5">
+          <div onclick="openArticle('${l.id}')" class="cursor-pointer bg-white dark:bg-neutral-900 rounded-2xl p-4 border border-slate-200 dark:border-neutral-800 hover:border-indigo-300 transition shadow-sm space-y-2.5">
             <div class="flex justify-between items-start gap-2">
               <div>
                 <h3 class="text-base font-bold">${l.name}</h3>
@@ -1509,11 +1515,11 @@ function renderRealEstate() {
               <span class="text-sm font-extrabold text-indigo-600 dark:text-indigo-400">₹${l.avg.toLocaleString("en-IN")}/sqft</span>
             </div>
             <div class="flex flex-wrap gap-1.5 text-[10px] font-semibold">
-              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">${l.tier}</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-neutral-800">${l.tier}</span>
               <span class="px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300">${l.trend}</span>
               <span class="px-2 py-0.5 rounded bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300">${l.connectivity}</span>
             </div>
-            <p class="text-xs text-slate-600 dark:text-slate-300 line-clamp-2">${l.pros}</p>
+            <p class="text-xs text-slate-600 dark:text-neutral-300 line-clamp-2">${l.pros}</p>
             <div class="text-[11px] text-slate-500">Growth: <strong>${l.yoy}</strong> &bull; Tap for risks &amp; details &rarr;</div>
           </div>
         `).join("")}
@@ -1521,32 +1527,32 @@ function renderRealEstate() {
 
       <!-- Property Buying Tips + EMI Calculator -->
       <div class="grid md:grid-cols-2 gap-5">
-        <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+        <div class="bg-white dark:bg-neutral-900 rounded-2xl p-5 border border-slate-200 dark:border-neutral-800 shadow-sm space-y-3">
           <h2 class="text-base font-bold">Property Buying Tips</h2>
           <div class="space-y-2.5 text-xs">
             ${PROPERTY_TIPS.map(tip => `
-              <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60">
+              <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-neutral-800/60">
                 <div class="font-bold text-slate-900 dark:text-white">${tip.t}</div>
-                <div class="text-slate-600 dark:text-slate-300 mt-0.5">${tip.d}</div>
+                <div class="text-slate-600 dark:text-neutral-300 mt-0.5">${tip.d}</div>
               </div>
             `).join("")}
           </div>
         </div>
 
-        <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3 h-fit">
+        <div class="bg-white dark:bg-neutral-900 rounded-2xl p-5 border border-slate-200 dark:border-neutral-800 shadow-sm space-y-3 h-fit">
           <h2 class="text-base font-bold">Home Loan EMI Calculator</h2>
           <div class="grid grid-cols-3 gap-2.5 text-xs">
             <div>
               <label class="block text-slate-500 mb-1">Loan (₹ Lakh)</label>
-              <input id="emi-loan" type="number" value="50" min="5" step="5" class="w-full px-2.5 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 font-semibold" />
+              <input id="emi-loan" type="number" value="50" min="5" step="5" class="w-full px-2.5 py-2 rounded-lg border border-slate-200 dark:border-neutral-700 bg-slate-50 dark:bg-neutral-800 font-semibold" />
             </div>
             <div>
               <label class="block text-slate-500 mb-1">Rate (% p.a.)</label>
-              <input id="emi-rate" type="number" value="8.5" min="5" max="15" step="0.1" class="w-full px-2.5 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 font-semibold" />
+              <input id="emi-rate" type="number" value="8.5" min="5" max="15" step="0.1" class="w-full px-2.5 py-2 rounded-lg border border-slate-200 dark:border-neutral-700 bg-slate-50 dark:bg-neutral-800 font-semibold" />
             </div>
             <div>
               <label class="block text-slate-500 mb-1">Tenure (Yrs)</label>
-              <input id="emi-yrs" type="number" value="20" min="1" max="30" class="w-full px-2.5 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 font-semibold" />
+              <input id="emi-yrs" type="number" value="20" min="1" max="30" class="w-full px-2.5 py-2 rounded-lg border border-slate-200 dark:border-neutral-700 bg-slate-50 dark:bg-neutral-800 font-semibold" />
             </div>
           </div>
           <div id="emi-output" class="p-4 rounded-xl bg-indigo-50/70 dark:bg-indigo-950/30 border border-indigo-100 dark:border-indigo-900/50 text-xs space-y-1"></div>
@@ -1566,7 +1572,7 @@ function renderSaved() {
       </div>
 
       ${savedArts.length === 0 ? `
-        <div class="bg-white dark:bg-slate-900 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 text-center space-y-2">
+        <div class="bg-white dark:bg-neutral-900 rounded-2xl p-8 border border-slate-200 dark:border-neutral-800 text-center space-y-2">
           <div class="text-2xl">🔖</div>
           <div class="text-sm font-bold">No saved articles yet</div>
           <p class="text-xs text-slate-500">Tap any news card, market update, or "Things You Should Know" topic and hit <strong>Save</strong>.</p>
@@ -1575,13 +1581,13 @@ function renderSaved() {
       ` : `
         <div class="grid sm:grid-cols-2 gap-3">
           ${savedArts.map(a => `
-            <div class="bg-white dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between gap-2">
+            <div class="bg-white dark:bg-neutral-900 rounded-xl p-4 border border-slate-200 dark:border-neutral-800 shadow-sm flex flex-col justify-between gap-2">
               <div onclick="openArticle('${a.id}')" class="cursor-pointer">
                 <div class="text-[10px] font-bold uppercase text-indigo-600">${a.category}</div>
                 <div class="text-sm font-bold mt-0.5">${a.title}</div>
                 <p class="text-xs text-slate-500 mt-1 line-clamp-2">${a.summary}</p>
               </div>
-              <div class="flex justify-between items-center pt-2 border-t border-slate-100 dark:border-slate-800 text-xs">
+              <div class="flex justify-between items-center pt-2 border-t border-slate-100 dark:border-neutral-800 text-xs">
                 <button onclick="openArticle('${a.id}')" class="font-semibold text-indigo-600">Read Article &rarr;</button>
                 <button onclick="toggleSave('${a.id}')" class="text-rose-600 font-medium">Remove</button>
               </div>
@@ -1590,9 +1596,9 @@ function renderSaved() {
         </div>
       `}
 
-      <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+      <div class="bg-white dark:bg-neutral-900 rounded-2xl p-5 border border-slate-200 dark:border-neutral-800 shadow-sm space-y-2">
         <label for="personal-notes" class="text-sm font-bold block">Personal Watchlist / Reminders</label>
-        <textarea id="personal-notes" rows="4" placeholder="E.g., Check HDFC Gold ETF vs Nifty 50 SIP on 5th; Compare Hinjewadi vs Wakad 2BHK..." class="w-full p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs focus:outline-none focus:border-indigo-500">${state.notes}</textarea>
+        <textarea id="personal-notes" rows="4" placeholder="E.g., Check HDFC Gold ETF vs Nifty 50 SIP on 5th; Compare Hinjewadi vs Wakad 2BHK..." class="w-full p-3 rounded-xl border border-slate-200 dark:border-neutral-700 bg-slate-50 dark:bg-neutral-800 text-xs focus:outline-none focus:border-indigo-500">${state.notes}</textarea>
       </div>
     </div>
   `;
@@ -1639,8 +1645,8 @@ function updateEmiCalc() {
 }
 
 function mountChartsForTab() {
-  const tickColor = state.dark ? "#94a3b8" : "#64748b";
-  const gridColor = state.dark ? "#1e293b" : "#e2e8f0";
+  const tickColor = state.dark ? "#a3a3a3" : "#64748b";
+  const gridColor = state.dark ? "#262626" : "#e2e8f0";
 
   if (state.tab === "home") {
     destroyChart("home-nifty");
@@ -1710,11 +1716,11 @@ function render() {
   // Highlight active nav buttons
   document.querySelectorAll(".nav-btn").forEach(b => {
     const active = b.dataset.tab === state.tab;
-    b.className = `nav-btn px-3 py-1.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-1.5 ${active ? "bg-slate-900 text-white dark:bg-indigo-600" : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"}`;
+    b.className = `nav-btn px-3 py-1.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-1.5 ${active ? "bg-slate-900 text-white dark:bg-indigo-600" : "text-slate-600 dark:text-neutral-300 hover:bg-slate-100 dark:hover:bg-neutral-800"}`;
   });
   document.querySelectorAll(".mob-nav-btn").forEach(b => {
     const active = b.dataset.tab === state.tab;
-    b.className = `mob-nav-btn relative flex flex-col items-center gap-0.5 px-2 py-1 rounded-lg text-[10px] font-medium ${active ? "text-indigo-600 dark:text-indigo-400 font-bold" : "text-slate-500 dark:text-slate-400"}`;
+    b.className = `mob-nav-btn relative flex flex-col items-center gap-0.5 px-2 py-1 rounded-lg text-[10px] font-medium ${active ? "text-indigo-600 dark:text-indigo-400 font-bold" : "text-slate-500 dark:text-neutral-400"}`;
   });
 
   updateSavedBadges();
@@ -1771,7 +1777,7 @@ function renderSearchResults(q) {
     return;
   }
   box.innerHTML = matches.slice(0, 12).map(m => `
-    <button onclick="document.getElementById('search-modal').classList.add('hidden');openArticle('${m.id}')" class="w-full text-left px-3 py-2.5 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition flex items-center justify-between gap-2">
+    <button onclick="document.getElementById('search-modal').classList.add('hidden');openArticle('${m.id}')" class="w-full text-left px-3 py-2.5 hover:bg-slate-50 dark:hover:bg-neutral-800 rounded-lg transition flex items-center justify-between gap-2">
       <div>
         <div class="text-xs font-bold text-slate-900 dark:text-white">${m.title}</div>
         <div class="text-[10px] text-slate-500">${m.cat}</div>
@@ -1892,7 +1898,7 @@ function renderGeminiModal() {
   const box = document.getElementById("gemini-chat-messages");
   box.innerHTML = geminiMessages.map(m => `
     <div class="flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}">
-      <div class="max-w-[85%] rounded-2xl px-3.5 py-2.5 text-xs leading-relaxed ${m.role === 'user' ? 'bg-indigo-600 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200'}">
+      <div class="max-w-[85%] rounded-2xl px-3.5 py-2.5 text-xs leading-relaxed ${m.role === 'user' ? 'bg-indigo-600 text-white' : 'bg-slate-100 dark:bg-neutral-800 text-slate-800 dark:text-neutral-200'}">
         ${m.text}
       </div>
     </div>
@@ -1901,7 +1907,7 @@ function renderGeminiModal() {
 
   const qp = document.getElementById("gemini-quick-prompts");
   qp.innerHTML = getQuickPrompts(activeArticleId).map(p => `
-    <button type="button" class="gemini-chip text-[11px] px-2.5 py-1 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-indigo-400 text-slate-700 dark:text-slate-300 transition">${p}</button>
+    <button type="button" class="gemini-chip text-[11px] px-2.5 py-1 rounded-full bg-white dark:bg-neutral-800 border border-slate-200 dark:border-neutral-700 hover:border-indigo-400 text-slate-700 dark:text-neutral-300 transition">${p}</button>
   `).join("");
   qp.querySelectorAll(".gemini-chip").forEach(btn => {
     btn.addEventListener("click", () => submitGeminiQuestion(btn.textContent));
