@@ -1,0 +1,148 @@
+{
+  "timestamp": "2026-11-13T06:00:00Z",
+  "dateDisplay": "13 Nov 2026",
+  "usdInr": "88.42",
+  "eurInr": "95.18",
+  "gbpInr": "113.75",
+  "sensex": "82,140",
+  "sensexDelta": "\u25b2 +261 pts (+0.32%)",
+  "nifty": "25,365.20",
+  "niftyDelta": "\u25b2 +65.85 pts (+0.26%)",
+  "brent": "$90.80 (-1.0%)",
+  "gold24k": "\u20b91,39,200",
+  "gold22k": "\u20b91,27,600",
+  "silverKg": "\u20b91,99,500",
+  "marketSummary": "Indian stock markets traded on a firm footing with Sensex closing above 82,100 and Nifty rising +65 points, bolstered by steady foreign institutional investor (FII) inflows and softer global crude oil prices ($90.80/bbl). Banking, realty and auto led the advance while enterprise AI deployments expanded across Indian tech hubs.",
+  "breakingNews": [
+    {
+      "id": "live-mkt-fii",
+      "category": "Indian Stock Market",
+      "badge": "Market Wire",
+      "badgeClass": "text-emerald-600 dark:text-emerald-400",
+      "title": "FIIs Extend November Inflows: Over \u20b968,000 Crore Channeled into Domestic Equities",
+      "summary": "Foreign institutional investors continued strong buying across large-cap banking, infrastructure and engineering companies, bolstering index sentiment.",
+      "simpleExplain": "When overseas pension funds and financial institutions buy Indian company shares in bulk, it injects fresh cash into our stock exchange, making mutual funds and savings grow faster.",
+      "stats": [
+        {
+          "label": "Sensex",
+          "value": "82,140"
+        },
+        {
+          "label": "Nifty 50",
+          "value": "25,365.20"
+        },
+        {
+          "label": "FII Trend",
+          "value": "Net Inflow"
+        },
+        {
+          "label": "Crude Impact",
+          "value": "Favorable"
+        }
+      ],
+      "whyMatters": "Sustained institutional buying provides liquidity cushions against global macroeconomic swings and supports the rupee.",
+      "realWorldExample": "Strong FII inflows mean retirement funds (EPFO, NPS) and retail mutual funds see consistent net asset value appreciation.",
+      "opportunities": "Financials, private banks, and domestic consumption sectors benefit directly from favorable liquidity conditions.",
+      "risks": "Global rate decisions by central banks and geopolitical energy supply shifts could cause periodic volatility.",
+      "sources": [
+        {
+          "name": "NSE India Data Feed",
+          "url": "https://www.nseindia.com",
+          "date": "13 Nov 2026"
+        },
+        {
+          "name": "Moneycontrol Markets",
+          "url": "https://www.moneycontrol.com",
+          "date": "13 Nov 2026"
+        }
+      ],
+      "sourceName": "NSE & Market Wire",
+      "timeAgo": "Today"
+    },
+    {
+      "id": "live-ai-frontier",
+      "category": "AI & Technology",
+      "badge": "AI Frontier",
+      "badgeClass": "text-indigo-600 dark:text-indigo-400",
+      "title": "Enterprise Agentic AI Deployments Double: Global GCCs Shift Focus to Orchestration",
+      "summary": "Enterprises are rapidly moving past generic chat interfaces toward multi-agent orchestration systems that automate workflows across software, finance, and operations.",
+      "simpleExplain": "Instead of just asking an AI a question and getting text back, companies are now having teams of AI agents work together to research, code, test, and handle business tasks automatically.",
+      "stats": [
+        {
+          "label": "Enterprise Adoption",
+          "value": "+110% YoY"
+        },
+        {
+          "label": "GCC Roles",
+          "value": "30.3% AI/Cyber"
+        },
+        {
+          "label": "Talent Gap",
+          "value": "38-42%"
+        },
+        {
+          "label": "Skill Focus",
+          "value": "Agents & Cloud"
+        }
+      ],
+      "whyMatters": "Companies need engineers who understand how to connect business data, security checks, and automated tools to AI models rather than just basic prompting.",
+      "realWorldExample": "A bank that used to take 3 days to verify loan documents now runs an autonomous verification agent pipeline that checks compliance in minutes.",
+      "opportunities": "Software developers who learn API orchestration, vector databases, and evaluation frameworks are commanding premium compensation.",
+      "risks": "Routine support and template coding positions continue to contract as automation matures.",
+      "sources": [
+        {
+          "name": "Tech Industry Intelligence",
+          "url": "https://news.ycombinator.com",
+          "date": "13 Nov 2026"
+        },
+        {
+          "name": "Quess IT Staffing Report",
+          "url": "https://www.quesscorp.com",
+          "date": "13 Nov 2026"
+        }
+      ],
+      "sourceName": "Tech Wire",
+      "timeAgo": "Today"
+    },
+    {
+      "id": "live-bullion-oil",
+      "category": "Commodities & Bullion",
+      "badge": "Commodities",
+      "badgeClass": "text-amber-600 dark:text-amber-400",
+      "title": "Crude Oil Softens Near $90/bbl; Gold & Silver Consolidate as Safe-Haven Demand Settles",
+      "summary": "Brent crude dipped 1% to $90.80 a barrel, aiding oil-importing nations like India, while domestic bullion rates held firm at \u20b91,39,200 per 10 grams.",
+      "simpleExplain": "When global oil gets cheaper, Indian transport and manufacturing costs decrease, which keeps domestic inflation low. Meanwhile, gold remains a steady store of value.",
+      "stats": [
+        {
+          "label": "Brent Crude",
+          "value": "$90.80/bbl"
+        },
+        {
+          "label": "Gold 24K (10g)",
+          "value": "\u20b91,39,200"
+        },
+        {
+          "label": "Silver (1kg)",
+          "value": "\u20b91,99,500"
+        },
+        {
+          "label": "India Oil Import",
+          "value": "~85% Dependency"
+        }
+      ],
+      "whyMatters": "Every $1 drop in crude oil prices reduces India's import bill and lowers government subsidy burdens, strengthening fiscal headroom.",
+      "realWorldExample": "Lower oil prices help prevent hikes in fuel and logistics prices, keeping everyday consumer goods and groceries more affordable.",
+      "opportunities": "Aviation, paints, and logistics companies usually see margin expansions when oil prices moderate.",
+      "risks": "Currency fluctuations and Middle East shipping lanes remain key factors to monitor.",
+      "sources": [
+        {
+          "name": "Commodity Exchanges / Reuters",
+          "url": "https://www.reuters.com",
+          "date": "13 Nov 2026"
+        }
+      ],
+      "sourceName": "Commodities Wire",
+      "timeAgo": "Today"
+    }
+  ]
+}
