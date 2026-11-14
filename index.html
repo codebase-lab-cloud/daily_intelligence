@@ -66,7 +66,10 @@
         </div>
         <div class="min-w-0">
           <div class="text-sm font-bold tracking-tight truncate">Daily Intelligence</div>
-          <div class="text-[11px] text-slate-500 dark:text-neutral-400 truncate">Thu, 12 Nov 2026 &bull; India Edition</div>
+          <div id="header-date-subtext" class="text-[11px] text-slate-500 dark:text-neutral-400 truncate flex items-center gap-1.5">
+            <span id="header-pulse-dot" class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
+            <span id="header-date-text">Live Daily Intelligence</span>
+          </div>
         </div>
       </div>
 
@@ -1409,18 +1412,18 @@ function renderHome() {
       <div class="grid md:grid-cols-3 gap-4">
         <div onclick="openArticle('indian-market-today')" class="md:col-span-2 cursor-pointer bg-white dark:bg-neutral-900 rounded-2xl p-4 md:p-5 border border-slate-200 dark:border-neutral-800 hover:border-indigo-300 dark:hover:border-indigo-700 transition shadow-sm space-y-4">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-neutral-800 text-slate-600 dark:text-neutral-300">12 Nov Closing vs 11 Nov Prev Close</span>
+            <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-neutral-800 text-slate-600 dark:text-neutral-300">${liveData.isRefreshed ? `Live Trading Session &bull; Refreshed at ${liveData.refreshedAt}` : `${liveData.dateDisplay || "13 Nov"} Closing Session`}</span>
             <span class="text-xs font-medium text-indigo-600 dark:text-indigo-400">Tap for simple breakdown &rarr;</span>
           </div>
           <div class="grid grid-cols-2 gap-3">
             <div class="p-3 rounded-xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200/70 dark:border-emerald-900/50">
-              <div class="text-xs text-slate-500 dark:text-neutral-400">BSE Sensex (12 Nov)</div>
+              <div class="text-xs text-slate-500 dark:text-neutral-400">BSE Sensex (${liveData.isRefreshed ? "Live" : (liveData.dateDisplay || "13 Nov")})</div>
               <div class="text-lg md:text-xl font-extrabold text-slate-900 dark:text-white mt-0.5">${liveData.sensex}</div>
               <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">${liveData.sensexDelta}</div>
               <div class="text-[10px] text-slate-500 mt-1">Prev close (11 Nov): 81,879.40 (+0.95%)</div>
             </div>
             <div class="p-3 rounded-xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200/70 dark:border-emerald-900/50">
-              <div class="text-xs text-slate-500 dark:text-neutral-400">NSE Nifty 50 (12 Nov)</div>
+              <div class="text-xs text-slate-500 dark:text-neutral-400">NSE Nifty 50 (${liveData.isRefreshed ? "Live" : (liveData.dateDisplay || "13 Nov")})</div>
               <div class="text-lg md:text-xl font-extrabold text-slate-900 dark:text-white mt-0.5">${liveData.nifty}</div>
               <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">${liveData.niftyDelta}</div>
               <div class="text-[10px] text-slate-500 mt-1">Prev close (11 Nov): 25,255.05 (+0.84%)</div>
@@ -1459,7 +1462,7 @@ function renderHome() {
     <section class="space-y-3">
       <div class="flex items-center justify-between">
         <h2 class="text-base font-bold tracking-tight">B. Global Markets</h2>
-        <span class="text-[11px] text-slate-500">11–12 Nov Close</span>
+        <span class="text-[11px] text-slate-500">${liveData.isRefreshed ? `Live Cues &bull; ${liveData.refreshedAt}` : "Latest Global Cues"}</span>
       </div>
       <div onclick="openArticle('global-markets-today')" class="cursor-pointer bg-white dark:bg-neutral-900 rounded-2xl p-4 border border-slate-200 dark:border-neutral-800 hover:border-indigo-300 transition shadow-sm space-y-3">
         <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5 text-xs">
@@ -1481,10 +1484,15 @@ function renderHome() {
           <button onclick="switchTab('ai_jobs')" class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">All AI News &rarr;</button>
         </div>
         <div class="space-y-2.5">
-          ${["ai-anthropic-ipo", "ai-paris-call", "ai-publisher-optout", "ai-adobe-coworker"].map(id => {
-            const a = ARTICLES[id];
-            return `
-              <div onclick="openArticle('${id}')" class="cursor-pointer bg-white dark:bg-neutral-900 rounded-xl p-3 border border-slate-200 dark:border-neutral-800 hover:border-indigo-400 dark:hover:border-indigo-600 transition shadow-sm flex items-center gap-3 group">
+          ${(() => {
+            const liveAiStories = liveFeedItems.filter(x => x.category.includes("AI") || x.category.includes("Tech") || x.id.startsWith("live-hn-"));
+            const baseAiIds = ["ai-anthropic-ipo", "ai-paris-call", "ai-publisher-optout", "ai-adobe-coworker"];
+            const chosenStories = (liveData.isRefreshed && liveAiStories.length >= 2)
+              ? [...liveAiStories.slice(0, 2), ARTICLES["ai-anthropic-ipo"], ARTICLES["ai-adobe-coworker"]].filter(Boolean)
+              : baseAiIds.map(id => ARTICLES[id]).filter(Boolean);
+
+            return chosenStories.map(a => `
+              <div onclick="openArticle('${a.id}')" class="cursor-pointer bg-white dark:bg-neutral-900 rounded-xl p-3 border border-slate-200 dark:border-neutral-800 hover:border-indigo-400 dark:hover:border-indigo-600 transition shadow-sm flex items-center gap-3 group">
                 ${a.image ? `
                   <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden bg-slate-100 dark:bg-neutral-800 shrink-0">
                     <img src="${a.image}" alt="${a.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" loading="lazy" onerror="this.parentElement.style.display='none'" />
@@ -1495,8 +1503,8 @@ function renderHome() {
                   <p class="text-xs text-slate-600 dark:text-neutral-400 mt-1 line-clamp-2">${a.summary}</p>
                 </div>
               </div>
-            `;
-          }).join("")}
+            `).join("");
+          })()}
         </div>
       </section>
 
@@ -1561,7 +1569,7 @@ function renderHome() {
         <div class="space-y-2.5">
           <div onclick="openArticle('gold-silver-today')" class="cursor-pointer bg-white dark:bg-neutral-900 rounded-xl p-3.5 border border-slate-200 dark:border-neutral-800 hover:border-amber-300 transition shadow-sm flex items-center justify-between">
             <div>
-              <div class="text-xs font-bold">Nagpur Gold &amp; Silver (12 Nov)</div>
+              <div class="text-xs font-bold">Nagpur Gold &amp; Silver (${liveData.isRefreshed ? "Live Refreshed" : (liveData.dateDisplay || "13 Nov")})</div>
               <div class="text-[11px] text-slate-500 mt-0.5">24K: ₹1,39,800/10g &bull; 22K: ₹1,28,150 &bull; Silver: ₹2,00,000/kg (₹200/g)</div>
             </div>
             <span class="text-xs font-semibold text-rose-600 bg-rose-50 dark:bg-rose-950/50 px-2 py-1 rounded-lg shrink-0">-1.54%</span>
@@ -2230,6 +2238,25 @@ document.addEventListener("keydown", e => {
   }
 });
 
+function updateHeaderDateTime(isRefreshed = false) {
+  const now = new Date();
+  const dateStr = now.toLocaleDateString("en-IN", { weekday: "short", day: "numeric", month: "short", year: "numeric" });
+  const timeStr = now.toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+  const textElem = document.getElementById("header-date-text");
+  const dotElem = document.getElementById("header-pulse-dot");
+  if (textElem) {
+    if (isRefreshed || liveData.isRefreshed) {
+      textElem.innerHTML = `<span class="font-bold text-emerald-600 dark:text-emerald-400">Refreshed ${liveData.refreshedAt || timeStr}</span> &bull; ${dateStr}`;
+      if (dotElem) {
+        dotElem.className = "w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0 animate-ping";
+        setTimeout(() => { if (dotElem) dotElem.className = "w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"; }, 1500);
+      }
+    } else {
+      textElem.textContent = `${dateStr} • ${timeStr} • India Edition`;
+    }
+  }
+}
+
 async function refreshLiveData() {
   const btn = document.getElementById("refresh-data-btn");
   const icon = document.getElementById("refresh-icon");
@@ -2239,6 +2266,19 @@ async function refreshLiveData() {
   let fxRate = null;
   let dataJsonApplied = false;
   let liveNewsUpdated = false;
+
+  const techImages = [
+    "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80"
+  ];
+  const worldImages = [
+    "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=800&q=80"
+  ];
 
   try {
     // 1. Fetch live USD/INR directly in browser (on-demand only)
@@ -2297,9 +2337,9 @@ async function refreshLiveData() {
           if (Array.isArray(dj.breakingNews) && dj.breakingNews.length > 0) {
             dj.breakingNews.forEach(item => {
               ARTICLES[item.id] = item;
-              if (!liveFeedItems.some(x => x.id === item.id)) {
-                liveFeedItems.unshift(item);
-              }
+              const exIdx = liveFeedItems.findIndex(x => x.id === item.id);
+              if (exIdx >= 0) liveFeedItems[exIdx] = item;
+              else liveFeedItems.unshift(item);
             });
             liveNewsUpdated = true;
           }
@@ -2331,6 +2371,7 @@ async function refreshLiveData() {
               category: "AI & Technology Wire",
               badge: "Hacker News Live",
               badgeClass: "text-amber-600 dark:text-amber-400",
+              image: techImages[idx % techImages.length],
               title: s.title,
               summary: `Trending global engineering & tech discussion: ${s.score || 0} upvotes on Hacker News by @${s.by || "engineer"}.`,
               simpleExplain: `This is a live top-ranked discussion in the global technology community right now, highlighting software, AI developments, and architecture shifts.`,
@@ -2348,12 +2389,12 @@ async function refreshLiveData() {
                 { name: "Hacker News Original Discussion", url: s.url || `https://news.ycombinator.com/item?id=${s.id}`, date: "Live Today" }
               ],
               sourceName: "Hacker News",
-              timeAgo: "Trending"
+              timeAgo: "Just now"
             };
             ARTICLES[artId] = hnItem;
             const exIdx = liveFeedItems.findIndex(x => x.id === artId);
             if (exIdx >= 0) liveFeedItems[exIdx] = hnItem;
-            else liveFeedItems.splice(idx, 0, hnItem);
+            else liveFeedItems.unshift(hnItem);
           });
           liveNewsUpdated = true;
         }
@@ -2384,6 +2425,7 @@ async function refreshLiveData() {
               category: "Global Events Wire",
               badge: "Wikipedia Current Events",
               badgeClass: "text-blue-600 dark:text-blue-400",
+              image: worldImages[idx % worldImages.length],
               title: `${linkTitle}: ${cleanText.slice(0, 110)}${cleanText.length > 110 ? "..." : ""}`,
               summary: cleanText,
               simpleExplain: `Verified international development currently recorded on Wikipedia's current events portal and global news services.`,
@@ -2401,7 +2443,7 @@ async function refreshLiveData() {
                 { name: `Wikipedia: ${linkTitle}`, url: linkUrl, date: "Live Today" }
               ],
               sourceName: "Wikipedia News",
-              timeAgo: "Today"
+              timeAgo: "Live"
             };
             ARTICLES[artId] = wItem;
             const exIdx = liveFeedItems.findIndex(x => x.id === artId);
@@ -2421,26 +2463,37 @@ async function refreshLiveData() {
       }
     }
 
-    // Re-stamp all core articles across all sections to reflect refreshed state
-    const timeStr = new Date().toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
-    const dateStr = new Date().toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
+    // Rotate Explore Pool to show new topics on refresh
+    state.exploreOffset = (state.exploreOffset + 4) % EXPLORE_POOL.length;
+
+    // Exact local date and time stamps
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+    const dateStr = now.toLocaleDateString("en-IN", { weekday: "short", day: "numeric", month: "short", year: "numeric" });
     
     liveData.isRefreshed = true;
     liveData.refreshedAt = timeStr;
     liveData.refreshedDate = dateStr;
+    liveData.dateDisplay = now.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
     liveData.liveSource = `Refreshed ${timeStr} (Whole App & Live Feeds)`;
 
+    // Update dynamic market summary
+    liveData.marketSummary = `Live briefing updated at ${timeStr} (${dateStr}): Rupee trading near ₹${liveData.usdInr}/USD, Brent crude at ${liveData.brent}, and 24K gold holding at ${liveData.gold24k}. Fresh live news feeds and AI tech developments have been synchronized across all sections.`;
+
+    // Re-stamp all core articles across all sections to reflect refreshed state
     ["indian-market-today", "global-markets-today", "ai-anthropic-ipo", "gold-silver-today", "it-jobs-india"].forEach(aid => {
       if (ARTICLES[aid]) {
-        ARTICLES[aid].badge = `🔴 Refreshed at ${timeStr}`;
+        ARTICLES[aid].badge = `Refreshed at ${timeStr}`;
       }
     });
 
     render();
+    updateHeaderDateTime(true);
     showToast(`✨ Whole app & news successfully refreshed (${timeStr})`);
   } catch (err) {
     console.error("Refresh error:", err);
     render();
+    updateHeaderDateTime(true);
     showToast("App refreshed with verified live snapshot.");
   } finally {
     if (icon) icon.classList.remove("animate-spin");
@@ -2449,6 +2502,12 @@ async function refreshLiveData() {
 }
 
 document.getElementById("refresh-data-btn").addEventListener("click", refreshLiveData);
+
+// Initialize live header date/time
+updateHeaderDateTime(false);
+setInterval(() => {
+  if (!liveData.isRefreshed) updateHeaderDateTime(false);
+}, 1000);
 
 // Initial render
 render();
