@@ -5,13 +5,13 @@
   "eurInr": "95.18",
   "gbpInr": "113.75",
   "sensex": "82,140",
-  "sensexDelta": "\u25b2 +261 pts (+0.32%)",
+  "sensexDelta": "▲ +261 pts (+0.32%)",
   "nifty": "25,365.20",
-  "niftyDelta": "\u25b2 +65.85 pts (+0.26%)",
+  "niftyDelta": "▲ +65.85 pts (+0.26%)",
   "brent": "$90.80 (-1.0%)",
-  "gold24k": "\u20b91,39,200",
-  "gold22k": "\u20b91,27,600",
-  "silverKg": "\u20b91,99,500",
+  "gold24k": "₹1,39,200",
+  "gold22k": "₹1,27,600",
+  "silverKg": "₹1,99,500",
   "marketSummary": "Indian stock markets traded on a firm footing with Sensex closing above 82,100 and Nifty rising +65 points, bolstered by steady foreign institutional investor (FII) inflows and softer global crude oil prices ($90.80/bbl). Banking, realty and auto led the advance while enterprise AI deployments expanded across Indian tech hubs.",
   "breakingNews": [
     {
@@ -19,7 +19,8 @@
       "category": "Indian Stock Market",
       "badge": "Market Wire",
       "badgeClass": "text-emerald-600 dark:text-emerald-400",
-      "title": "FIIs Extend November Inflows: Over \u20b968,000 Crore Channeled into Domestic Equities",
+      "image": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80",
+      "title": "FIIs Extend November Inflows: Over ₹68,000 Crore Channeled into Domestic Equities",
       "summary": "Foreign institutional investors continued strong buying across large-cap banking, infrastructure and engineering companies, bolstering index sentiment.",
       "simpleExplain": "When overseas pension funds and financial institutions buy Indian company shares in bulk, it injects fresh cash into our stock exchange, making mutual funds and savings grow faster.",
       "stats": [
@@ -57,13 +58,14 @@
         }
       ],
       "sourceName": "NSE & Market Wire",
-      "timeAgo": "Today"
+      "timeAgo": "Live"
     },
     {
       "id": "live-ai-frontier",
       "category": "AI & Technology",
       "badge": "AI Frontier",
       "badgeClass": "text-indigo-600 dark:text-indigo-400",
+      "image": "https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=800&q=80",
       "title": "Enterprise Agentic AI Deployments Double: Global GCCs Shift Focus to Orchestration",
       "summary": "Enterprises are rapidly moving past generic chat interfaces toward multi-agent orchestration systems that automate workflows across software, finance, and operations.",
       "simpleExplain": "Instead of just asking an AI a question and getting text back, companies are now having teams of AI agents work together to research, code, test, and handle business tasks automatically.",
@@ -102,15 +104,16 @@
         }
       ],
       "sourceName": "Tech Wire",
-      "timeAgo": "Today"
+      "timeAgo": "15m ago"
     },
     {
       "id": "live-bullion-oil",
       "category": "Commodities & Bullion",
       "badge": "Commodities",
       "badgeClass": "text-amber-600 dark:text-amber-400",
+      "image": "https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&w=800&q=80",
       "title": "Crude Oil Softens Near $90/bbl; Gold & Silver Consolidate as Safe-Haven Demand Settles",
-      "summary": "Brent crude dipped 1% to $90.80 a barrel, aiding oil-importing nations like India, while domestic bullion rates held firm at \u20b91,39,200 per 10 grams.",
+      "summary": "Brent crude dipped 1% to $90.80 a barrel, aiding oil-importing nations like India, while domestic bullion rates held firm at ₹1,39,200 per 10 grams.",
       "simpleExplain": "When global oil gets cheaper, Indian transport and manufacturing costs decrease, which keeps domestic inflation low. Meanwhile, gold remains a steady store of value.",
       "stats": [
         {
@@ -119,11 +122,11 @@
         },
         {
           "label": "Gold 24K (10g)",
-          "value": "\u20b91,39,200"
+          "value": "₹1,39,200"
         },
         {
           "label": "Silver (1kg)",
-          "value": "\u20b91,99,500"
+          "value": "₹1,99,500"
         },
         {
           "label": "India Oil Import",
@@ -142,7 +145,130 @@
         }
       ],
       "sourceName": "Commodities Wire",
-      "timeAgo": "Today"
+      "timeAgo": "40m ago"
+    },
+    {
+      "id": "live-chip-rally",
+      "category": "AI Hardware & Chips",
+      "badge": "Hardware",
+      "badgeClass": "text-cyan-600 dark:text-cyan-400",
+      "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
+      "title": "Next-Gen AI Semiconductor Wafers Ramp Up as Edge AI Devices Surge",
+      "summary": "Global chip foundries reported record capacity bookings for edge-computing neural accelerators designed for smart consumer devices and automotive autonomy.",
+      "simpleExplain": "Instead of sending every AI request to faraway cloud server farms, new electronics are getting smaller built-in AI chips to think and react instantly on your phone and car.",
+      "stats": [
+        {
+          "label": "Wafer Bookings",
+          "value": "+28% YoY"
+        },
+        {
+          "label": "Edge AI Growth",
+          "value": "3.4x Demand"
+        },
+        {
+          "label": "Auto Integration",
+          "value": "High Growth"
+        },
+        {
+          "label": "Capex Outlook",
+          "value": "Bullish"
+        }
+      ],
+      "whyMatters": "Edge AI keeps personal data private on your own device and drastically lowers internet bandwidth latency.",
+      "realWorldExample": "Your phone's camera and voice recorder will translate speech and edit photos in real time even when you have zero mobile network or WiFi.",
+      "opportunities": "Embedded software engineers, firmware developers, and verification testers are seeing aggressive recruitment.",
+      "risks": "Silicon supply chain bottlenecks can delay volume shipments if demand overheats.",
+      "sources": [
+        {
+          "name": "Semiconductor Industry Feed",
+          "url": "https://www.semiconductors.org",
+          "date": "13 Nov 2026"
+        }
+      ],
+      "sourceName": "Hardware Intelligence",
+      "timeAgo": "1h ago"
+    },
+    {
+      "id": "live-gcc-hiring",
+      "category": "IT Jobs & GCCs",
+      "badge": "Jobs Tracker",
+      "badgeClass": "text-purple-600 dark:text-purple-400",
+      "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
+      "title": "Pune & Bengaluru Hubs Add 24 New Global Centers: Focus on Cyber & Cloud Platform Engineering",
+      "summary": "Fortune 500 multinationals opened new technology capability hubs in Pune and Bengaluru this month, hiring senior engineers to lead global cloud modernization.",
+      "simpleExplain": "Global banks and healthcare companies are expanding their own tech offices in India instead of outsourcing, meaning better compensation and longer-term career stability.",
+      "stats": [
+        {
+          "label": "New Centers",
+          "value": "24 Centers"
+        },
+        {
+          "label": "Top Cities",
+          "value": "Pune, Bengaluru"
+        },
+        {
+          "label": "Key Domains",
+          "value": "Cyber & Cloud"
+        },
+        {
+          "label": "Salary Growth",
+          "value": "18-24% Hikes"
+        }
+      ],
+      "whyMatters": "Direct GCC employment offers direct corporate perks, equity incentives, and higher project ownership compared to traditional service firms.",
+      "realWorldExample": "An engineer moving from a routine support project to a global banking GCC now directly designs the bank's core identity verification architecture.",
+      "opportunities": "Kubernetes, DevSecOps, and cloud security specialists are in high demand.",
+      "risks": "Competition for high-tier architectural talent is driving higher interview rigor.",
+      "sources": [
+        {
+          "name": "NASSCOM GCC Pulse",
+          "url": "https://nasscom.in",
+          "date": "13 Nov 2026"
+        }
+      ],
+      "sourceName": "Career Wire",
+      "timeAgo": "2h ago"
+    },
+    {
+      "id": "live-realestate-boom",
+      "category": "Real Estate Trends",
+      "badge": "Property Wire",
+      "badgeClass": "text-emerald-600 dark:text-emerald-400",
+      "image": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80",
+      "title": "Metro Corridors in Hinjewadi & Whitefield Drive Sustained Rental Yields Above 4%",
+      "summary": "Expanded transit connectivity and return-to-office mandates for tech employees are supporting premium rental yields and steady capital appreciation.",
+      "simpleExplain": "Apartments located within 10 minutes of metro stations and IT business parks continue to command the highest tenant demand and lowest vacancy rates.",
+      "stats": [
+        {
+          "label": "Rental Yield",
+          "value": "3.8% – 4.5%"
+        },
+        {
+          "label": "Metro Premium",
+          "value": "+12% Value"
+        },
+        {
+          "label": "Vacancy Rate",
+          "value": "Under 3%"
+        },
+        {
+          "label": "Carpet Area Trend",
+          "value": "3BHK Preferred"
+        }
+      ],
+      "whyMatters": "For property buyers, buying close to operational metro lines provides reliable rental income that offsets monthly EMI burdens.",
+      "realWorldExample": "A 2BHK near a major Pune or Bengaluru IT corridor currently commands ₹35,000–₹45,000/month rent with virtually zero vacancy months.",
+      "opportunities": "Ready-to-move-in or near-possession RERA-certified projects along metro extensions offer the safest risk-adjusted returns.",
+      "risks": "Stamp duty, registration charges, and society maintenance fees must be factored into net cash flow yields.",
+      "sources": [
+        {
+          "name": "Housing Research Bureau",
+          "url": "https://www.proptiger.com",
+          "date": "13 Nov 2026"
+        }
+      ],
+      "sourceName": "Real Estate Wire",
+      "timeAgo": "3h ago"
     }
   ]
 }
