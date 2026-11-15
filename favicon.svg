@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="diArcGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+    <linearGradient id="diPulseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="40%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(256, 256) scale(1.12)">
+    <!-- Stylized D Outer Intelligence Perimeter -->
+    <!-- Vertical Spine -->
+    <path d="M -95 -145 L -95 145" 
+          fill="none" stroke="url(#diArcGrad)" stroke-width="52" stroke-linecap="round"/>
+    <!-- Sweeping Radar Arc -->
+    <path d="M -95 -145 C 50 -145 145 -70 145 0 C 145 70 50 145 -95 145" 
+          fill="none" stroke="url(#diArcGrad)" stroke-width="52" stroke-linecap="round"/>
+    
+    <!-- Concentric Intelligence Radar Pulses -->
+    <!-- Outer Signal Wave -->
+    <path d="M -35 -75 A 85 85 0 0 1 50 0 A 85 85 0 0 1 -35 75" 
+          fill="none" stroke="url(#diPulseGrad)" stroke-width="32" stroke-linecap="round" opacity="0.95"/>
+    
+    <!-- Inner Focused Signal Spark Wave -->
+    <path d="M -35 -35 A 40 40 0 0 1 5 0 A 40 40 0 0 1 -35 35" 
+          fill="none" stroke="url(#diPulseGrad)" stroke-width="26" stroke-linecap="round"/>
+    
+    <!-- Intelligence Zenith Core -->
+    <circle cx="-35" cy="0" r="16" fill="url(#diPulseGrad)"/>
+    <circle cx="-35" cy="0" r="7" fill="#ffffff"/>
+  </g>
+</svg>

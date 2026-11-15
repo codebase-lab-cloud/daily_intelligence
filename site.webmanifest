@@ -1,30 +1,36 @@
 {
   "name": "Daily Intelligence Briefing",
   "short_name": "Daily Intel",
-  "description": "Daily Intelligence Briefing — Finance, AI & Markets",
-  "start_url": "https://codebase-lab-cloud.github.io/daily_intelligence/",
-  "scope": "https://codebase-lab-cloud.github.io/daily_intelligence/",
+  "description": "Daily Intelligence Briefing \u2014 Finance, AI & Markets",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#020617",
   "theme_color": "#020617",
   "icons": [
     {
-      "src": "https://codebase-lab-cloud.github.io/daily_intelligence/apple-touch-icon-180x180.png?v=4",
-      "sizes": "180x180",
+      "src": "favicon-32.png?v=10",
+      "sizes": "32x32",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "https://codebase-lab-cloud.github.io/daily_intelligence/icon-192.png?v=4",
+      "src": "icon-192.png?v=10",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "https://codebase-lab-cloud.github.io/daily_intelligence/icon-512.png?v=4",
+      "src": "icon-512.png?v=10",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png?v=10",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
